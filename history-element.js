@@ -1,5 +1,15 @@
 (function(w) {
     "use strict";
+    /**
+     * Creates a hash from an array whose elements are hashes whose properties are 'name' and 'value'.
+     */
+    function valuesHashFromSerializedArray(valuesArray) {
+        var valuesHash = {};
+        for (var i = 0, len = valuesArray.length; i < len; i++) {
+            valuesHash[valuesArray[i].name] = valuesArray[i].value;
+        }
+        return valuesHash;
+    }
     Polymer("history-element", {
         ready: function() {
             // Setup an anchor tag "click" event hanler
@@ -33,9 +43,12 @@
                 console.log("attribute action", action);
                 console.log("attribute method", method);
                 if (action.indexOf("/") === 0) {
-                    method = method ? method : 'get';
-                    valuesHash = valuesHashFromSerializedArray($form.serializeArray());
                     evt.preventDefault();
+                    method = method ? method : 'get';
+                    // valuesHash = valuesHashFromSerializedArray($form.serializeArray());
+                    // FormData - see https://developer.mozilla.org/en-US/docs/Web/API/FormData for info
+                    valuesHash = valuesHashFromSerializedArray(new FormData(this));
+                    console.log("valuesHash", valuesHash);
                 }
             }
         },

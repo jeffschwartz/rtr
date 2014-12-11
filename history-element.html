@@ -1,0 +1,186 @@
+<!--
+@license
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+<seed-element></seed-element>
+
+@element seed-element
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/seed-element
+-->
+<polymer-element name="seed-element" attributes="notitle author">
+
+    <template>
+
+        <link rel="stylesheet" href="seed-element.css">
+
+        <h1>Hello from seed-element</h1>
+        <content></content>
+
+    </template>
+
+    <script>
+    (function(){
+        'use strict';
+        Polymer({
+            /**
+            * The `author` attribute sets an initial author
+            *
+            * @attribute author
+            * @type string
+            * @default 'Dimitri Glazkov'
+            */
+            author: 'Dimitri Glazkov',
+
+            /**
+            * `fancy` is a property that does something fancy. *
+            * @property fancy
+            * @type bool
+            * @default false
+            */
+            fancy: false,
+
+            clickEventHandler: function(evt){
+                //Event handler for click event on anchor tags. Ignores those where the href path doesn't start with
+                //a '/' character; this prevents handling external links, allowing those events  to bubble up as normal.
+                if(evt.target.tagName.toUpperCase() === 'A' && evt.target.href.indexOf('/') === 0){
+                    event.preventDefault();
+                    //0.6.0 changed target to currentTarget.
+                    var pathName = event.currentTarget.pathname;
+                    //The 'verb' for routes on anchors is always 'get'.
+                    v.router.route('get', pathName);
+                    //0.6.0 changed target to currentTarget.
+                    history.pushState({verb: 'get'}, null, event.currentTarget.href);
+                }
+            },
+            formSubmitEventHandler: function(event){
+                var $form = v.$(this),
+                action = $form.attr('action'),
+                method = $form.attr('method'),
+                valuesHash;
+                if(action.indexOf('/') === 0){
+                    event.preventDefault();
+                    method = method ? method : 'get';
+                    valuesHash = valuesHashFromSerializedArray($form.serializeArray());
+                    v.router.route(method, action, valuesHash);
+                }
+            },
+            ready: function() {
+                // Ready is a lifecycle callback.
+                // You can do setup work in here.
+                // More info: http://www.polymer-project.org/docs/polymer/polymer.html#lifecyclemethods
+                //Verify browser supports pushstate.
+
+                // var bodyElem = document.querySelector('body');
+
+                console.log(history.pushState ? 'history pushState is supported in your browser' :
+                'history pushstate is not supported in your browser');
+
+                var v = window.Coccyx = window.Coccyx || {}, historyStarted = false;
+
+                document.addEventListener('click', this.clickEventHandler);
+
+                //Event handler for form submit event. Ignores submit events on forms whose action attributes do not
+                //start with a '/' character; this prevents handling form submit events for forms whose action
+                //attribute values are external links, allowing those events  to bubble up as normal.
+                document.addEventListener('submit', function(event){
+
+                //Event handler for popstate event.
+                v.$(window).on('popstate', function(event){
+                    //Ignore 'popstate' events without state and until history.start is called.
+                    if(event.originalEvent.state && started()){v.router.route(event.originalEvent.state.verb , window.location.pathname);}
+                    });
+
+                    //Creates a hash from an array whose elements are hashes whose properties are 'name' and 'value'.
+                    function valuesHashFromSerializedArray(valuesArray){
+                    var valuesHash = {};
+                    for(var i = 0, len = valuesArray.length; i < len; i++){valuesHash[valuesArray[i].name] = valuesArray[i].value;}
+                        return valuesHash;
+                    }
+
+                    function started(){return historyStarted;}
+
+                    //Call Coccyx.history.start to start your application. When called starts responding to
+                    //'popstate' events which are raised when the user uses the browser's back and forward
+                    //buttons to navigate. Pass true for trigger if you want the route function to be called.
+                    //0.5.0
+                    function start(trigger, controllers){
+                        v.controllers.registerControllers(controllers); //0.5.0
+                        historyStarted = true;
+                        history.replaceState({verb: 'get'}, null, window.location.pathname);
+                        if(trigger){v.router.route('get', window.location.pathname);}
+                    }
+
+                    //A wrapper for the browser's history.pushState and history.replaceState. Whenever you reach
+                    //a point in your application that you'd like to save as a URL, call navigate in order to update
+                    //the URL. If you wish to also call the route function, set the trigger option to true. To update
+                    //the URL without creating an entry in the browser's history, set the replace option to true.
+                    //Pass true for trigger if you want the route function to be called.
+                    //Pass true for replace if you only want to replace the current history entry and not
+                    //push a new one onto the browser's history stack.
+                    //function navigate(state, title, url, trigger, replace){
+                    function navigate(options){
+                        if(v.history.started()){
+                            options = options || {};
+                            options.state = options.state || null;
+                            options.title = options.title || document.title;
+                            options.method = options.method || 'get';
+                            options.url = options.url || window.location.pathname;
+                            options.trigger = options.trigger || false;
+                            options.replace = options.replace || false;
+                            window.history[options.replace ? 'replaceState' : 'pushState'](options.state, options.title, options.url);
+                            if(options.trigger){v.router.route(options.method, options.url);}
+                        }
+                    }
+
+                    v.history = {start: start, started: started, navigate: navigate};
+            },
+            /**
+            * The `sayHello` method will return a greeting.
+            *
+            * @method sayHello
+            * @param {String} greeting Pass in a specific greeting.
+            * @return {String} Returns a string greeting.
+            */
+            sayHello: function(greeting) {
+                var response = greeting || 'Hello World!';
+                return 'seed-element says, ' + response;
+            },
+
+            /**
+            * The `seed-element-lasers-success` event is fired whenever we
+            * call fireLasers.
+            *
+            * @event seed-element-lasers-success
+            * @param {Object} detail
+            *   @param {string} detail.sound An amazing sound.
+            */
+
+            /**
+            * The `fireLasers` method will fire the lasers. At least
+            * it will dispatch an event that claims lasers were fired :)
+            *
+            * @method fireLasers
+            */
+            fireLasers: function() {
+                this.fire('seed-element-lasers-success', { sound: 'Pew pew pew!' });
+            }
+        });
+    }());
+
+</script>
+
+</polymer-element>

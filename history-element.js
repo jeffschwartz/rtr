@@ -1,11 +1,19 @@
 (function(w) {
     "use strict";
-
+    function makeNameValueHashFrom(name, value){
+        var obj = {};
+        obj.name = name;
+        obj.value = value;
+        return obj;
+    }
+    /**
+     * Modfied from OS code found at https://code.google.com/p/form-serialize/
+     */
     function serialize(form) {
         if (!form || form.nodeName !== "FORM") {
             return;
         }
-        var i, j, q = [];
+        var a, i, j, q = [];
         for (i = form.elements.length - 1; i >= 0; i = i - 1) {
             if (form.elements[i].name === "") {
                 continue;
@@ -19,16 +27,12 @@
                         case "button":
                         case "reset":
                         case "submit":
-                            q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[
-                                    i]
-                                .value));
+                            q.push(makeNameValueHashFrom(form.elements[i].name, form.elements[i].value));
                             break;
                         case "checkbox":
                         case "radio":
                             if (form.elements[i].checked) {
-                                q.push(form.elements[i].name + "=" + encodeURIComponent(
-                                    form.elements[
-                                        i].value));
+                                q.push(makeNameValueHashFrom(form.elements[i].name, form.elements[i].value));
                             }
                             break;
                         case "file":
@@ -36,23 +40,22 @@
                     }
                     break;
                 case "TEXTAREA":
-                    q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[i]
-                        .value));
+                    q.push(makeNameValueHashFrom(form.elements[i].name, form.elements[i].value));
                     break;
                 case "SELECT":
                     switch (form.elements[i].type) {
                         case "select-one":
-                            q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[
-                                    i]
-                                .value));
+                            q.push(makeNameValueHashFrom(form.elements[i].name, form.elements[i].value));
                             break;
                         case "select-multiple":
+                            a = [];
                             for (j = form.elements[i].options.length - 1; j >= 0; j = j - 1) {
                                 if (form.elements[i].options[j].selected) {
-                                    q.push(form.elements[i].name + "=" + encodeURIComponent(
-                                        form.elements[
-                                            i].options[j].value));
+                                    a.push(form.elements[i].options[j].value);
                                 }
+                            }
+                            if(a.length){
+                                q.push(makeNameValueHashFrom(form.elements[i].name, a));
                             }
                             break;
                     }
@@ -62,17 +65,14 @@
                         case "reset":
                         case "submit":
                         case "button":
-                            q.push(form.elements[i].name + "=" + encodeURIComponent(form.elements[
-                                    i]
-                                .value));
+                            q.push(makeNameValueHashFrom(form.elements[i].name, form.elements[i].value));
                             break;
                     }
                     break;
             }
         }
-        return q.join("&");
+        return q;
     }
-
     /**
      * Creates a hash from an array whose elements are hashes whose properties are "name" and "value".
      */

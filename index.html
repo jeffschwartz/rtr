@@ -19,7 +19,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <a href="http://google.com">Google</a><br>
     <form id="testform" action="/someaction" method="post">
         <label for="input1">input:</label>
-        <input id="input1" type="text" placeholder="type something here"><br>
+        <input id="input1" name="input1" type="text" placeholder="type something here"><br>
+        <select id="select1" name="select1" multiple="multiple">
+            <option value="java_dev">Java developer</option>
+            <option value="web_dev" selected="selected">Web Developer</option>
+            <option value="ui_engineer" selected="selected">UI Engineer</option>
+            <option value="db_admin">DB Administrator</option>
+            <option value="senior_php" selected="selected">Senior PHP programmer</option>
+            <option value="sap_engineer">SAP Engineer</option>
+        </select>
         <button type="submt">submit</button>
     </form>
 </body>

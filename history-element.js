@@ -1,19 +1,23 @@
 (function(w) {
     "use strict";
-    function makeNameValueHashFrom(name, value){
+    /**
+     * Creates a hash with properties 'name' and "value"
+     */
+    function nameValueHash(name, value) {
         var obj = {};
         obj.name = name;
         obj.value = value;
         return obj;
     }
     /**
-     * Modfied from OS code found at https://code.google.com/p/form-serialize/
+     * Modified from OS/MIT code found at https://code.google.com/p/form-serialize/
+     * Serialize a form
      */
     function serialize(form) {
+        var a, i, j, q = [];
         if (!form || form.nodeName !== "FORM") {
             return;
         }
-        var a, i, j, q = [];
         for (i = form.elements.length - 1; i >= 0; i = i - 1) {
             if (form.elements[i].name === "") {
                 continue;
@@ -27,12 +31,14 @@
                         case "button":
                         case "reset":
                         case "submit":
-                            q.push(makeNameValueHashFrom(form.elements[i].name, form.elements[i].value));
+                            q.push(nameValueHash(form.elements[i].name, form.elements[
+                                i].value));
                             break;
                         case "checkbox":
                         case "radio":
                             if (form.elements[i].checked) {
-                                q.push(makeNameValueHashFrom(form.elements[i].name, form.elements[i].value));
+                                q.push(nameValueHash(form.elements[i].name, form.elements[
+                                    i].value));
                             }
                             break;
                         case "file":
@@ -40,12 +46,13 @@
                     }
                     break;
                 case "TEXTAREA":
-                    q.push(makeNameValueHashFrom(form.elements[i].name, form.elements[i].value));
+                    q.push(nameValueHash(form.elements[i].name, form.elements[i].value));
                     break;
                 case "SELECT":
                     switch (form.elements[i].type) {
                         case "select-one":
-                            q.push(makeNameValueHashFrom(form.elements[i].name, form.elements[i].value));
+                            q.push(nameValueHash(form.elements[i].name, form.elements[
+                                i].value));
                             break;
                         case "select-multiple":
                             a = [];
@@ -54,8 +61,8 @@
                                     a.push(form.elements[i].options[j].value);
                                 }
                             }
-                            if(a.length){
-                                q.push(makeNameValueHashFrom(form.elements[i].name, a));
+                            if (a.length) {
+                                q.push(nameValueHash(form.elements[i].name, a));
                             }
                             break;
                     }
@@ -65,7 +72,8 @@
                         case "reset":
                         case "submit":
                         case "button":
-                            q.push(makeNameValueHashFrom(form.elements[i].name, form.elements[i].value));
+                            q.push(nameValueHash(form.elements[i].name, form.elements[
+                                i].value));
                             break;
                     }
                     break;
@@ -85,18 +93,23 @@
     }
     Polymer("history-element", {
         ready: function() {
+            //Verify browser supports pushstate
+            console.log(history.pushState ?
+                "history pushState is supported in your browser" :
+                "history pushstate is not supported in your browser");
+
             // Setup an anchor tag "click" event hanler
             document.addEventListener("click", this.anchorClickHandler);
             // Setup a form tag "submit" event handler
             document.addEventListener("submit", this.formSubmitHandler);
             // Setup a popstate event handler
-            window.addEventListener("popstate", this.popstateHandler);
+            w.addEventListener("popstate", this.popstateHandler);
         },
         /**
          * Anchor tag "click" event hanler
          */
         anchorClickHandler: function(evt) {
-            var href;
+            var method = "get", href; // Allways a "get"
             if (evt.target.tagName.toUpperCase() === "A") {
                 href = evt.target.attributes.href.value;
                 console.log("attribute href", href);
@@ -117,7 +130,7 @@
                 console.log("attribute method", method);
                 if (action.indexOf("/") === 0) {
                     evt.preventDefault();
-                    method = method ? method : "get";
+                    method = method ? method : "get"; // Defaults to "get" if methdo omitted
                     // valuesHash = valuesHashFromSerializedArray($form.serializeArray());
                     // FormData - see https://developer.mozilla.org/en-US/docs/Web/API/FormData for info
                     // var fd = new FormData(document.getElementById(evt.target.id));

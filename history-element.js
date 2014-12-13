@@ -1,5 +1,6 @@
 (function(w) {
     "use strict";
+    var historyStarted = false;
     /**
      * Creates a hash with properties 'name' and "value"
      */
@@ -105,11 +106,14 @@
             // Setup a popstate event handler
             w.addEventListener("popstate", this.popstateHandler);
         },
+        historyStarted: function() {
+            return historyStarted;
+        },
         /**
          * Anchor tag "click" event hanler
          */
         anchorClickHandler: function(evt) {
-            var method = "get", href; // Allways a "get"
+            var method = "get"/* Allways a "get" */, href;
             if (evt.target.tagName.toUpperCase() === "A") {
                 href = evt.target.attributes.href.value;
                 console.log("attribute href", href);
@@ -146,6 +150,39 @@
         popstateHandler: function(evt) {
             console.log("popstate event caught");
             console.log("event", evt);
+            // Ignore 'popstate' events without state and until history.start is called.
+            if (evt.originalEvent.state && historyStarted()) {
+                // v.router.route(evt.originalEvent.state.verb , window.location.pathname);
+            }
+        },
+        /**
+         * Start
+         */
+        start: function(trigger/*, controllers*/) {
+            // v.controllers.registerControllers(controllers); //0.5.0
+            historyStarted = true;
+            history.replaceState({verb: 'get'}, null, window.location.pathname);
+            if (trigger) {
+                // v.router.route('get', window.location.pathname);
+            }
+        },
+        /**
+         * Navigate
+         */
+        navigate: function(options) {
+            if(this.historyStarted()) {
+                options = options || {};
+                options.state = options.state || null;
+                options.title = options.title || document.title;
+                options.method = options.method || "get";
+                options.url = options.url || window.location.pathname;
+                options.trigger = options.trigger || false;
+                options.replace = options.replace || false;
+                window.history[options.replace ? "replaceState" : "pushState"](options.state, options.title, options.url);
+                if(options.trigger) {
+                    // v.router.route(options.method, options.url);
+                }
+            }
         }
     });
 }(window));

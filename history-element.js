@@ -119,6 +119,7 @@
                 console.log("attribute href", href);
                 if (href.indexOf("/") === 0) {
                     evt.preventDefault();
+                    history.pushState({verb: "get"}, null, href);
                 }
             }
         },
@@ -148,10 +149,11 @@
          * History "popstate" event handler
          */
         popstateHandler: function(evt) {
+            alert("popstate handler called!");
             console.log("popstate event caught");
             console.log("event", evt);
             // Ignore 'popstate' events without state and until history.start is called.
-            if (evt.originalEvent.state && historyStarted()) {
+            if (evt.originalEvent && evt.originalEvent.state && historyStarted()) {
                 // v.router.route(evt.originalEvent.state.verb , window.location.pathname);
             }
         },
@@ -161,10 +163,11 @@
         start: function(trigger/*, controllers*/) {
             // v.controllers.registerControllers(controllers); //0.5.0
             historyStarted = true;
-            history.replaceState({verb: 'get'}, null, window.location.pathname);
+            history.replaceState({verb: "get"}, null, window.location.pathname);
             if (trigger) {
                 // v.router.route('get', window.location.pathname);
             }
+            console.log("history started!");
         },
         /**
          * Navigate

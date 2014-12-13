@@ -14,7 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="history-element.html">
 </head>
 <body unresolved>
-    <history-element></history-element>
+    <history-element id="history"></history-element>
     <a href="/somewhere">somewhere</a><br>
     <a href="http://google.com">Google</a><br>
     <form id="testform" action="/someaction" method="post">
@@ -30,5 +30,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </select>
         <button type="submt">submit</button>
     </form>
+    <script>
+        (function(){
+            "use strict";
+            window.addEventListener("polymer-ready", function(){
+                var historyElement = document.getElementById("history");
+                historyElement.start(true);
+            });
+        }());
+    </script>
 </body>
 </html>

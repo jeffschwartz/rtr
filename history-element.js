@@ -100,11 +100,11 @@
                 "history pushstate is not supported in your browser");
 
             // Setup an anchor tag "click" event hanler
-            document.addEventListener("click", this.anchorClickHandler);
+            document.addEventListener("click", this.anchorClickHandler.bind(this));
             // Setup a form tag "submit" event handler
-            document.addEventListener("submit", this.formSubmitHandler);
+            document.addEventListener("submit", this.formSubmitHandler.bind(this));
             // Setup a popstate event handler
-            w.addEventListener("popstate", this.popstateHandler);
+            w.addEventListener("popstate", this.popstateHandler.bind(this));
         },
         historyStarted: function() {
             return historyStarted;
@@ -119,7 +119,8 @@
                 console.log("attribute href", href);
                 if (href.indexOf("/") === 0) {
                     evt.preventDefault();
-                    history.pushState({verb: "get"}, null, href);
+                    w.history.pushState({verb: "get", path: href}, null, evt.target.href);
+                    this.fire("location-changed", {method: method, path: href, event: evt});
                 }
             }
         },
@@ -142,6 +143,8 @@
                     // console.log(fd);
                     valuesHash = valuesHashFromSerializedArray(serialize(evt.target));
                     console.log("valuesHash", valuesHash);
+                    w.history.pushState({verb: method, path: action}, null, event.target.href);
+                    this.fire("location-changed", {method: method, path: action, valuesHash: valuesHash, event: evt});
                 }
             }
         },
@@ -149,13 +152,13 @@
          * History "popstate" event handler
          */
         popstateHandler: function(evt) {
-            alert("popstate handler called!");
             console.log("popstate event caught");
             console.log("event", evt);
             // Ignore 'popstate' events without state and until history.start is called.
-            if (evt.originalEvent && evt.originalEvent.state && historyStarted()) {
-                // v.router.route(evt.originalEvent.state.verb , window.location.pathname);
-                this.fire("location-changed", {event: evt});
+            // if (evt.originalEvent && evt.originalEvent.state && historyStarted()) {
+            if (evt.state && this.historyStarted()) {
+                // v.router.route(evt.originalEvent.state.verb , w.location.pathname);
+                this.fire("location-changed", {method: evt.state, path: w.location.pathname, event: evt});
             }
         },
         /**
@@ -164,9 +167,9 @@
         start: function(trigger/*, controllers*/) {
             // v.controllers.registerControllers(controllers); //0.5.0
             historyStarted = true;
-            history.replaceState({verb: "get"}, null, window.location.pathname);
+            w.history.replaceState({verb: "get"}, null, w.location.pathname);
             if (trigger) {
-                // v.router.route('get', window.location.pathname);
+                // v.router.route('get', w.location.pathname);
             }
             console.log("history started!");
         },
@@ -179,10 +182,10 @@
                 options.state = options.state || null;
                 options.title = options.title || document.title;
                 options.method = options.method || "get";
-                options.url = options.url || window.location.pathname;
+                options.url = options.url || w.location.pathname;
                 options.trigger = options.trigger || false;
                 options.replace = options.replace || false;
-                window.history[options.replace ? "replaceState" : "pushState"](options.state, options.title, options.url);
+                w.history[options.replace ? "replaceState" : "pushState"](options.state, options.title, options.url);
                 if(options.trigger) {
                     // v.router.route(options.method, options.url);
                 }

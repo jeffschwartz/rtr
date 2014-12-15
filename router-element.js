@@ -1,6 +1,7 @@
 (function(w){
     "use strict";
-    var initCalled = false;
+    var initCalled = false,
+        routes = {};
     Polymer("router-element", {
         ready: function(){
             document.addEventListener("location-changed", this.locationChangedHandler);

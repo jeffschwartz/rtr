@@ -155,6 +155,7 @@
             // Ignore 'popstate' events without state and until history.start is called.
             if (evt.originalEvent && evt.originalEvent.state && historyStarted()) {
                 // v.router.route(evt.originalEvent.state.verb , window.location.pathname);
+                this.fire("location-changed", {event: evt});
             }
         },
         /**

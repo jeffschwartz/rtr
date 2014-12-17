@@ -11,12 +11,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <head>
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
-  <link rel="import" href="history-element.html">
   <link rel="import" href="router-element.html">
+  <link rel="import" href="route-element.html">
 </head>
 <body unresolved>
-    <history-element id="history"></history-element>
-    <router-element id="router"></router-element>
+     <router-element>
+        <h2>Hi!</h2>
+        <route-element class="route1" method="get" path="/somepath"></route-element>
+        <route-element class="route2" method="post" path="/somepath"></route-element>
+        <route-element class="route3" method="put" path="/somepath"></route-element>
+        <route-element class="route4" method="delete" path="/somepath"></route-element>
+    </router-element>
     <a href="/somewhere">somewhere</a><br>
     <a href="http://google.com">Google</a><br>
     <form id="testform" action="/someaction" method="post">
@@ -33,6 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <button type="submt">submit</button>
     </form>
     <script>
+        /*
         (function(){
             "use strict";
             window.addEventListener("polymer-ready", function(){
@@ -40,6 +46,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 historyElement.start(true);
             });
         }());
+        */
     </script>
 </body>
 </html>

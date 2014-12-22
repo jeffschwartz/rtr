@@ -123,6 +123,7 @@
         },
         domReady: function() {
             var self = this;
+            this.historyEl = this.shadowRoot.querySelector("history-element");
             [].forEach.call(this.children, function(routeEl) {
                 if (routeEl.tagName.toUpperCase() === "ROUTE-ELEMENT") {
                     self.addRoute(routeEl);

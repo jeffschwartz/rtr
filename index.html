@@ -38,15 +38,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <button type="submt">submit</button>
     </form>
     <script>
-        /*
         (function(){
             "use strict";
             window.addEventListener("polymer-ready", function(){
-                var historyElement = document.getElementById("history");
+                var routerEl = document.querySelector("router-element");
+                var historyElement = routerEl.historyEl;
                 historyElement.start(true);
             });
         }());
-        */
     </script>
 </body>
 </html>

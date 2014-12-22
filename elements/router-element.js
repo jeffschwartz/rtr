@@ -128,6 +128,7 @@
                     self.addRoute(routeEl);
                 }
             });
+            console.log("routes hash", routes);
         },
         // init: function(callback) {
         //     callback();
@@ -141,7 +142,6 @@
                 routes[routeEl.path][routeEl.method] = [];
             }
             routes[routeEl.path][routeEl.method].push(routeEl[routeEl.handler]);
-            console.log("routes hash", routes);
         },
         locationChangedHandler: function(evt) {
             console.log("router caught location-changed event", evt.detail);

@@ -13,16 +13,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
   <link rel="import" href="elements/router-element.html">
   <link rel="import" href="elements/route-element.html">
+  <link rel="import" href="somepath-element.html">
 </head>
 <body unresolved>
      <router-element>
         <h2>Hi!</h2>
+        <!--
         <route-element class="route1" method="get" path="/somepath"></route-element>
         <route-element class="route2" method="post" path="/somepath"></route-element>
         <route-element class="route3" method="put" path="/somepath"></route-element>
         <route-element class="route4" method="delete" path="/somepath"></route-element>
+         -->
+        <somepath-element method="get" path="/somepath" handler="get"></somepath-element>
     </router-element>
-    <a href="/somewhere">somewhere</a><br>
+    <a href="/somepath">somepath</a><br>
     <a href="http://google.com">Google</a><br>
     <form id="testform" action="/someaction" method="post">
         <label for="input1">input:</label>

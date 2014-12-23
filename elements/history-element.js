@@ -106,6 +106,10 @@
             // Setup a popstate event handler
             w.addEventListener("popstate", this.popstateHandler.bind(this));
         },
+        domReady: function() {
+            this.routerEl = document.querySelector("router-element");
+            console.log(this.routerEl);
+        },
         /**
          * Anchor tag "click" event hanler
          */
@@ -121,11 +125,7 @@
                         verb: "get",
                         path: href
                     }, null, evt.target.href);
-                    this.fire("location-changed", {
-                        method: method,
-                        path: href,
-                        event: evt
-                    });
+                    this.routerEl.route(method, href);
                 }
             }
         },
@@ -154,12 +154,7 @@
                     //     verb: method,
                     //     path: action
                     // }, null, event.target.href);
-                    this.fire("location-changed", {
-                        method: method,
-                        path: action,
-                        valuesHash: valuesHash,
-                        event: evt
-                    });
+                    this.routerEl.route(method, action, valuesHash);
                 }
             }
         },
@@ -173,11 +168,12 @@
             // if (evt.originalEvent && evt.originalEvent.state && historyStarted()) {
             if (historyStarted && evt.state) {
                 // v.router.route(evt.originalEvent.state.verb , w.location.pathname);
-                this.fire("location-changed", {
-                    method: evt.state,
-                    path: w.location.pathname,
-                    event: evt
-                });
+                // this.fire("location-changed", {
+                //     method: evt.state,
+                //     path: w.location.pathname,
+                //     event: evt
+                // });
+                this.routerEl.route(evt.state.verb, w.location.pathname);
             }
         },
         /**

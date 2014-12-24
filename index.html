@@ -12,19 +12,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
   <link rel="import" href="elements/router-element.html">
-  <link rel="import" href="elements/route-element.html">
   <link rel="import" href="somepath-element.html">
+  <link rel="import" href="somepath2-element.html">
 </head>
 <body unresolved>
      <router-element>
         <h2>Hi!</h2>
-        <!--
-        <route-element class="route1" method="get" path="/somepath"></route-element>
-        <route-element class="route2" method="post" path="/somepath"></route-element>
-        <route-element class="route3" method="put" path="/somepath"></route-element>
-        <route-element class="route4" method="delete" path="/somepath"></route-element>
-         -->
         <somepath-element method="get" path="/somepath" handler="get"></somepath-element>
+        <somepath-element method="post" path="/somepath" handler="post"></somepath-element>
+        <somepath-element method="put" path="/somepath" handler="put"></somepath-element>
+        <somepath-element method="delete" path="/somepath" handler="delete"></somepath-element>
+        <somepath2-element method="get" path="/somepath" handler="get"></somepath2-element>
+        <somepath2-element method="post" path="/somepath" handler="post"></somepath2-element>
+        <somepath2-element method="put" path="/somepath" handler="put"></somepath2-element>
+        <somepath2-element method="delete" path="/somepath" handler="delete"></somepath2-element>
     </router-element>
     <a href="/somepath">somepath</a><br>
     <a href="http://google.com">Google</a><br>

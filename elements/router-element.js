@@ -6,7 +6,8 @@
     function route(verb, url, valuesHash) {
         //TODO(JS) a way to do some work prior to processing the 1st routing request
         var rt = getRoute(verb, url);
-        //0.6.5 Push valuesHash onto route.params so it will be passed to the handler, following any parameter arguments, as the last argument.
+        //0.6.5 Push valuesHash onto route.params so it will be passed to
+        //the handler, following any parameter arguments, as the last argument.
         if (rt) {
             if (valuesHash) {
                 rt.params.push(valuesHash);
@@ -26,7 +27,7 @@
         //     }
         // }
         // return false;
-        [].some.call(s1, function(ch) {
+        return [].some.call(s1, function(ch) {
             return ch === s2;
         });
     }
@@ -35,19 +36,20 @@
         var a = url.substring(1).split("/"),
             params = [],
             rel = false,
-            b, c, eq, vrb, route, handler;
+            b, c, eq, vrb, route, handlers;
         for (route in routes) {
             if (routes.hasOwnProperty(route)) {
                 //Get the "veb".
                 // vrb = route.substring(0, route.indexOf(" "));
-                // If the route has a matching verb then handler will be set to the callback
-                handler = routes[route][verb];
-                if (handler) {
+                // If the route has a matching verb then handlers will be set to the callback
+                handlers = routes[route][verb];
+                if (handlers) {
                     //Get the url.
                     b = route.substring(route.indexOf("/") + 1).split("/");
                     if (a.length === b.length || contains(route, "*")) {
                         eq = true;
-                        //The url and the route have the same number of segments so the route can be either static or it could contain parameterized segments.
+                        //The url and the route have the same number of segments so the route can
+                        //be either static or it could contain parameterized segments.
                         for (var i = 0, len = b.length; i < len; i++) {
                             //If the segments are equal then continue looping.
                             if (a[i] === b[i]) {
@@ -78,22 +80,22 @@
                         }
                         //The route matches the url so attach the params (it could be empty) to the route and return the route.
                         if (eq) {
-                            //controller name, function to call, function arguments to call with...
+                            //function to call, function arguments to call with...
                             return {
-                                controllerName: routes[route][0],
-                                fn: routes[route][1],
+                                // controllerName: routes[route][0],
+                                handlers: handlers,
                                 params: params
                             };
                         }
                         if (rel) {
-                            //controller name, function to call, function arguments to call with...
+                            //function to call, function arguments to call with...
                             for (var ii = i, llen = a.length, relUrl = ""; ii < llen; ii++) {
                                 relUrl += ("/" + a[ii]);
                             }
-                            //controller name, function to call, function arguments to call with...
+                            //function to call, function arguments to call with...
                             return {
-                                controllerName: routes[route][0],
-                                fn: routes[route][1],
+                                // controllerName: routes[route][0],
+                                handlers: handlers,
                                 params: [relUrl]
                             };
                         }
@@ -107,18 +109,20 @@
         //0.6.0 Prior versions called controller.init() when the controller is loaded. Starting with 0.6.0,
         //controller.init() is only called when routing is called to one of their route callbacks. This
         //eliminates unnecessary initialization if the controller is never used.
-        var controller = v.controllers.getController(route.controllerName);
-        if (controller.hasOwnProperty("init") && !controller.hasOwnProperty("initCalled")) {
-            controller.init();
-            controller.initCalled = true;
-        }
+        // var controller = v.controllers.getController(route.controllerName);
+        // if (controller.hasOwnProperty("init") && !controller.hasOwnProperty("initCalled")) {
+        //     controller.init();
+        //     controller.initCalled = true;
+        // }
         //Route callbacks are bound (their contexts (their "this")) to their controllers.
-        //0.6.5 valuesHash now pushed onto route.params - route handler can now receive parameters and a valuesHash.
-        if (route.params.length) {
-            route.fn.apply(controller, route.params);
-        } else {
-            route.fn.call(controller);
-        }
+        //0.6.5 valuesHash now pushed onto route.params - route handlers can now receive parameters and a valuesHash.
+        route.handlers.forEach(function(r) {
+            if (route.params.length) {
+                r.apply(route.params);
+            } else {
+                r.call();
+            }
+        });
     }
 
     function routeNotFound(url) {
@@ -154,7 +158,8 @@
             if (!routes[routeEl.path][routeEl.method]) {
                 routes[routeEl.path][routeEl.method] = [];
             }
-            routes[routeEl.path][routeEl.method].push(routeEl[routeEl.handler]);
+            routes[routeEl.path][routeEl.method].push(routeEl[routeEl.handler].bind(
+                routeEl));
         },
         route: function(method, path, valuesHash) {
             console.log("router.route called");

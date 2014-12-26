@@ -4,10 +4,6 @@
 		handler: "routeHandler",
         ready: function () {
             this.isImported = false;
-    		// this.importPath = this.importPath || "";
-    		// this.name = this.name || "";
-    		// this.method = this.method || "";
-    		// this.path = this.path || "";
         },
 		//Dynamically import element, flag it as loaded and call the handler
 		routeHandler: function() {

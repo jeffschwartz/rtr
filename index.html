@@ -12,6 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
   <link rel="import" href="elements/router-element.html">
+  <link rel="import" href="elements/lazyroute-element.html">
   <link rel="import" href="somepath-element.html">
   <link rel="import" href="somepath2-element.html">
 </head>
@@ -26,8 +27,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <somepath2-element method="post" path="/somepath" handler="post"></somepath2-element>
         <somepath2-element method="put" path="/somepath" handler="put"></somepath2-element>
         <somepath2-element method="delete" path="/somepath" handler="delete"></somepath2-element>
+        <lazyroute-element importPath="/lazyloaded-element.html" name="lazyloaded-element" method="get" path="/somelazypath"></lazyroute-element>
     </router-element>
     <a href="/somepath">somepath</a><br>
+    <a href="/somelazypath">somelazypath</a><br>
     <a href="http://google.com">Google</a><br>
     <form id="testform" action="/someaction" method="post">
         <label for="input1">input:</label>

@@ -1,7 +1,7 @@
 /**
  * lazyroute-element acts as a delegate for routing requests. On receiving the 1st request
  * for any lazy loaded route it will dynamically import and create the appropriate route-element as
- * defined by its attributes. It then calls the route handler (also defined in it attributes)
+ * defined by its attributes. It then calls the route handler (also defined in its attributes)
  * associated with the request.
  */
 (function() {

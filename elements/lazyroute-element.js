@@ -1,27 +1,34 @@
 (function() {
     "use strict";
     Polymer("lazyroute-element", {
-        handler: "routeHandler",
         ready: function() {
-            this.isImported = false;
+            this.targetEl = null;
+            console.log("lazyroute-element ready called");
         },
         //Dynamically import element, flag it as loaded and call the handler
         routeHandler: function() {
-            var self = this;
-            //Dynamically mport the element and flag it imported
-            if (!this.isImported) {
+            var self = this,
+                args = arguments;
+            if (!this.targetEl) {
+                //Dynamically import, construct and insert the element into the DOM
+                //and then call its handler
                 Polymer.import([this.importPath], function() {
-                    var routerEl = document.querySelector("router-element"),
-                        customEl = document.createElement(self.name);
-                    self.isImported = true;
-                    customEl.setAttribute("method", "{{method}}");
-                    customEl.setAttribute("path", "{{path}}");
-                    customEl.setAttribute("handler", "{{handler}}");
-                    routerEl.appendChild(customEl);
-                    // Polymer.register(customEl);
+                    var routerEl = document.querySelector("router-element");
+                    self.targetEl = document.createElement(self.tagname);
+                    self.targetEl.setAttribute("method", self.method);
+                    self.targetEl.setAttribute("path", self.path);
+                    self.targetEl.setAttribute("handler", self.handler);
+                    routerEl.appendChild(self.targetEl);
+                    self.callTarget(args);
                 });
+            } else {
+                //Call the target's handler
+                this.callTarget(arguments);
             }
-            //Call the element's handler
+        },
+        //Calls the target element's handler passing it arguments
+        callTarget: function (args) {
+            this.targetEl[this.handler].apply(this.targetEl, args);
         }
     });
 }());

@@ -159,8 +159,10 @@
             if (!routes[routeEl.path][routeEl.method]) {
                 routes[routeEl.path][routeEl.method] = [];
             }
-            routes[routeEl.path][routeEl.method].push(routeEl[routeEl.handler].bind(
-                routeEl));
+            routes[routeEl.path][routeEl.method].push(
+                routeEl instanceof w.LazyRouteElement ?
+                routeEl.routeHandler.bind(routeEl) :
+                routeEl[routeEl.handler].bind( routeEl));
         },
         route: function(method, path, valuesHash) {
             console.log("router.route called");

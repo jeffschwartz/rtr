@@ -22,12 +22,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <somepath-element method="get" path="/somepath" handler="get"></somepath-element>
         <somepath-element method="post" path="/somepath" handler="post"></somepath-element>
         <somepath-element method="put" path="/somepath" handler="put"></somepath-element>
-        <somepath-element method="delete" path="/somepath" handler="delete"></somepath-element>
+        <somepath-element method="delete" path="/somepath" handler="del"></somepath-element>
         <somepath2-element method="get" path="/somepath" handler="get"></somepath2-element>
         <somepath2-element method="post" path="/somepath" handler="post"></somepath2-element>
         <somepath2-element method="put" path="/somepath" handler="put"></somepath2-element>
-        <somepath2-element method="delete" path="/somepath" handler="delete"></somepath2-element>
-        <lazyroute-element importPath="/lazyloaded-element.html" name="lazyloaded-element" method="get" path="/somelazypath"></lazyroute-element>
+        <somepath2-element method="delete" path="/somepath" handler="del"></somepath2-element>
+        <lazyroute-element method="get" path="/somelazypath" handler="get" importPath="/lazyloaded-element.html"
+            tagname="lazyloaded-element"></lazyroute-element>
     </router-element>
     <a href="/somepath">somepath</a><br>
     <a href="/somelazypath">somelazypath</a><br>

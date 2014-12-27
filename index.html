@@ -29,11 +29,56 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <somepath2-element method="delete" path="/somepath" handler="del"></somepath2-element>
         <lazyroute-element method="get" path="/somelazypath" handler="get" importPath="/lazyloaded-element.html"
             tagname="lazyloaded-element"></lazyroute-element>
+        <lazyroute-element method="post" path="/somelazypath" handler="post" importPath="/lazyloaded-element.html"
+            tagname="lazyloaded-element"></lazyroute-element>
+        <lazyroute-element method="put" path="/somelazypath" handler="put" importPath="/lazyloaded-element.html"
+            tagname="lazyloaded-element"></lazyroute-element>
+        <lazyroute-element method="delete" path="/somelazypath" handler="del" importPath="/lazyloaded-element.html"
+            tagname="lazyloaded-element"></lazyroute-element>
     </router-element>
     <a href="/somepath">somepath</a><br>
     <a href="/somelazypath">somelazypath</a><br>
     <a href="http://google.com">Google</a><br>
-    <form id="testform" action="/someaction" method="post">
+    <form id="testform" action="/somelazypath" method="get">
+        <label for="input1">input:</label>
+        <input id="input1" name="input1" type="text" placeholder="type something here"><br>
+        <select id="select1" name="select1" multiple="multiple">
+            <option value="java_dev">Java developer</option>
+            <option value="web_dev" selected="selected">Web Developer</option>
+            <option value="ui_engineer" selected="selected">UI Engineer</option>
+            <option value="db_admin">DB Administrator</option>
+            <option value="senior_php" selected="selected">Senior PHP programmer</option>
+            <option value="sap_engineer">SAP Engineer</option>
+        </select>
+        <button type="submt">submit</button>
+    </form>
+    <form id="testform" action="/somelazypath" method="post">
+        <label for="input1">input:</label>
+        <input id="input1" name="input1" type="text" placeholder="type something here"><br>
+        <select id="select1" name="select1" multiple="multiple">
+            <option value="java_dev">Java developer</option>
+            <option value="web_dev" selected="selected">Web Developer</option>
+            <option value="ui_engineer" selected="selected">UI Engineer</option>
+            <option value="db_admin">DB Administrator</option>
+            <option value="senior_php" selected="selected">Senior PHP programmer</option>
+            <option value="sap_engineer">SAP Engineer</option>
+        </select>
+        <button type="submt">submit</button>
+    </form>
+    <form id="testform" action="/somelazypath" method="put">
+        <label for="input1">input:</label>
+        <input id="input1" name="input1" type="text" placeholder="type something here"><br>
+        <select id="select1" name="select1" multiple="multiple">
+            <option value="java_dev">Java developer</option>
+            <option value="web_dev" selected="selected">Web Developer</option>
+            <option value="ui_engineer" selected="selected">UI Engineer</option>
+            <option value="db_admin">DB Administrator</option>
+            <option value="senior_php" selected="selected">Senior PHP programmer</option>
+            <option value="sap_engineer">SAP Engineer</option>
+        </select>
+        <button type="submt">submit</button>
+    </form>
+    <form id="testform" action="/somelazypath" method="delete">
         <label for="input1">input:</label>
         <input id="input1" name="input1" type="text" placeholder="type something here"><br>
         <select id="select1" name="select1" multiple="multiple">

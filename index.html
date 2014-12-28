@@ -11,13 +11,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <head>
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
-  <link rel="import" href="history-element.html">
+  <link rel="import" href="elements/rtr-router.html">
+  <link rel="import" href="elements/rtr-lazyroute.html">
+  <link rel="import" href="myrtr-somepath.html">
+  <link rel="import" href="myrtr-somepath2.html">
 </head>
 <body unresolved>
-    <history-element></history-element>
-    <a href="/somewhere">somewhere</a><br>
+     <rtr-router>
+        <h2>Hi!</h2>
+        <myrtr-somepath method="get" path="/somepath" handler="get"></myrtr-somepath>
+        <myrtr-somepath method="post" path="/somepath" handler="post"></myrtr-somepath>
+        <myrtr-somepath method="put" path="/somepath" handler="put"></myrtr-somepath>
+        <myrtr-somepath method="delete" path="/somepath" handler="del"></myrtr-somepath>
+        <myrtr-somepath2 method="get" path="/somepath" handler="get"></myrtr-somepath2>
+        <myrtr-somepath2 method="post" path="/somepath" handler="post"></myrtr-somepath2>
+        <myrtr-somepath2 method="put" path="/somepath" handler="put"></myrtr-somepath2>
+        <myrtr-somepath2 method="delete" path="/somepath" handler="del"></myrtr-somepath2>
+        <rtr-lazyroute method="get" path="/somelazypath" handler="get" importPath="myrtr-lazyloaded.html"
+            tagname="myrtr-lazyloaded"></rtr-lazyroute>
+        <rtr-lazyroute method="post" path="/somelazypath" handler="post" importPath="myrtr-lazyloaded.html"
+            tagname="myrtr-lazyloaded"></rtr-lazyroute>
+        <rtr-lazyroute method="put" path="/somelazypath" handler="put" importPath="myrtr-lazyloaded.html"
+            tagname="myrtr-lazyloaded"></rtr-lazyroute>
+        <rtr-lazyroute method="delete" path="/somelazypath" handler="del" importPath="myrtr-lazyloaded.html"
+            tagname="myrtr-lazyloaded"></rtr-lazyroute>
+    </rtr-router>
+    <a href="/somepath">somepath</a><br>
+    <a href="/somelazypath">somelazypath</a><br>
     <a href="http://google.com">Google</a><br>
-    <form id="testform" action="/someaction" method="post">
+    <form id="testform" action="/somelazypath" method="get">
         <label for="input1">input:</label>
         <input id="input1" name="input1" type="text" placeholder="type something here"><br>
         <select id="select1" name="select1" multiple="multiple">
@@ -30,5 +52,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </select>
         <button type="submt">submit</button>
     </form>
+    <form id="testform" action="/somelazypath" method="post">
+        <label for="input1">input:</label>
+        <input id="input1" name="input1" type="text" placeholder="type something here"><br>
+        <select id="select1" name="select1" multiple="multiple">
+            <option value="java_dev">Java developer</option>
+            <option value="web_dev" selected="selected">Web Developer</option>
+            <option value="ui_engineer" selected="selected">UI Engineer</option>
+            <option value="db_admin">DB Administrator</option>
+            <option value="senior_php" selected="selected">Senior PHP programmer</option>
+            <option value="sap_engineer">SAP Engineer</option>
+        </select>
+        <button type="submt">submit</button>
+    </form>
+    <form id="testform" action="/somelazypath" method="put">
+        <label for="input1">input:</label>
+        <input id="input1" name="input1" type="text" placeholder="type something here"><br>
+        <select id="select1" name="select1" multiple="multiple">
+            <option value="java_dev">Java developer</option>
+            <option value="web_dev" selected="selected">Web Developer</option>
+            <option value="ui_engineer" selected="selected">UI Engineer</option>
+            <option value="db_admin">DB Administrator</option>
+            <option value="senior_php" selected="selected">Senior PHP programmer</option>
+            <option value="sap_engineer">SAP Engineer</option>
+        </select>
+        <button type="submt">submit</button>
+    </form>
+    <form id="testform" action="/somelazypath" method="delete">
+        <label for="input1">input:</label>
+        <input id="input1" name="input1" type="text" placeholder="type something here"><br>
+        <select id="select1" name="select1" multiple="multiple">
+            <option value="java_dev">Java developer</option>
+            <option value="web_dev" selected="selected">Web Developer</option>
+            <option value="ui_engineer" selected="selected">UI Engineer</option>
+            <option value="db_admin">DB Administrator</option>
+            <option value="senior_php" selected="selected">Senior PHP programmer</option>
+            <option value="sap_engineer">SAP Engineer</option>
+        </select>
+        <button type="submt">submit</button>
+    </form>
+    <script>
+        (function(){
+            "use strict";
+            window.addEventListener("polymer-ready", function(){
+                var routerEl = document.querySelector("rtr-router");
+                var historyEl = routerEl.rtrHistory;
+                historyEl.start(true);
+            });
+        }());
+    </script>
 </body>
 </html>

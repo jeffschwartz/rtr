@@ -36,10 +36,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <rtr-lazyroute method="delete" path="/somelazypath" handler="del" importPath="myrtr-lazyloaded.html"
             tagname="myrtr-lazyloaded"></rtr-lazyroute>
     </rtr-router>
-    <a href="/somepath">somepath</a><br>
+    <a href="/somepath" data-rtr-nopushstate>somepath</a><br>
     <a href="/somelazypath">somelazypath</a><br>
     <a href="http://google.com">Google</a><br>
-    <form id="testform" action="/somelazypath" method="get">
+    <form id="testform" action="/somelazypath" method="get" data-rtr-nopushstate>
         <label for="input1">input:</label>
         <input id="input1" name="input1" type="text" placeholder="type something here"><br>
         <select id="select1" name="select1" multiple="multiple">

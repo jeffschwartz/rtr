@@ -121,10 +121,12 @@
                 console.log("attribute href", href);
                 if (href.indexOf("/") === 0) {
                     evt.preventDefault();
-                    w.history.pushState({
-                        verb: "get",
-                        path: href
-                    }, null, evt.target.href);
+                    if(!evt.target.attributes.hasOwnProperty("data-rtr-nopushstate")) {
+                        w.history.pushState({
+                            verb: "get",
+                            path: href
+                        }, null, evt.target.href);
+                    }
                     this.routerEl.route(method, href);
                 }
             }
@@ -141,19 +143,15 @@
                 console.log("attribute method", method);
                 if (action.indexOf("/") === 0) {
                     evt.preventDefault();
-                    method = method ? method : "get"; // Defaults to "get" if methdo omitted
-                    // valuesHash = valuesHashFromSerializedArray($form.serializeArray());
-                    // FormData - see https://developer.mozilla.org/en-US/docs/Web/API/FormData for info
-                    // var fd = new FormData(document.getElementById(evt.target.id));
-                    // console.log(fd);
+                    method = method ? method : "get"; // Defaults to "get" if method omitted
                     valuesHash = valuesHashFromSerializedArray(serialize(evt.target));
                     console.log("valuesHash", valuesHash);
-                    //TODO(JS): pushState should only be called if the form has the attribute
-                    // pushstate and it is true.
-                    // w.history.pushState({
-                    //     verb: method,
-                    //     path: action
-                    // }, null, event.target.href);
+                    if(!evt.target.attributes.hasOwnProperty("data-rtr-nopushstate")) {
+                        w.history.pushState({
+                            verb: method,
+                            path: action
+                        }, null, action);
+                    }
                     this.routerEl.route(method, action, valuesHash);
                 }
             }

@@ -92,7 +92,7 @@
         }
         return valuesHash;
     }
-    Polymer("history-element", {
+    Polymer("rtr-history", {
         ready: function() {
             //Verify browser supports pushstate
             console.log(history.pushState ?
@@ -107,7 +107,7 @@
             w.addEventListener("popstate", this.popstateHandler.bind(this));
         },
         domReady: function() {
-            this.routerEl = document.querySelector("router-element");
+            this.routerEl = document.querySelector("rtr-router");
             console.log(this.routerEl);
         },
         /**

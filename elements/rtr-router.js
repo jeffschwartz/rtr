@@ -133,16 +133,16 @@
     //     route: route
     // };
 
-    Polymer("router-element", {
+    Polymer("rtr-router", {
         ready: function() {
             document.addEventListener("location-changed", this.locationChangedHandler);
             this.onMutation(this, this.mutated);
         },
         domReady: function() {
             var self = this;
-            this.historyEl = this.shadowRoot.querySelector("history-element");
+            this.rtrHistory = this.shadowRoot.querySelector("rtr-history");
             [].forEach.call(this.children, function(routeEl) {
-                if (routeEl instanceof w.RouteElement || routeEl instanceof w.LazyRouteElement) {
+                if (routeEl instanceof w.RtrRoute || routeEl instanceof w.RtrLazyRoute) {
                     self.addRoute(routeEl);
                 }
             });
@@ -160,7 +160,7 @@
                 routes[routeEl.path][routeEl.method] = [];
             }
             routes[routeEl.path][routeEl.method].push(
-                routeEl instanceof w.LazyRouteElement ?
+                routeEl instanceof w.RtrLazyRoute ?
                 routeEl.routeHandler.bind(routeEl) :
                 routeEl[routeEl.handler].bind( routeEl));
         },

@@ -6,7 +6,7 @@
  */
 (function() {
     "use strict";
-    Polymer("lazyroute-element", {
+    Polymer("rtr-lazyroute", {
         ready: function() {
             this.targetEl = null;
             console.log("lazyroute-element ready called");

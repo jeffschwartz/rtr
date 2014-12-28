@@ -1,10 +1,9 @@
 ## Coming Soon - rtr, a router built on top of Polymer. Supports anchor tabs, form submits, lazy loading. Everything is an element so there is nothing new to learn. Stay tuned to this repo for further progress. If you are brave, checkout the development branch which gets merged with feature branches as they mature. If you are really brave, checkout the feature branches. The lates one is feature-dynamic which is hosting development of lazy loading route handlers.
 
-    <router-element>
+    <rtr-router>
         <somepath-element method="get" path="/somepath" handler="get"></somepath-element>
-        <lazyroute-element method="get" path="/somelazypath" handler="get" importPath="/lazyloaded-element.html"
-        tagname="lazyloaded-element"></lazyroute-element>
-    </router-element>
+        <rtr-lazyroute></rtr-lazyroute>
+    </rtr-router>
 
 
 seed-element

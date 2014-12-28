@@ -4,7 +4,7 @@
         <somepath-element method="get" path="/somepath" handler="get"></somepath-element>
         <rtr-lazyroute method="get" path="/somelazypath" handler="get" importPath="/lazyloaded-element.html"
         tagname="lazyloaded-element"></rtr-lazyroute>
-        </rtr-router>
+    </rtr-router>
 
 
 seed-element

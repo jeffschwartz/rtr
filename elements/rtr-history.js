@@ -182,7 +182,9 @@
             w.history.replaceState({
                 verb: "get"
             }, null, w.location.pathname);
+            //TODO(JS): test with trigger false
             if (trigger) {
+                //TODO(JS): implement
                 // v.router.route('get', w.location.pathname);
             }
             console.log("history started!");
@@ -201,7 +203,9 @@
                 options.replace = options.replace || false;
                 w.history[options.replace ? "replaceState" : "pushState"](options.state,
                     options.title, options.url);
+                //TODO(JS): test with trigger false
                 if (options.trigger) {
+                    //TODO(JS): implement
                     // v.router.route(options.method, options.url);
                 }
             }

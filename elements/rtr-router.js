@@ -136,7 +136,7 @@
     Polymer("rtr-router", {
         ready: function() {
             document.addEventListener("location-changed", this.locationChangedHandler);
-            this.onMutation(this, this.mutated);
+            // this.onMutation(this, this.mutated);
         },
         domReady: function() {
             var self = this;
@@ -170,12 +170,13 @@
         },
         locationChangedHandler: function(evt) {
             console.log("router caught location-changed event", evt.detail);
-        },
-        mutated: function(observer, mutations) {
-            console.log("router mutated called");
-            console.log("observer", observer);
-            console.log("mutations", mutations);
-            this.onMutation(this, this.mutated);
         }
+        // ,
+        // mutated: function(observer, mutations) {
+        //     console.log("router mutated called");
+        //     console.log("observer", observer);
+        //     console.log("mutations", mutations);
+        //     this.onMutation(this, this.mutated);
+        // }
     });
 }(window));

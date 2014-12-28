@@ -19,7 +19,7 @@
                 //Dynamically import, construct and insert the element into the DOM
                 //and then call its handler
                 Polymer.import([this.importPath], function() {
-                    var routerEl = document.querySelector("router-element");
+                    var routerEl = document.querySelector("rtr-router");
                     self.targetEl = document.createElement(self.tagname);
                     self.targetEl.setAttribute("method", self.method);
                     self.targetEl.setAttribute("path", self.path);

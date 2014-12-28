@@ -133,15 +133,16 @@
     //     route: route
     // };
 
-    Polymer("router-element", {
+    Polymer("rtr-router", {
         ready: function() {
             document.addEventListener("location-changed", this.locationChangedHandler);
+            // this.onMutation(this, this.mutated);
         },
         domReady: function() {
             var self = this;
-            this.historyEl = this.shadowRoot.querySelector("history-element");
+            this.rtrHistory = this.shadowRoot.querySelector("rtr-history");
             [].forEach.call(this.children, function(routeEl) {
-                if (routeEl instanceof w.RouteElement) {
+                if (routeEl instanceof w.RtrRoute || routeEl instanceof w.RtrLazyRoute) {
                     self.addRoute(routeEl);
                 }
             });
@@ -158,8 +159,10 @@
             if (!routes[routeEl.path][routeEl.method]) {
                 routes[routeEl.path][routeEl.method] = [];
             }
-            routes[routeEl.path][routeEl.method].push(routeEl[routeEl.handler].bind(
-                routeEl));
+            routes[routeEl.path][routeEl.method].push(
+                routeEl instanceof w.RtrLazyRoute ?
+                routeEl.routeHandler.bind(routeEl) :
+                routeEl[routeEl.handler].bind( routeEl));
         },
         route: function(method, path, valuesHash) {
             console.log("router.route called");
@@ -168,5 +171,12 @@
         locationChangedHandler: function(evt) {
             console.log("router caught location-changed event", evt.detail);
         }
+        // ,
+        // mutated: function(observer, mutations) {
+        //     console.log("router mutated called");
+        //     console.log("observer", observer);
+        //     console.log("mutations", mutations);
+        //     this.onMutation(this, this.mutated);
+        // }
     });
 }(window));

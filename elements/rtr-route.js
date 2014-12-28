@@ -1,6 +1,6 @@
 (function() {
     "use strict";
-    Polymer("route-element", {
+    Polymer("rtr-route", {
         method: "get", // A sensible daefault
         path: "",
         handler: "routeHandler",

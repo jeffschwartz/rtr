@@ -2,8 +2,9 @@
 
     <rtr-router>
         <somepath-element method="get" path="/somepath" handler="get"></somepath-element>
-        <rtr-lazyroute></rtr-lazyroute>
-    </rtr-router>
+        <rtr-lazyroute method="get" path="/somelazypath" handler="get" importPath="/lazyloaded-element.html"
+        tagname="lazyloaded-element"></rtr-lazyroute>
+        </rtr-router>
 
 
 seed-element

@@ -9,7 +9,6 @@
     Polymer("rtr-lazyroute", {
         ready: function() {
             this.targetEl = null;
-            console.log("lazyroute-element ready called");
         },
         //Dynamically import element, flag it as loaded and call the handler
         routeHandler: function() {

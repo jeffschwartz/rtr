@@ -122,14 +122,21 @@ license that can be found in the LICENSE file.
     /**
      * routeFound - Routes the request to the target handlers.
      *
-     * @param  {object} A hash which contains a handlers and a params property.
+     * @param  {object} route A hash which contains a handlers and a params property.
      */
     function routeFound(route) {
         route.handlers.forEach(function(r){
+            /*
+              *** Note ***
+              The handler function, r, has already been bound to its Route or LazyRoute
+              object (see addRoute below). Using apply and call on them as is done below
+              cannot change the calling context they were bound to because once bound the
+              function's calling context cannot be changed.
+            */
             if (route.params.length) {
-                r.apply(route.params);
+                r.apply(null, route.params);
             } else {
-                r.call();
+                r.call(null);
             }
         });
     }
@@ -171,7 +178,7 @@ license that can be found in the LICENSE file.
             routes[routeEl.path][routeEl.method].push(
                 routeEl instanceof w.RtrLazyRoute ?
                 routeEl.routeHandler.bind(routeEl) :
-                routeEl[routeEl.handler].bind( routeEl));
+                routeEl[routeEl.handler].bind(routeEl));
         },
         /**
          * route - Calls this module's route function to route the request.

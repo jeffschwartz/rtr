@@ -6,7 +6,6 @@ license that can be found in the LICENSE file.
 (function() {
     "use strict";
     Polymer("rtr-route", {
-
         /**
          * ready - Polymer ready event handler.
          */

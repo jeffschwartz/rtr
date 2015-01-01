@@ -143,7 +143,6 @@ license that can be found in the LICENSE file.
         console.log("router::routeNotFound called with route = " + url);
     }
     Polymer("rtr-router", {
-
         /**
          * domReady - Polymer domReady event handler.
          */

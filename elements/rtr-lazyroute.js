@@ -12,10 +12,9 @@ license that can be found in the LICENSE file.
 (function() {
     "use strict";
     Polymer("rtr-lazyroute", {
-
         /**
          * ready - Polymer ready event handler.
-         */         
+         */
         ready: function() {
             this.rtrRouter = this.parentElement;
             //rtr-history is the only element in the shadow-root
@@ -48,8 +47,6 @@ license that can be found in the LICENSE file.
                 this.callTarget(arguments);
             }
         },
-        //Calls the target element's handler passing it arguments
-
         /**
          * callTarget - Calls the target element's handler passing it arguments.
          *

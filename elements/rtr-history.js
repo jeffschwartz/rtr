@@ -124,7 +124,6 @@ license that can be found in the LICENSE file.
                 "history pushState is supported in your browser" :
                 "history pushstate is not supported in your browser"
             );
-
             // Setup an anchor tag "click" event hanler
             document.addEventListener("click", this.anchorClickHandler
                 .bind(this));

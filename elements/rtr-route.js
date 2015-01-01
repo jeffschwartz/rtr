@@ -6,6 +6,10 @@ license that can be found in the LICENSE file.
 (function() {
     "use strict";
     Polymer("rtr-route", {
+
+        /**
+         * ready - Polymer ready event handler.
+         */
         ready: function () {
             this.rtrRouter = this.parentElement;
             //rtr-history is the only element in the shadow-root

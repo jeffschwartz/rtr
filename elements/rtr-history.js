@@ -7,7 +7,11 @@ license that can be found in the LICENSE file.
     "use strict";
     var historyStarted = false;
     /**
-     * Creates a hash with properties 'name' and "value"
+     * nameValueHash - Creates a hash with properties 'name' and "value".
+     *
+     * @param  {string} name  The name of the property.
+     * @param  {string} value The value of the property.
+     * @return {object} An object of name/value pairs.
      */
     function nameValueHash(name, value) {
         var obj = {};
@@ -16,8 +20,11 @@ license that can be found in the LICENSE file.
         return obj;
     }
     /**
-     * Modified from OS/MIT code found at https://code.google.com/p/form-serialize/
-     * Serialize a form
+     * serialize - Modified from OS/MIT code found at https://code.google.com/p/form-serialize/
+     * Serialize a form.
+     *
+     * @param  {element} form A form element.
+     * @return {array}  An array of values from the form.
      */
     function serialize(form) {
         var a, i, j, q = [];
@@ -95,7 +102,13 @@ license that can be found in the LICENSE file.
         return q;
     }
     /**
-     * Creates a hash from an array whose elements are hashes whose properties are "name" and "value".
+     * valuesHashFromSerializedArray - Creates a hash from an array whose elements
+     * are hashes whose properties are "name" and "value".
+     *
+     * @param  {array} valuesArray An array whose elements are hashes whose properties are "name"
+     * and "value".
+     * @return {object}  A hash from an array whose elements are hashes whose properties are "name"
+     * and "value".
      */
     function valuesHashFromSerializedArray(valuesArray) {
         var valuesHash = {};
@@ -122,12 +135,17 @@ license that can be found in the LICENSE file.
             w.addEventListener("popstate", this.popstateHandler
                 .bind(this));
         },
+        /**
+         * domReady - domReady event handler.
+         */
         domReady: function() {
             this.routerEl = document.querySelector("rtr-router");
             console.log(this.routerEl);
         },
         /**
-         * Anchor tag "click" event hanler
+         * anchorClickHandler - anchor tag click event handler.
+         *
+         * @param  {event} evt An event object.
          */
         anchorClickHandler: function(evt) {
             var method = "get" /* Allways a "get" */ ,
@@ -150,7 +168,9 @@ license that can be found in the LICENSE file.
             }
         },
         /**
-         * Form tag "submit" event handler
+         * formSubmitHandler - form tag submit handler.
+         *
+         * @param  {event} evt An event object.
          */
         formSubmitHandler: function(evt) {
             var action, method, valuesHash;
@@ -179,7 +199,10 @@ license that can be found in the LICENSE file.
             }
         },
         /**
-         * History "popstate" event handler
+         * popstateHandler - popstate event handler.
+         * See https://developer.mozilla.org/en-US/docs/WindowEventHandlers.onpopstate for details.
+         *
+         * @param  {event} evt An event object.
          */
         popstateHandler: function(evt) {
             console.log("popstate event caught");
@@ -190,7 +213,10 @@ license that can be found in the LICENSE file.
             }
         },
         /**
-         * Start
+         * start - Call to start processing routing requests.
+         *
+         * @param  {boolean} pushState true to replace the current location state.
+         * @param  {boolean} trigger   true to trigger routing for the current location.
          */
         start: function(pushState, trigger) {
             historyStarted = true;
@@ -208,7 +234,10 @@ license that can be found in the LICENSE file.
             console.log("history started!");
         },
         /**
-         * Navigate
+         * navigate - Call to redirect to other route handler.
+         *
+         * @param  {object} options A hash of options.
+         * See https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.
          */
         navigate: function(options) {
             if (historyStarted) {

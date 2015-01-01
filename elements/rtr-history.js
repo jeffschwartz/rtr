@@ -15,10 +15,10 @@ license that can be found in the LICENSE file.
         obj.value = value;
         return obj;
     }
-        /**
-         * Modified from OS/MIT code found at https://code.google.com/p/form-serialize/
-         * Serialize a form
-         */
+    /**
+     * Modified from OS/MIT code found at https://code.google.com/p/form-serialize/
+     * Serialize a form
+     */
     function serialize(form) {
         var a, i, j, q = [];
         if (!form || form.nodeName !== "FORM") {
@@ -94,9 +94,9 @@ license that can be found in the LICENSE file.
         }
         return q;
     }
-        /**
-         * Creates a hash from an array whose elements are hashes whose properties are "name" and "value".
-         */
+    /**
+     * Creates a hash from an array whose elements are hashes whose properties are "name" and "value".
+     */
     function valuesHashFromSerializedArray(valuesArray) {
         var valuesHash = {};
         for (var i = 0, len = valuesArray.length; i < len; i++) {

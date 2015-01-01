@@ -5,13 +5,12 @@ license that can be found in the LICENSE file.
 */
 (function(w) {
     "use strict";
-    var initCalled = false,
-        routes = {};
+    var routes = {};
 
     function route(verb, url, valuesHash) {
         //TODO(JS) a way to do some work prior to processing the 1st routing request
         var rt = getRoute(verb, url);
-        //0.6.5 Push valuesHash onto route.params so it will be passed to
+        //Push valuesHash onto route.params so it will be passed to
         //the handler, following any parameter arguments, as the last argument.
         if (rt) {
             if (valuesHash) {
@@ -24,14 +23,6 @@ license that can be found in the LICENSE file.
     }
 
     function contains(s1, s2) {
-        // if (typeof(s1) === "string") {
-        //     for (var i = 0, len = s1.length; i < len; i++) {
-        //         if (s1[i] === s2) {
-        //             return true;
-        //         }
-        //     }
-        // }
-        // return false;
         return [].some.call(s1, function(ch) {
             return ch === s2;
         });
@@ -41,7 +32,7 @@ license that can be found in the LICENSE file.
         var a = url.substring(1).split("/"),
             params = [],
             rel = false,
-            b, c, eq, vrb, route, handlers;
+            b, c, eq, route, handlers;
         for (route in routes) {
             if (routes.hasOwnProperty(route)) {
                 //Get the "veb".
@@ -111,16 +102,6 @@ license that can be found in the LICENSE file.
     }
 
     function routeFound(route) {
-        //0.6.0 Prior versions called controller.init() when the controller is loaded. Starting with 0.6.0,
-        //controller.init() is only called when routing is called to one of their route callbacks. This
-        //eliminates unnecessary initialization if the controller is never used.
-        // var controller = v.controllers.getController(route.controllerName);
-        // if (controller.hasOwnProperty("init") && !controller.hasOwnProperty("initCalled")) {
-        //     controller.init();
-        //     controller.initCalled = true;
-        // }
-        //Route callbacks are bound (their contexts (their "this")) to their controllers.
-        //0.6.5 valuesHash now pushed onto route.params - route handlers can now receive parameters and a valuesHash.
         route.handlers.forEach(function(r) {
             if (route.params.length) {
                 r.apply(route.params);
@@ -134,14 +115,9 @@ license that can be found in the LICENSE file.
         console.log("router::routeNotFound called with route = " + url);
     }
 
-    // v.router = {
-    //     route: route
-    // };
-
     Polymer("rtr-router", {
         ready: function() {
             document.addEventListener("location-changed", this.locationChangedHandler);
-            // this.onMutation(this, this.mutated);
         },
         domReady: function() {
             var self = this;
@@ -153,10 +129,6 @@ license that can be found in the LICENSE file.
             });
             console.log("routes hash", routes);
         },
-        // init: function(callback) {
-        //     callback();
-        //     initCalled = true;
-        // },
         addRoute: function(routeEl) {
             if (!routes[routeEl.path]) {
                 routes[routeEl.path] = {};
@@ -176,12 +148,5 @@ license that can be found in the LICENSE file.
         locationChangedHandler: function(evt) {
             console.log("router caught location-changed event", evt.detail);
         }
-        // ,
-        // mutated: function(observer, mutations) {
-        //     console.log("router mutated called");
-        //     console.log("observer", observer);
-        //     console.log("mutations", mutations);
-        //     this.onMutation(this, this.mutated);
-        // }
     });
 }(window));

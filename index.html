@@ -15,6 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="elements/rtr-lazyroute.html">
   <link rel="import" href="myrtr-somepath.html">
   <link rel="import" href="myrtr-somepath2.html">
+  <link rel="import" href="myrtr-redirectpath.html">
 </head>
 <body unresolved>
      <rtr-router>
@@ -27,6 +28,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <myrtr-somepath2 method="post" path="/somepath" handler="post"></myrtr-somepath2>
         <myrtr-somepath2 method="put" path="/somepath" handler="put"></myrtr-somepath2>
         <myrtr-somepath2 method="delete" path="/somepath" handler="del"></myrtr-somepath2>
+        <myrtr-redirectpath method="get" path="/redirectedpath" handler="get"></myrtr-redirectpath>
         <rtr-lazyroute method="get" path="/somelazypath" handler="get" importPath="myrtr-lazyloaded.html"
             tagname="myrtr-lazyloaded"></rtr-lazyroute>
         <rtr-lazyroute method="post" path="/somelazypath" handler="post" importPath="myrtr-lazyloaded.html"
@@ -38,6 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </rtr-router>
     <a href="/somepath" data-rtr-nopushstate>somepath</a><br>
     <a href="/somelazypath">somelazypath</a><br>
+    <a href="/redirectedpath">redirectedpath</a><br>
     <a href="http://google.com">Google</a><br>
     <form id="testform" action="/somelazypath" method="get" data-rtr-nopushstate>
         <label for="input1">input:</label>

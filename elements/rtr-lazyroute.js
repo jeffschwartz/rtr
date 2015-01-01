@@ -8,9 +8,11 @@
     "use strict";
     Polymer("rtr-lazyroute", {
         ready: function() {
+            this.rtrRouter = this.parentElement;
+            //rtr-history is the only element in the shadow-root
+            this.rtrHistory = this.parentElement.shadowRoot.children[0];
             this.targetEl = null;
         },
-        //Dynamically import element, flag it as loaded and call the handler
         routeHandler: function() {
             var self = this,
                 args = arguments;

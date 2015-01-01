@@ -1,12 +1,22 @@
+/*
+Copyright 2015 Jeffrey Schwartz. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+*/
 (function(w) {
     "use strict";
-    var initCalled = false,
-        routes = {};
-
+    var routes = {};
+    /**
+     * route - Routes the request.
+     *
+     * @param  {string} verb Eighter get, post, put, delete.
+     * @param  {strung} url The request path.
+     * @param  {object} valuesHash A values hash if request is for a form submit.
+     */
     function route(verb, url, valuesHash) {
         //TODO(JS) a way to do some work prior to processing the 1st routing request
         var rt = getRoute(verb, url);
-        //0.6.5 Push valuesHash onto route.params so it will be passed to
+        //Push valuesHash onto route.params so it will be passed to
         //the handler, following any parameter arguments, as the last argument.
         if (rt) {
             if (valuesHash) {
@@ -17,26 +27,31 @@
             routeNotFound(verb, url);
         }
     }
-
+    /**
+     * contains - Returns true if s1 contains the character s2.
+     *
+     * @param  {string} s1 The string to search if it contains the character s2.
+     * @param  {string} s2 The character to search for.
+     * @return {boolean} true if found, otherwise false.
+     */
     function contains(s1, s2) {
-        // if (typeof(s1) === "string") {
-        //     for (var i = 0, len = s1.length; i < len; i++) {
-        //         if (s1[i] === s2) {
-        //             return true;
-        //         }
-        //     }
-        // }
-        // return false;
         return [].some.call(s1, function(ch) {
             return ch === s2;
         });
     }
-
+    /**
+     * getRoute - Parses the request and attempts to match it to route handlers.
+     *
+     * @param  {string} verb Either get, post, put, delete.
+     * @param  {string} url  A URL path that begins with a "/".
+     * @return {object} If a match is found returns a hash with a handlers and a params property. If
+     * not found return undefined.
+     */
     function getRoute(verb, url) {
         var a = url.substring(1).split("/"),
             params = [],
             rel = false,
-            b, c, eq, vrb, route, handlers;
+            b, c, eq, route, handlers;
         for (route in routes) {
             if (routes.hasOwnProperty(route)) {
                 //Get the "veb".
@@ -104,19 +119,13 @@
             }
         }
     }
-
+    /**
+     * routeFound - Routes the request to the target handlers.
+     *
+     * @param  {object} A hash which contains a handlers and a params property.
+     */
     function routeFound(route) {
-        //0.6.0 Prior versions called controller.init() when the controller is loaded. Starting with 0.6.0,
-        //controller.init() is only called when routing is called to one of their route callbacks. This
-        //eliminates unnecessary initialization if the controller is never used.
-        // var controller = v.controllers.getController(route.controllerName);
-        // if (controller.hasOwnProperty("init") && !controller.hasOwnProperty("initCalled")) {
-        //     controller.init();
-        //     controller.initCalled = true;
-        // }
-        //Route callbacks are bound (their contexts (their "this")) to their controllers.
-        //0.6.5 valuesHash now pushed onto route.params - route handlers can now receive parameters and a valuesHash.
-        route.handlers.forEach(function(r) {
+        route.handlers.forEach(function(r){
             if (route.params.length) {
                 r.apply(route.params);
             } else {
@@ -124,20 +133,20 @@
             }
         });
     }
-
+    /**
+     * routeNotFound - Called when target handlers cannot be found for the request.
+     *
+     * @param  {string} url The request path.
+     */
     function routeNotFound(url) {
+        //TODO(JS): perhaps allow user defined callback here
         console.log("router::routeNotFound called with route = " + url);
     }
-
-    // v.router = {
-    //     route: route
-    // };
-
     Polymer("rtr-router", {
-        ready: function() {
-            document.addEventListener("location-changed", this.locationChangedHandler);
-            // this.onMutation(this, this.mutated);
-        },
+
+        /**
+         * domReady - Polymer domReady event handler.
+         */
         domReady: function() {
             var self = this;
             this.rtrHistory = this.shadowRoot.querySelector("rtr-history");
@@ -148,10 +157,11 @@
             });
             console.log("routes hash", routes);
         },
-        // init: function(callback) {
-        //     callback();
-        //     initCalled = true;
-        // },
+        /**
+         * addRoute - Propagates the routes array with routing information.
+         *
+         * @param  {element} routeEl A light DOM child element of the router element.
+         */
         addRoute: function(routeEl) {
             if (!routes[routeEl.path]) {
                 routes[routeEl.path] = {};
@@ -164,19 +174,17 @@
                 routeEl.routeHandler.bind(routeEl) :
                 routeEl[routeEl.handler].bind( routeEl));
         },
+        /**
+         * route - Calls this module's route function to route the request.
+         *
+         * @param  {string} method Either get, post, put, delete.
+         * @param  {string} path The request path.
+         * @param  {object} valuesHash A hash of values to pass to the target handler if the request
+         * is for a form submit.
+         */
         route: function(method, path, valuesHash) {
             console.log("router.route called");
             route(method, path, valuesHash);
-        },
-        locationChangedHandler: function(evt) {
-            console.log("router caught location-changed event", evt.detail);
         }
-        // ,
-        // mutated: function(observer, mutations) {
-        //     console.log("router mutated called");
-        //     console.log("observer", observer);
-        //     console.log("mutations", mutations);
-        //     this.onMutation(this, this.mutated);
-        // }
     });
 }(window));

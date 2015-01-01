@@ -1,3 +1,8 @@
+/*
+Copyright 2015 Jeffrey Schwartz. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+*/
 /**
  * lazyroute-element acts as a delegate for routing requests. On receiving the 1st request
  * for any lazy loaded route it will dynamically import and create the appropriate route-element as

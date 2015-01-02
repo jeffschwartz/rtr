@@ -9,9 +9,9 @@ license that can be found in the LICENSE file.
     /**
      * nameValueHash - Creates a hash with properties 'name' and "value".
      *
-     * @param  {string} name  The name of the property.
-     * @param  {string} value The value of the property.
-     * @return {object} An object of name/value pairs.
+     * @param  {string} name -  The name of the property.
+     * @param  {string} value - The value of the property.
+     * @return {object} - An object of name/value pairs.
      */
     function nameValueHash(name, value) {
         var obj = {};
@@ -23,8 +23,8 @@ license that can be found in the LICENSE file.
      * serialize - Modified from OS/MIT code found at https://code.google.com/p/form-serialize/
      * Serialize a form.
      *
-     * @param  {element} form A form element.
-     * @return {array}  An array of values from the form.
+     * @param  {element} form - A form element.
+     * @return {array} -  An array of values from the form.
      */
     function serialize(form) {
         var a, i, j, q = [];
@@ -105,9 +105,9 @@ license that can be found in the LICENSE file.
      * valuesHashFromSerializedArray - Creates a hash from an array whose elements
      * are hashes whose properties are "name" and "value".
      *
-     * @param  {array} valuesArray An array whose elements are hashes whose properties are "name"
+     * @param  {array} valuesArray - An array whose elements are hashes whose properties are "name"
      * and "value".
-     * @return {object}  A hash from an array whose elements are hashes whose properties are "name"
+     * @return {object} -  A hash from an array whose elements are hashes whose properties are "name"
      * and "value".
      */
     function valuesHashFromSerializedArray(valuesArray) {
@@ -144,7 +144,7 @@ license that can be found in the LICENSE file.
         /**
          * anchorClickHandler - anchor tag click event handler.
          *
-         * @param  {event} evt An event object.
+         * @param  {event} evt - An event object.
          */
         anchorClickHandler: function(evt) {
             var method = "get" /* Allways a "get" */ ,
@@ -169,7 +169,7 @@ license that can be found in the LICENSE file.
         /**
          * formSubmitHandler - form tag submit handler.
          *
-         * @param  {event} evt An event object.
+         * @param  {event} evt - An event object.
          */
         formSubmitHandler: function(evt) {
             var action, method, valuesHash;
@@ -201,7 +201,7 @@ license that can be found in the LICENSE file.
          * popstateHandler - popstate event handler.
          * See https://developer.mozilla.org/en-US/docs/WindowEventHandlers.onpopstate for details.
          *
-         * @param  {event} evt An event object.
+         * @param  {event} - evt An event object.
          */
         popstateHandler: function(evt) {
             console.log("popstate event caught");
@@ -214,8 +214,8 @@ license that can be found in the LICENSE file.
         /**
          * start - Call to start processing routing requests.
          *
-         * @param  {boolean} pushState true to replace the current location state.
-         * @param  {boolean} trigger   true to trigger routing for the current location.
+         * @param  {boolean} pushState - true to replace the current location state.
+         * @param  {boolean} trigger -   true to trigger routing for the current location.
          */
         start: function(pushState, trigger) {
             historyStarted = true;
@@ -235,7 +235,7 @@ license that can be found in the LICENSE file.
         /**
          * navigate - Call to redirect to other route handler.
          *
-         * @param  {object} options A hash of options.
+         * @param  {object} options - A hash of options.
          * See https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.
          */
         navigate: function(options) {

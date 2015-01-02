@@ -50,7 +50,7 @@ license that can be found in the LICENSE file.
         /**
          * callTarget - Calls the target element's handler passing it arguments.
          *
-         * @param  {object} args A collection of arguments to be passed to the target handler.
+         * @param  {object} args - A collection of arguments to be passed to the target handler.
          */
         callTarget: function (args) {
             this.targetEl[this.handler].apply(this.targetEl, args);

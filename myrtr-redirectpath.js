@@ -3,14 +3,14 @@
     Polymer("myrtr-redirectpath", {
         get: function() {
             console.log("myrtr-redirectpath get called");
-            console.log("redirecting to /somepath");
+            console.log("redirecting to /rtr/somepath");
             this.rtrHistory.navigate({
                 state: {
                     verb: "get",
-                    path: "/somepath"
+                    path: "/rtr/somepath"
                 },
                 method: "get",
-                url: "/somepath",
+                url: "/rtr/somepath",
                 pushState: true,
                 trigger: true
             });

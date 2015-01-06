@@ -9,14 +9,15 @@ license that can be found in the LICENSE file.
  * defined by its attributes. It then calls the target route handler (also defined in its
  * attributes) associated with the request (see routeHanlder below).
  */
+ //TODO(JS): Eliminate having to pass the tag name as an attribute. Posibly obtain the tag name from
+ // the imported file itself?
 (function() {
     "use strict";
     Polymer("rtr-lazyroute", {
-
         /**
          * ready - Polymer ready event handler.
-         */         
-        ready: function() {
+         */
+        domReady: function() {
             this.rtrRouter = this.parentElement;
             //rtr-history is the only element in the shadow-root
             this.rtrHistory = this.parentElement.shadowRoot.children[0];
@@ -48,12 +49,10 @@ license that can be found in the LICENSE file.
                 this.callTarget(arguments);
             }
         },
-        //Calls the target element's handler passing it arguments
-
         /**
          * callTarget - Calls the target element's handler passing it arguments.
          *
-         * @param  {object} args A collection of arguments to be passed to the target handler.
+         * @param  {object} args - A collection of arguments to be passed to the target handler.
          */
         callTarget: function (args) {
             this.targetEl[this.handler].apply(this.targetEl, args);

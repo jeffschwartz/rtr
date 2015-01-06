@@ -9,7 +9,7 @@ license that can be found in the LICENSE file.
         /**
          * ready - Polymer ready event handler.
          */
-        ready: function () {
+        domReady: function () {
             this.rtrRouter = this.parentElement;
             //rtr-history is the only element in the shadow-root
             this.rtrHistory = this.parentElement.shadowRoot.children[0];

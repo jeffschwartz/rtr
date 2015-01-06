@@ -16,7 +16,7 @@ from the parent directory of the rtr folder.
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <script src="/webcomponentsjs/webcomponents.min.js"></script>
     <link rel="import" href="elements/rtr-router.html">
-    <link rel="import" href="myrtr-datepath.html">
+    <!-- <link rel="import" href="myrtr-datepath.html"> -->
 <!--
 <link rel="import" href="elements/rtr-router.html">
 <link rel="import" href="elements/rtr-lazyroute.html">
@@ -28,7 +28,9 @@ from the parent directory of the rtr folder.
 <body unresolved>
 <!-- Unit test #2 -->
 <rtr-router>
-    <myrtr-datepath method="get" path="/rtr/datepath/year/:y/month/:m/day/:d" handler="get"></myrtr-datepath>
+    <!-- <myrtr-datepath method="get" path="/rtr/datepath/year/:y/month/:m/day/:d" handler="get"></myrtr-datepath> -->
+    <rtr-lazyroute method="get" path="/rtr/datepath/year/:y/month/:m/day/:d"
+        importPath="/rtr/myrtr-datepath.html" tagname="myrtr-datepath" handler="get"></rtr-lazyroute>
 </rtr-router>
 <a href="/rtr/datepath/year/2015/month/1/day/5">a path with a date</a>
 <!-- Unit test #2 -->

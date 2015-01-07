@@ -10,20 +10,66 @@
 <!doctype html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <title>seed-element Demo</title>
-
-  <script src="../webcomponentsjs/webcomponents.min.js"></script>
-  <link rel="import" href="seed-element.html">
-
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>seed-element Demo</title>
+    <script src="../webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="elements/rtr-router.html">
+    <link rel="import" href="demo-staticpath.html">
+    <style>
+        article {
+            border-bottom: solid 1px #000;
+            padding: 1em 0 1em 0;
+        }
+        .info {
+            padding: 1em 0 1em 0;
+            background-color: #FAFAFA;
+            margin-top: 1em;
+        }
+        .info::before {
+            color: #000;
+            content: "Result: ";
+        }
+    </style>
 </head>
 <body unresolved>
-
-  <p>An example of using <code>&lt;seed-element&gt;</code>:</p>
-
-  <seed-element>
-    <h2>Hello seed-element</h2>
-  </seed-element>
-
+    <rtr-router>
+        <demo-staticpath methdo="get" path="/rtr/demo-staticpath" handler="get"></demo-staticpath>
+    </rtr-router>
+    <article>
+        <p>An example of routing a simple static path in an anchor tag:</p>
+        <pre><code>
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"&gt;
+    &lt;script src="/webcomponentsjs/webcomponents.min.js"&gt;&lt;/script&gt;
+    &lt;link rel="import" href="elements/rtr-router.html"&gt;
+    &lt;link rel="import" href="demo-staticpath.html"&gt;
+&lt;/head&gt;
+&lt;body unresolved&gt;
+    &lt;rtr-router&gt;
+        &lt;!-- route paths must start with a "/" character --&gt;
+        &lt;demo-staticpath method="get" path="/demo-staticpath" handler="get"&gt;&lt;/demo-staticpath&gt;
+    &lt;/rtr-router&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code></pre>
+        <pre><code>
+&lt;!-- route paths must start with a "/" character --&gt;
+&lt;a href="/staticpath"&gt;Routing A Static Path&lt;/a&gt;
+        </code></pre>
+        <a href="/rtr/demo-staticpath">Routing A Static Path</a>
+        <div class="info" id="demo-staticpath-info"></div>
+    </article>
+    <script>
+        (function(){
+            "use strict";
+            window.addEventListener("polymer-ready", function(){
+                var routerEl = document.querySelector("rtr-router");
+                //var historyEl = routerEl.rtrHistory;
+                //historyEl.start(true, false);
+                routerEl.rtrHistory.start(false, false);
+            });
+        }());
+    </script>
 </body>
 </html>

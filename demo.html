@@ -62,6 +62,8 @@
         <a href="/rtr/demo-staticpath">Routing A Static Path</a>
         <div class="info" id="demo-staticpath-info"></div>
     </article>
+<!-- TODO(JS): lazy static route -->
+<!-- TODO(JS): parameterized route -->
     <article>
         <p>An example of lazy routing a parameterized path in an anchor tag:</p>
         <pre><code>
@@ -75,7 +77,7 @@
     &lt;rtr-router&gt;
         &lt;!-- route paths must start with a "/" character --&gt;
         &lt;rtr-lazyroute method="get" path="/rtr/demo-parameterizedpath/year/:y/month/:m/day/:d"
-            importPath="demo-parameterizedpath.html" tagname="demo-parameterizedpath" handler="get"&gt;&lt;/rtr-lazyroute&gt;
+            importPath="/rtr/demo-parameterizedpath.html" tagname="demo-parameterizedpath" handler="get"&gt;&lt;/rtr-lazyroute&gt;
     &lt;/rtr-router&gt;
 &lt;/body&gt;
 &lt;/html&gt;

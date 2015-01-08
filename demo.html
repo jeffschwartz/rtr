@@ -15,6 +15,7 @@
     <script src="../webcomponentsjs/webcomponents.min.js"></script>
     <link rel="import" href="elements/rtr-router.html">
     <link rel="import" href="demo-staticpath.html">
+    <link rel="import" href="demo-parameterizedpath.html">
     <style>
         article {
             border-bottom: solid 1px #000;
@@ -34,11 +35,11 @@
 <body unresolved>
     <rtr-router>
         <demo-staticpath methdo="get" path="/rtr/demo-staticpath" handler="get"></demo-staticpath>
-        <rtr-lazyroute method="get" path="/rtr/demo-parameterizedpath/year/:y/month/:m/day/:d"
-            importPath="/rtr/demo-parameterizedpath.html" tagname="demo-parameterizedpath" handler="get"></rtr-lazyroute>
         <rtr-lazyroute method="get" path="/rtr/demo-lazystaticpath"
             importPath="/rtr/demo-lazystaticpath.html" tagname="demo-lazystaticpath" handler="get"></rtr-lazyroute>
-
+        <demo-parameterizedpath methdo="get" path="/rtr/demo-parameterizedpath/year/:y/month/:m/day/:d" handler="get"></demo-parameterizedpath>
+        <rtr-lazyroute method="get" path="/rtr/demo-lazyparameterizedpath/year/:y/month/:m/day/:d"
+            importPath="/rtr/demo-lazyparameterizedpath.html" tagname="demo-lazyparameterizedpath" handler="get"></rtr-lazyroute>
     </rtr-router>
     <article>
         <p>An example of routing a static path in an anchor tag:</p>
@@ -60,12 +61,11 @@
         </code></pre>
         <pre><code>
 &lt;!-- route paths must start with a "/" character --&gt;
-&lt;a href="/staticpath"&gt;Routing A Static Path&lt;/a&gt;
+&lt;a href="/rtr/demo-staticpath"&gt;Routing A Static Path&lt;/a&gt;
         </code></pre>
         <a href="/rtr/demo-staticpath">Routing A Static Path</a>
         <div class="info" id="demo-staticpath-info"></div>
     </article>
-<!-- TODO(JS): lazy static route -->
     <article>
         <p>An example of lazy routing a static path in an anchor tag:</p>
         <pre><code>
@@ -86,14 +86,14 @@
         </code></pre>
         <pre><code>
 &lt;!-- route paths must start with a "/" character --&gt;
-&lt;a href="/rtr/datepath/year/2015/month/1/day/5"&gt;a path with a date&lt;/a&gt;
+&lt;a href="/rtr/demo-lazystaticpath/year/2015/month/1/day/5"&gt;Lazy Routing A Static Path&lt;/a&gt;
         </code></pre>
         <a href="/rtr/demo-lazystaticpath">Lazy Routing A Static Path</a>
         <div class="info" id="demo-lazystaticpath-info"></div>
     </article>
 <!-- TODO(JS): parameterized route -->
     <article>
-        <p>An example of lazy routing a parameterized path:</p>
+        <p>An example of routing a parameterized path:</p>
         <pre><code>
 &lt;html&gt;
 &lt;head&gt;
@@ -112,10 +112,35 @@
         </code></pre>
         <pre><code>
 &lt;!-- route paths must start with a "/" character --&gt;
-&lt;a href="/rtr/datepath/year/2015/month/1/day/5"&gt;a path with a date&lt;/a&gt;
+&lt;a href="/rtr/demo-parameterizedpath/year/2015/month/1/day/5"&gt;Routing A Parameterized Path&lt;/a&gt;
         </code></pre>
-        <a href="/rtr/demo-parameterizedpath/year/2015/month/1/day/5">Lazy Routing A Parameterized Path</a>
+        <a href="/rtr/demo-parameterizedpath/year/2015/month/1/day/5">Routing A Parameterized Path</a>
         <div class="info" id="demo-parameterizedpath-info"></div>
+    </article>
+    <article>
+        <p>An example of lazy routing a parameterized path:</p>
+        <pre><code>
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"&gt;
+    &lt;script src="/webcomponentsjs/webcomponents.min.js"&gt;&lt;/script&gt;
+    &lt;link rel="import" href="elements/rtr-router.html"&gt;
+&lt;/head&gt;
+&lt;body unresolved&gt;
+    &lt;rtr-router&gt;
+        &lt;!-- route paths must start with a "/" character --&gt;
+        &lt;rtr-lazyroute method="get" path="/rtr/demo-lazyparameterizedpath/year/:y/month/:m/day/:d"
+            importPath="/rtr/demo-lazyparameterizedpath.html" tagname="demo-lazyparameterizedpath" handler="get"&gt;&lt;/rtr-lazyroute&gt;
+    &lt;/rtr-router&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code></pre>
+        <pre><code>
+&lt;!-- route paths must start with a "/" character --&gt;
+&lt;a href="/rtr/demo-lazyparameterizedpath/year/2015/month/1/day/5"&gt;Lazy Routing A Parameterized Path&lt;/a&gt;
+        </code></pre>
+        <a href="/rtr/demo-lazyparameterizedpath/year/2015/month/1/day/5">Lazy Routing A Parameterized Path</a>
+        <div class="info" id="demo-lazyparameterizedpath-info"></div>
     </article>
     <script>
         (function(){

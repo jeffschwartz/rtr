@@ -16,6 +16,7 @@
     <link rel="import" href="elements/rtr-router.html">
     <link rel="import" href="demo-staticpath.html">
     <link rel="import" href="demo-parameterizedpath.html">
+    <link rel="import" href="demo-formsubmit.html">
     <style>
         article {
             border-bottom: solid 1px #F0F0F0;
@@ -56,6 +57,7 @@
         <demo-parameterizedpath methdo="get" path="/rtr/demo-parameterizedpath/year/:y/month/:m/day/:d" handler="get"></demo-parameterizedpath>
         <rtr-lazyroute method="get" path="/rtr/demo-lazyparameterizedpath/year/:y/month/:m/day/:d"
             importPath="/rtr/demo-lazyparameterizedpath.html" tagname="demo-lazyparameterizedpath" handler="get"></rtr-lazyroute>
+        <demo-formsubmit method="post" path="/rtr/demo-formsubmit" handler="post"></demo-parameterizedpath>
     </rtr-router>
     <h1>rtr Demo</h1>
     <section>
@@ -187,6 +189,64 @@
             </code></pre>
             <a href="/rtr/demo-lazyparameterizedpath/year/2015/month/1/day/5">Lazy Routing A Parameterized Path</a>
             <div class="info" id="demo-lazyparameterizedpath-info"></div>
+        </article>
+        <article>
+            <p>An example of routing a form submit:</p>
+            <pre><code>
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"&gt;
+    &lt;script src="/webcomponentsjs/webcomponents.min.js"&gt;&lt;/script&gt;
+    &lt;link rel="import" href="elements/rtr-router.html"&gt;
+    &lt;link rel="import" href="demo-formsubmit.html"&gt;
+&lt;/head&gt;
+&lt;body unresolved&gt;
+    &lt;rtr-router&gt;
+        &lt;!-- route paths must start with a "/" character --&gt;
+        &lt;demo-formsubmit methdo="post" path="/rtr/demo-formsubmit" handler="post"&gt;&lt;/demo-parameterizedpath>
+    &lt;/rtr-router&gt;
+    &lt;!-- route paths must start with a "/" character --&gt;
+    &lt;form id="formsubmit" action="/rtr/demo-formsubmit" method="post"&gt;
+        &lt;label for="txtName"&gt;Name:&lt;/label&gt;
+        &lt;input id="txtName" name="txtName" type="text" placeholder="enter you name here"&gt;&lt;br&gt;
+        &lt;select id="selOccupation" name="selOccupation" multiple="multiple"&gt;
+            &lt;option value="web_dev" selected="selected"&gt;Web Developer&lt;/option&gt;
+            &lt;option value="javascript_dev" selected="selected"&gt;JavaScript Developer&lt;/option&gt;
+            &lt;option value="ui_engineer"&gt;UI Engineer&lt;/option&gt;
+            &lt;option value="java_dev"&gt;Java developer&lt;/option&gt;
+            &lt;option value="db_admin"&gt;DB Administrator&lt;/option&gt;
+            &lt;option value="senior_php"&gt;Senior PHP programmer&lt;/option&gt;
+            &lt;option value="sap_engineer"&gt;SAP Engineer&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;button type="submt"&gt;submit&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;script&gt;
+    (function(){
+        "use strict";
+        window.addEventListener("polymer-ready", function(){
+            var routerEl = document.querySelector("rtr-router");
+            routerEl.rtrHistory.start(false, false);
+        });
+    }());
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+            <form id="formsubmit" action="/rtr/demo-formsubmit" method="post">
+                <label for="txtName">Name:</label>
+                <input id="txtName" name="txtName" type="text" placeholder="enter you name here"><br>
+                <select id="selOccupation" name="selOccupation" multiple="multiple">
+                    <option value="web_dev" selected="selected">Web Developer</option>
+                    <option value="javascript_dev" selected="selected">JavaScript Developer</option>
+                    <option value="ui_engineer">UI Engineer</option>
+                    <option value="java_dev">Java developer</option>
+                    <option value="db_admin">DB Administrator</option>
+                    <option value="senior_php">Senior PHP programmer</option>
+                    <option value="sap_engineer">SAP Engineer</option>
+                </select>
+                <button type="submt">submit</button>
+            </form>
+            <div class="info" id="demo-formsubmit-info"></div>
         </article>
     </section>
     <script>

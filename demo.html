@@ -57,7 +57,9 @@
         <demo-parameterizedpath methdo="get" path="/rtr/demo-parameterizedpath/year/:y/month/:m/day/:d" handler="get"></demo-parameterizedpath>
         <rtr-lazyroute method="get" path="/rtr/demo-lazyparameterizedpath/year/:y/month/:m/day/:d"
             importPath="/rtr/demo-lazyparameterizedpath.html" tagname="demo-lazyparameterizedpath" handler="get"></rtr-lazyroute>
-        <demo-formsubmit method="post" path="/rtr/demo-formsubmit" handler="post"></demo-parameterizedpath>
+        <demo-formsubmit method="post" path="/rtr/demo-formsubmit" handler="post"></demo-formsubmit>
+        <rtr-lazyroute method="post" path="/rtr/demo-lazyformsubmit"
+            importPath="/rtr/demo-lazyformsubmit.html" tagname="demo-lazyformsubmit" handler="post"></rtr-lazyroute>
     </rtr-router>
     <h1>rtr Demo</h1>
     <section>
@@ -249,6 +251,64 @@
             <div class="info" id="demo-formsubmit-info"></div>
         </article>
         <!-- TODO(JS): lazy form submit -->
+        <article>
+            <p>An example of lazy routing a form submit:</p>
+            <pre><code>
+                &lt;html&gt;
+                &lt;head&gt;
+                    &lt;meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"&gt;
+                    &lt;script src="/webcomponentsjs/webcomponents.min.js"&gt;&lt;/script&gt;
+                    &lt;link rel="import" href="elements/rtr-router.html"&gt;
+                &lt;/head&gt;
+                &lt;body unresolved&gt;
+                    &lt;rtr-router&gt;
+                        &lt;!-- route paths must start with a "/" character --&gt;
+                        &lt;rtr-lazyroute method="post" path="/rtr/demo-lazyformsubmit"
+                            importPath="/rtr/demo-lazyformsubmit.html" tagname="demo-lazyformsubmit" handler="post"&gt;&lt;/rtr-lazyroute&gt;
+                    &lt;/rtr-router&gt;
+                    &lt;!-- route paths must start with a "/" character --&gt;
+                    &lt;form id="lazyformsubmit" action="/rtr/demo-lazyformsubmit" method="post"&gt;
+                        &lt;label for="txtName2"&gt;Name:&lt;/label&gt;
+                        &lt;input id="txtName2" name="txtName2" type="text" placeholder="enter you name here"&gt;&lt;br&gt;
+                        &lt;select id="selOccupation2" name="selOccupation2" multiple="multiple"&gt;
+                            &lt;option value="web_dev" selected="selected"&gt;Web Developer&lt;/option&gt;
+                            &lt;option value="javascript_dev" selected="selected"&gt;JavaScript Developer&lt;/option&gt;
+                            &lt;option value="ui_engineer"&gt;UI Engineer&lt;/option&gt;
+                            &lt;option value="java_dev"&gt;Java developer&lt;/option&gt;
+                            &lt;option value="db_admin"&gt;DB Administrator&lt;/option&gt;
+                            &lt;option value="senior_php"&gt;Senior PHP programmer&lt;/option&gt;
+                            &lt;option value="sap_engineer"&gt;SAP Engineer&lt;/option&gt;
+                        &lt;/select&gt;
+                        &lt;button type="submt"&gt;submit&lt;/button&gt;
+                    &lt;/form&gt;
+                    &lt;script&gt;
+                    (function(){
+                        "use strict";
+                        window.addEventListener("polymer-ready", function(){
+                            var routerEl = document.querySelector("rtr-router");
+                            routerEl.rtrHistory.start(false, false);
+                        });
+                    }());
+                    &lt;/script&gt;
+                &lt;/body&gt;
+                &lt;/html&gt;
+            </code></pre>
+            <form id="formsubmit2" action="/rtr/demo-lazyformsubmit" method="post">
+                <label for="txtName2">Name:</label>
+                <input id="txtName2" name="txtName2" type="text" placeholder="enter you name here"><br>
+                <select id="selOccupation2" name="selOccupation2" multiple="multiple">
+                    <option value="web_dev" selected="selected">Web Developer</option>
+                    <option value="javascript_dev" selected="selected">JavaScript Developer</option>
+                    <option value="ui_engineer">UI Engineer</option>
+                    <option value="java_dev">Java developer</option>
+                    <option value="db_admin">DB Administrator</option>
+                    <option value="senior_php">Senior PHP programmer</option>
+                    <option value="sap_engineer">SAP Engineer</option>
+                </select>
+                <button type="submt">submit</button>
+            </form>
+            <div class="info" id="demo-lazyformsubmit-info"></div>
+        </article>
         <!-- TODO(JS): redirect -->
         <!-- TODO(JS): data-rtr-nopushstate -->
     </section>

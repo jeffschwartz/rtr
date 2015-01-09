@@ -17,6 +17,8 @@
     <link rel="import" href="demo-staticpath.html">
     <link rel="import" href="demo-parameterizedpath.html">
     <link rel="import" href="demo-formsubmit.html">
+    <link rel="import" href="demo-redirect.html">
+    <link rel="import" href="demo-redirecttarget.html">
     <style>
         article {
             border-bottom: solid 1px #F0F0F0;
@@ -60,6 +62,8 @@
         <demo-formsubmit method="post" path="/rtr/demo-formsubmit" handler="post"></demo-formsubmit>
         <rtr-lazyroute method="post" path="/rtr/demo-lazyformsubmit"
             importPath="/rtr/demo-lazyformsubmit.html" tagname="demo-lazyformsubmit" handler="post"></rtr-lazyroute>
+        <demo-redirect methdo="get" path="/rtr/demo-redirect" handler="get"></demo-redirect>
+        <demo-redirecttarget methdo="get" path="/rtr/demo-redirecttarget" handler="get"></demo-redirecttarget>
     </rtr-router>
     <h1>rtr Demo</h1>
     <section>
@@ -309,7 +313,42 @@
             <div class="info" id="demo-lazyformsubmit-info"></div>
         </article>
         <!-- TODO(JS): redirect -->
-        <!-- TODO(JS): data-rtr-nopushstate -->
+        <article>
+            <p>An example of redirecting:</p>
+            <pre><code>
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"&gt;
+    &lt;script src="/webcomponentsjs/webcomponents.min.js"&gt;&lt;/script&gt;
+    &lt;link rel="import" href="elements/rtr-router.html"&gt;
+    &lt;link rel="import" href="demo-redirect.html"&gt;
+    &lt;link rel="import" href="demo-staticpath.html"&gt;
+&lt;/head&gt;
+&lt;body unresolved&gt;
+    &lt;rtr-router&gt;
+        &lt;!-- route paths must start with a "/" character --&gt;
+        &lt;demo-redirect method="get" path="/demo-redirect" handler="get"&gt;&lt;/demo-redirect&gt;
+        &lt;demo-staticpath method="get" path="/demo-staticpath" handler="get"&gt;&lt;/demo-staticpath&gt;
+        &lt;demo-redirecttarget methdo="get" path="/rtr/demo-redirecttarget" handler="get"&gt;&lt;/demo-redirecttarget&gt;
+    &lt;/rtr-router&gt;
+    &lt;!-- route paths must start with a "/" character --&gt;
+    &lt;a href="/rtr/demo-redirect"&gt;Redirect&lt;/a&gt;
+    &lt;script&gt;
+    (function(){
+        "use strict";
+        window.addEventListener("polymer-ready", function(){
+            var routerEl = document.querySelector("rtr-router");
+            routerEl.rtrHistory.start(false, false);
+        });
+    }());
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </code></pre>
+            <a href="/rtr/demo-redirect">Redirect</a>
+            <div class="info" id="demo-redirect-info"></div>
+        </article>
+        <!-- TODO(JS): data-rtr-nopushstate attribute -->
     </section>
     <script>
     (function(){

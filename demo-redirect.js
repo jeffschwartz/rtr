@@ -1,5 +1,6 @@
 (function() {
     Polymer("demo-redirect", {
+        //NOTE: You cannot use strict mode if calling this.super
         domReady: function() {
             this.super();
             this.infoEl = document.getElementById("demo-redirect-info");

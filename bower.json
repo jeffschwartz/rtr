@@ -11,9 +11,9 @@
     "polymer",
     "rtr-router"
   ],
-  "main": "seed-element.html",
+  "main": "rtr-router.html",
   "license": "BSD",
-  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "homepage": "https://github.com/jeffschwartz/rtr",
   "ignore": [
     "/.*",
     "/tests/"

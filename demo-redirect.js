@@ -9,7 +9,7 @@
             "use strict";
             this.infoEl.textContent =  "demo-redirect \"get\" handler was called " +
                 "and is redirecting to /rtr/demo-redirecttarget";
-            console.log("demo-redirect get called");
+            console.log("demo-redirect \"get\" called");
             this.rtrHistory.navigate({
                 state: {
                     verb: "get",

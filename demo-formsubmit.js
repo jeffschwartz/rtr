@@ -7,7 +7,7 @@
         post: function(valuesHash){
             this.infoEl.innerHTML = "demo-formsubmit \"post\" handler was called with a form's valuesHash" +
             "<br>name = " + valuesHash.txtName + "<br>occupation = " + valuesHash.selOccupation.toString();
-            console.log("demo-formsubmit get called");
+            console.log("demo-formsubmit \"post\" called");
         }
     });
 }());

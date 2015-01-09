@@ -6,8 +6,8 @@
         },
         get: function(){
             this.infoEl.innerHTML = this.infoEl.textContent +
-                " and demo-redirecttarget get called";
-            console.log("demo-redirecttarget get called");
+                " and demo-redirecttarget \"get\" called";
+            console.log("demo-redirecttarget \"get\" called");
         }
     });
 }());

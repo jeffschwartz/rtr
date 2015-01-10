@@ -7,121 +7,16 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS
 -->
-<!--
-IMPORTATN Testing this file requires a local web server (e.g. http-server) which must be started
-from the parent directory of the rtr folder.
--->
 <html>
 <head>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <script src="/webcomponentsjs/webcomponents.min.js"></script>
-    <link rel="import" href="elements/rtr-router.html">
-    <!-- <link rel="import" href="myrtr-datepath.html"> -->
-<!--
-<link rel="import" href="elements/rtr-router.html">
-<link rel="import" href="elements/rtr-lazyroute.html">
-<link rel="import" href="myrtr-somepath.html">
-<link rel="import" href="myrtr-somepath2.html">
-<link rel="import" href="myrtr-redirectpath.html">
- -->
- </head>
+    <script src="../webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="../core-component-page/core-component-page.html">
+
+</head>
 <body unresolved>
-<!-- Unit test #2 -->
-<rtr-router>
-    <!-- <myrtr-datepath method="get" path="/rtr/datepath/year/:y/month/:m/day/:d" handler="get"></myrtr-datepath> -->
-    <rtr-lazyroute method="get" path="/rtr/datepath/year/:y/month/:m/day/:d"
-        importPath="/rtr/myrtr-datepath.html" tagname="myrtr-datepath" handler="get"></rtr-lazyroute>
-</rtr-router>
-<a href="/rtr/datepath/year/2015/month/1/day/5">a path with a date</a>
-<!-- Unit test #2 -->
-<!-- Unit tests #1
- <rtr-router>
-    <h2>Hi!</h2>
-    <myrtr-somepath method="get" path="/rtr/somepath" handler="get"></myrtr-somepath>
-    <myrtr-somepath method="post" path="/rtr/somepath" handler="post"></myrtr-somepath>
-    <myrtr-somepath method="put" path="/rtr/somepath" handler="put"></myrtr-somepath>
-    <myrtr-somepath method="delete" path="/rtr/somepath" handler="del"></myrtr-somepath>
-    <myrtr-somepath2 method="get" path="/rtr/somepath" handler="get"></myrtr-somepath2>
-    <myrtr-somepath2 method="post" path="/rtr/somepath" handler="post"></myrtr-somepath2>
-    <myrtr-somepath2 method="put" path="/rtr/somepath" handler="put"></myrtr-somepath2>
-    <myrtr-somepath2 method="delete" path="/rtr/somepath" handler="del"></myrtr-somepath2>
-    <myrtr-redirectpath method="get" path="/rtr/redirectedpath" handler="get"></myrtr-redirectpath>
-    <rtr-lazyroute method="get" path="/rtr/somelazypath" handler="get" importPath="myrtr-lazyloaded.html"
-        tagname="myrtr-lazyloaded"></rtr-lazyroute>
-    <rtr-lazyroute method="post" path="rtr/somelazypath" handler="post" importPath="myrtr-lazyloaded.html"
-        tagname="myrtr-lazyloaded"></rtr-lazyroute>
-    <rtr-lazyroute method="put" path="rtr/somelazypath" handler="put" importPath="myrtr-lazyloaded.html"
-        tagname="myrtr-lazyloaded"></rtr-lazyroute>
-    <rtr-lazyroute method="delete" path="rtr/somelazypath" handler="del" importPath="myrtr-lazyloaded.html"
-        tagname="myrtr-lazyloaded"></rtr-lazyroute>
-</rtr-router>
-<a href="/rtr/somepath">somepath</a><br>
-<a href="/rtr/somelazypath">somelazypath</a><br>
-<a href="/rtr/redirectedpath">redirectedpath</a><br>
-<a href="http://google.com">Google</a><br>
-<form id="testform" action="/rtr/somelazypath" method="get" data-rtr-nopushstate>
-    <label for="input1">input:</label>
-    <input id="input1" name="input1" type="text" placeholder="type something here"><br>
-    <select id="select1" name="select1" multiple="multiple">
-        <option value="java_dev">Java developer</option>
-        <option value="web_dev" selected="selected">Web Developer</option>
-        <option value="ui_engineer" selected="selected">UI Engineer</option>
-        <option value="db_admin">DB Administrator</option>
-        <option value="senior_php" selected="selected">Senior PHP programmer</option>
-        <option value="sap_engineer">SAP Engineer</option>
-    </select>
-    <button type="submt">submit</button>
-</form>
-<form id="testform" action="/rtr/somelazypath" method="post">
-    <label for="input1">input:</label>
-    <input id="input1" name="input1" type="text" placeholder="type something here"><br>
-    <select id="select1" name="select1" multiple="multiple">
-        <option value="java_dev">Java developer</option>
-        <option value="web_dev" selected="selected">Web Developer</option>
-        <option value="ui_engineer" selected="selected">UI Engineer</option>
-        <option value="db_admin">DB Administrator</option>
-        <option value="senior_php" selected="selected">Senior PHP programmer</option>
-        <option value="sap_engineer">SAP Engineer</option>
-    </select>
-    <button type="submt">submit</button>
-</form>
-<form id="testform" action="/rtr/somelazypath" method="put">
-    <label for="input1">input:</label>
-    <input id="input1" name="input1" type="text" placeholder="type something here"><br>
-    <select id="select1" name="select1" multiple="multiple">
-        <option value="java_dev">Java developer</option>
-        <option value="web_dev" selected="selected">Web Developer</option>
-        <option value="ui_engineer" selected="selected">UI Engineer</option>
-        <option value="db_admin">DB Administrator</option>
-        <option value="senior_php" selected="selected">Senior PHP programmer</option>
-        <option value="sap_engineer">SAP Engineer</option>
-    </select>
-    <button type="submt">submit</button>
-</form>
-<form id="testform" action="/rtr/somelazypath" method="delete">
-    <label for="input1">input:</label>
-    <input id="input1" name="input1" type="text" placeholder="type something here"><br>
-    <select id="select1" name="select1" multiple="multiple">
-        <option value="java_dev">Java developer</option>
-        <option value="web_dev" selected="selected">Web Developer</option>
-        <option value="ui_engineer" selected="selected">UI Engineer</option>
-        <option value="db_admin">DB Administrator</option>
-        <option value="senior_php" selected="selected">Senior PHP programmer</option>
-        <option value="sap_engineer">SAP Engineer</option>
-    </select>
-    <button type="submt">submit</button>
-</form>
- -->
-    <script>
-        (function(){
-            "use strict";
-            window.addEventListener("polymer-ready", function(){
-                var routerEl = document.querySelector("rtr-router");
-                //var historyEl = routerEl.rtrHistory;
-                //historyEl.start(true, false);
-                routerEl.rtrHistory.start(true, false);
-            });
-        }());
-    </script>
+
+    <core-component-page></core-component-page>
+
 </body>
 </html>

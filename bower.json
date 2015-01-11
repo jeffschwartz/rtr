@@ -4,16 +4,19 @@
   "authors": [
     "Anonymous <anonymous@example.com>"
   ],
-  "description": "Router built on top of Polymer",
+  "description": "A router element built on top of Polymer",
   "keywords": [
     "web-component",
     "web-components",
     "polymer",
-    "rtr-router"
+    "rtr-router",
+    "rtr-history",
+    "rtr-route",
+    "rtr-lazyroute"
   ],
-  "main": "seed-element.html",
+  "main": "rtr-router.html",
   "license": "BSD",
-  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "homepage": "https://github.com/jeffschwartz/rtr",
   "ignore": [
     "/.*",
     "/tests/"

@@ -153,14 +153,16 @@ license that can be found in the LICENSE file.
                 "A") {
                 href = evt.target.attributes.href.value;
                 console.log("attribute href", href);
-                if (href.indexOf("/") === 0) {
+                // if (href.indexOf("/") === 0) {
+                if (evt.target.attributes.hasOwnProperty("data-rtr-route")) {
                     evt.preventDefault();
                     if (!evt.target.attributes.hasOwnProperty(
                             "data-rtr-nopushstate")) {
                         w.history.pushState({
                             verb: "get",
                             path: href
-                        }, null, evt.target.href);
+                        // }, null, evt.target.href);
+                        }, null, evt.target.attributes.href.value);
                     }
                     this.routerEl.route(method, href);
                 }
@@ -179,7 +181,8 @@ license that can be found in the LICENSE file.
                 method = evt.target.attributes.method.value;
                 console.log("attribute action", action);
                 console.log("attribute method", method);
-                if (action.indexOf("/") === 0) {
+                // if (action.indexOf("/") === 0) {
+                if (evt.target.attributes.hasOwnProperty("data-rtr-route")) {
                     evt.preventDefault();
                     method = method ? method : "get"; // Defaults to "get" if method omitted
                     valuesHash = valuesHashFromSerializedArray(

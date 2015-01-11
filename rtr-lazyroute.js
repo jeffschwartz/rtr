@@ -42,7 +42,9 @@ license that can be found in the LICENSE file.
                     self.targetEl.setAttribute("path", self.path);
                     self.targetEl.setAttribute("handler", self.handler);
                     routerEl.appendChild(self.targetEl);
-                    self.callTarget(args);
+                    self.async(function() {
+                        this.callTarget(args);
+                    }, null, 100);
                 });
             } else {
                 //Call the target's handler

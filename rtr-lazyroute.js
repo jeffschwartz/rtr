@@ -15,8 +15,10 @@ license that can be found in the LICENSE file.
     "use strict";
     Polymer("rtr-lazyroute", {
         /**
-         * ready - Polymer ready event handler.
-         */
+        * The `domReady` method is a lifecycle callback.
+        *
+        * @method domReady
+        */
         domReady: function() {
             this.rtrRouter = this.parentElement;
             //rtr-history is the only element in the shadow-root
@@ -24,7 +26,7 @@ license that can be found in the LICENSE file.
             this.targetEl = null;
         },
         /**
-         * routeHandler - On receiving the 1st request for any lazy loaded route it will dynamically
+         * @method routeHandler - On receiving the 1st request for any lazy loaded route it will dynamically
          * import and create the appropriate route-element as defined by its attributes. It then
          * calls the target route handler (also defined in its attributes) associated with the
          * request passing it arguments.
@@ -52,7 +54,7 @@ license that can be found in the LICENSE file.
             }
         },
         /**
-         * callTarget - Calls the target element's handler passing it arguments.
+         * @method callTarget - Calls the target element's handler passing it arguments.
          *
          * @param  {object} args - A collection of arguments to be passed to the target handler.
          */

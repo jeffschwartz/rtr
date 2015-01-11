@@ -7,8 +7,10 @@ license that can be found in the LICENSE file.
     "use strict";
     Polymer("rtr-route", {
         /**
-         * ready - Polymer ready event handler.
-         */
+        * The `domReady` method is a lifecycle callback.
+        *
+        * @method domReady
+        */
         domReady: function () {
             this.rtrRouter = this.parentElement;
             //rtr-history is the only element in the shadow-root

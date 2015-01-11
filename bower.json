@@ -1,10 +1,10 @@
 {
-  "name": "rtr-router",
+  "name": "rtr",
   "version": "0.0.1",
   "authors": [
-    "Anonymous <anonymous@example.com>"
+    "Jeffrey Schwartz <jefftschwartz@gmail.com>"
   ],
-  "description": "A router element built on top of Polymer",
+  "description": "A router built on top of Polymer",
   "keywords": [
     "web-component",
     "web-components",
@@ -15,7 +15,7 @@
     "rtr-lazyroute"
   ],
   "main": "rtr-router.html",
-  "license": "BSD",
+  "license": "BSD Like",
   "homepage": "https://github.com/jeffschwartz/rtr",
   "ignore": [
     "/.*",

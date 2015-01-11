@@ -7,7 +7,7 @@ license that can be found in the LICENSE file.
     "use strict";
     var routes = {};
     /**
-     * route - Routes the request.
+     * Routes the request.
      *
      * @param  {string} verb - Eighter get, post, put, delete.
      * @param  {strung} url - The request path.
@@ -28,7 +28,7 @@ license that can be found in the LICENSE file.
         }
     }
     /**
-     * contains - Returns true if s1 contains the character s2.
+     * Returns true if s1 contains the character s2.
      *
      * @param  {string} s1 - The string to search if it contains the character s2.
      * @param  {string} s2 - The character to search for.
@@ -40,7 +40,7 @@ license that can be found in the LICENSE file.
         });
     }
     /**
-     * getRoute - Parses the request and attempts to match it to route handlers.
+     * Parses the request and attempts to match it to route handlers.
      *
      * @param  {string} verb - Either get, post, put, delete.
      * @param  {string} url -  A URL path that begins with a "/".
@@ -122,7 +122,7 @@ license that can be found in the LICENSE file.
         }
     }
     /**
-     * routeFound - Routes the request to the target handlers.
+     * Routes the request to the target handlers.
      *
      * @param  {object} route - A hash which contains a handlers and a params property.
      */
@@ -143,7 +143,7 @@ license that can be found in the LICENSE file.
         });
     }
     /**
-     * routeNotFound - Called when target handlers cannot be found for the request.
+     * Called when target handlers cannot be found for the request.
      *
      * @param  {string} url - The request path.
      */
@@ -153,7 +153,9 @@ license that can be found in the LICENSE file.
     }
     Polymer("rtr-router", {
         /**
-         * domReady - Polymer domReady event handler.
+         * The `domReady` method is a lifecycle callback.
+         *
+         * @method domReady
          */
         domReady: function() {
             var self = this;
@@ -166,7 +168,8 @@ license that can be found in the LICENSE file.
             console.log("routes hash", routes);
         },
         /**
-         * addRoute - Propagates the routes array with routing information.
+         * The `addRoute` method is called by `domReady` to add a route to the routes hash
+         * (see above).
          *
          * @param  {element} routeEl - A light DOM child element of the router element.
          */
@@ -183,12 +186,12 @@ license that can be found in the LICENSE file.
                 routeEl[routeEl.handler].bind(routeEl));
         },
         /**
-         * route - Calls this module's route function to route the request.
+         * The `route` method is called to route a request.
          *
          * @param  {string} method - Either get, post, put, delete.
          * @param  {string} path - The request path.
-         * @param  {object} valuesHash - A hash of values to pass to the target handler if the request
-         * is for a form submit.
+         * @param  {object} valuesHash - A hash of values to pass to the target handler if the
+         * request is for a form submit.
          */
         route: function(method, path, valuesHash) {
             console.log("router.route called");

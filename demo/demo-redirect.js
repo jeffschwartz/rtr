@@ -8,7 +8,7 @@
         get: function(){
             "use strict";
             this.infoEl.textContent =  "demo-redirect \"get\" handler was called " +
-                "and is redirecting to /rtr/demo-redirecttarget";
+                "and is redirecting to demo-redirecttarget";
             console.log("demo-redirect \"get\" called");
             this.rtrHistory.navigate({
                 state: {
@@ -17,7 +17,7 @@
                 },
                 method: "get",
                 url: "/rtr/demo-redirecttarget",
-                pushState: true,
+                pushState: false,
                 trigger: true
             });
         }

@@ -11,14 +11,14 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-    <title>seed-element Demo</title>
+    <title>rtr Demo</title>
     <script src="../webcomponentsjs/webcomponents.min.js"></script>
     <link rel="import" href="rtr-router.html">
-    <link rel="import" href="demo-staticpath.html">
-    <link rel="import" href="demo-parameterizedpath.html">
-    <link rel="import" href="demo-formsubmit.html">
-    <link rel="import" href="demo-redirect.html">
-    <link rel="import" href="demo-redirecttarget.html">
+    <link rel="import" href="demo/demo-staticpath.html">
+    <link rel="import" href="demo/demo-parameterizedpath.html">
+    <link rel="import" href="demo/demo-formsubmit.html">
+    <link rel="import" href="demo/demo-redirect.html">
+    <link rel="import" href="demo/demo-redirecttarget.html">
     <style>
         article {
             border-bottom: solid 1px #F0F0F0;
@@ -55,13 +55,13 @@
     <rtr-router>
         <demo-staticpath methdo="get" path="/rtr/demo-staticpath" handler="get"></demo-staticpath>
         <rtr-lazyroute method="get" path="/rtr/demo-lazystaticpath"
-            importPath="/rtr/demo-lazystaticpath.html" tagname="demo-lazystaticpath" handler="get"></rtr-lazyroute>
+            importPath="/rtr/demo/demo-lazystaticpath.html" tagname="demo-lazystaticpath" handler="get"></rtr-lazyroute>
         <demo-parameterizedpath methdo="get" path="/rtr/demo-parameterizedpath/year/:y/month/:m/day/:d" handler="get"></demo-parameterizedpath>
         <rtr-lazyroute method="get" path="/rtr/demo-lazyparameterizedpath/year/:y/month/:m/day/:d"
-            importPath="/rtr/demo-lazyparameterizedpath.html" tagname="demo-lazyparameterizedpath" handler="get"></rtr-lazyroute>
+            importPath="/rtr/demo/demo-lazyparameterizedpath.html" tagname="demo-lazyparameterizedpath" handler="get"></rtr-lazyroute>
         <demo-formsubmit method="post" path="/rtr/demo-formsubmit" handler="post"></demo-formsubmit>
         <rtr-lazyroute method="post" path="/rtr/demo-lazyformsubmit"
-            importPath="/rtr/demo-lazyformsubmit.html" tagname="demo-lazyformsubmit" handler="post"></rtr-lazyroute>
+            importPath="/rtr/demo/demo-lazyformsubmit.html" tagname="demo-lazyformsubmit" handler="post"></rtr-lazyroute>
         <demo-redirect methdo="get" path="/rtr/demo-redirect" handler="get"></demo-redirect>
         <demo-redirecttarget methdo="get" path="/rtr/demo-redirecttarget" handler="get"></demo-redirecttarget>
     </rtr-router>
@@ -75,7 +75,7 @@
     &lt;meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"&gt;
     &lt;script src="/webcomponentsjs/webcomponents.min.js"&gt;&lt;/script&gt;
     &lt;link rel="import" href="rtr-router.html"&gt;
-    &lt;link rel="import" href="demo-staticpath.html"&gt;
+    &lt;link rel="import" href="demo/demo-staticpath.html"&gt;
 &lt;/head&gt;
 &lt;body unresolved&gt;
     &lt;rtr-router&gt;
@@ -83,7 +83,7 @@
         &lt;demo-staticpath method="get" path="/demo-staticpath" handler="get"&gt;&lt;/demo-staticpath&gt;
     &lt;/rtr-router&gt;
     &lt;!-- route paths must start with a "/" character --&gt;
-    &lt;a href="/rtr/demo-staticpath"&gt;Try Routing A Click Event On An Anchor Tag&lt;/a&gt;
+    &lt;a href="/demo-staticpath"&gt;Try Routing A Click Event On An Anchor Tag&lt;/a&gt;
     &lt;script&gt;
     (function(){
         "use strict";
@@ -96,7 +96,7 @@
 &lt;/body&gt;
 &lt;/html&gt;
             </code></pre>
-            <a href="/rtr/demo-staticpath">Try Routing A Click Event On An Anchor Tag</a>
+            <a data-rtr-route href="/rtr/demo-staticpath">Try Routing A Click Event On An Anchor Tag</a>
             <div class="info" id="demo-staticpath-info"></div>
         </article>
         <article>
@@ -111,11 +111,11 @@
 &lt;body unresolved&gt;
     &lt;rtr-router&gt;
         &lt;!-- route paths must start with a "/" character --&gt;
-        &lt;rtr-lazyroute method="get" path="/rtr/demo-lazystaticpath"
-            importPath="/rtr/demo-lazystaticpath.html" tagname="demo-lazystaticpath" handler="get"&gt;&lt;/rtr-lazyroute&gt;
+        &lt;rtr-lazyroute method="get" path="/demo-lazystaticpath"
+            importPath="demo/demo-lazystaticpath.html" tagname="demo-lazystaticpath" handler="get"&gt;&lt;/rtr-lazyroute&gt;
     &lt;/rtr-router&gt;
     &lt;!-- route paths must start with a "/" character --&gt;
-    &lt;a href="/rtr/demo-lazystaticpath/year/2015/month/1/day/5"&gt;Try Lazy Routing A Click Event On An Anchor Tag&lt;/a&gt;
+    &lt;a href="/demo-lazystaticpath"&gt;Try Lazy Routing A Click Event On An Anchor Tag&lt;/a&gt;
     &lt;script&gt;
     (function(){
         "use strict";
@@ -128,7 +128,7 @@
 &lt;/body&gt;
 &lt;/html&gt;
             </code></pre>
-            <a href="/rtr/demo-lazystaticpath">Try Lazy Routing A Click Event On An Anchor Tag</a>
+            <a data-rtr-route href="/rtr/demo-lazystaticpath">Try Lazy Routing A Click Event On An Anchor Tag</a>
             <div class="info" id="demo-lazystaticpath-info"></div>
         </article>
         <article>
@@ -139,16 +139,16 @@
     &lt;meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"&gt;
     &lt;script src="/webcomponentsjs/webcomponents.min.js"&gt;&lt;/script&gt;
     &lt;link rel="import" href="rtr-router.html"&gt;
-    &lt;link rel="import" href="demo-parameterizedpath.html"&gt;
+    &lt;link rel="import" href="demo/demo-parameterizedpath.html"&gt;
 &lt;/head&gt;
 &lt;body unresolved&gt;
     &lt;rtr-router&gt;
         &lt;!-- route paths must start with a "/" character --&gt;
-        &lt;rtr-lazyroute method="get" path="/rtr/demo-parameterizedpath/year/:y/month/:m/day/:d"
-            importPath="/rtr/demo-parameterizedpath.html" tagname="demo-parameterizedpath" handler="get"&gt;&lt;/rtr-lazyroute&gt;
+        &lt;rtr-lazyroute method="get" path="/demo-parameterizedpath/year/:y/month/:m/day/:d"
+            importPath="demo/demo-parameterizedpath.html" tagname="demo-parameterizedpath" handler="get"&gt;&lt;/rtr-lazyroute&gt;
     &lt;/rtr-router&gt;
     &lt;!-- route paths must start with a "/" character --&gt;
-    &lt;a href="/rtr/demo-parameterizedpath/year/2015/month/1/day/5"&gt;Try Routing A Parameterized Path&lt;/a&gt;
+    &lt;a href="/demo-parameterizedpath/year/2015/month/1/day/5"&gt;Try Routing A Parameterized Path&lt;/a&gt;
     &lt;script&gt;
     (function(){
         "use strict";
@@ -161,7 +161,7 @@
 &lt;/body&gt;
 &lt;/html&gt;
             </code></pre>
-            <a href="/rtr/demo-parameterizedpath/year/2015/month/1/day/5">Try Routing A Parameterized Path</a>
+            <a data-rtr-route href="/rtr/demo-parameterizedpath/year/2015/month/1/day/5">Try Routing A Parameterized Path</a>
             <div class="info" id="demo-parameterizedpath-info"></div>
         </article>
         <article>
@@ -176,11 +176,11 @@
 &lt;body unresolved&gt;
     &lt;rtr-router&gt;
         &lt;!-- route paths must start with a "/" character --&gt;
-        &lt;rtr-lazyroute method="get" path="/rtr/demo-lazyparameterizedpath/year/:y/month/:m/day/:d"
-            importPath="/rtr/demo-lazyparameterizedpath.html" tagname="demo-lazyparameterizedpath" handler="get"&gt;&lt;/rtr-lazyroute&gt;
+        &lt;rtr-lazyroute method="get" path=demo-lazyparameterizedpath/year/:y/month/:m/day/:d"
+            importPath="demo/demo-lazyparameterizedpath.html" tagname="demo-lazyparameterizedpath" handler="get"&gt;&lt;/rtr-lazyroute&gt;
     &lt;/rtr-router&gt;
     &lt;!-- route paths must start with a "/" character --&gt;
-    &lt;a href="/rtr/demo-lazyparameterizedpath/year/2015/month/1/day/5"&gt;Try Lazy Routing A Parameterized Path&lt;/a&gt;
+    &lt;a href="demo-lazyparameterizedpath/year/2015/month/1/day/5"&gt;Try Lazy Routing A Parameterized Path&lt;/a&gt;
     &lt;script&gt;
     (function(){
         "use strict";
@@ -193,7 +193,7 @@
 &lt;/body&gt;
 &lt;/html&gt;
             </code></pre>
-            <a href="/rtr/demo-lazyparameterizedpath/year/2015/month/1/day/5">Try Lazy Routing A Parameterized Path</a>
+            <a data-rtr-route href="/rtr/demo-lazyparameterizedpath/year/2015/month/1/day/5">Try Lazy Routing A Parameterized Path</a>
             <div class="info" id="demo-lazyparameterizedpath-info"></div>
         </article>
         <article>
@@ -238,7 +238,7 @@
 &lt;/body&gt;
 &lt;/html&gt;
             </code></pre>
-            <form id="formsubmit" action="/rtr/demo-formsubmit" method="post">
+            <form data-rtr-route id="formsubmit" action="/rtr/demo-formsubmit" method="post">
                 <label for="txtName">Name:</label>
                 <input id="txtName" name="txtName" type="text" placeholder="enter you name here"><br>
                 <select id="selOccupation" name="selOccupation" multiple="multiple">
@@ -266,11 +266,11 @@
                 &lt;body unresolved&gt;
                     &lt;rtr-router&gt;
                         &lt;!-- route paths must start with a "/" character --&gt;
-                        &lt;rtr-lazyroute method="post" path="/rtr/demo-lazyformsubmit"
-                            importPath="/rtr/demo-lazyformsubmit.html" tagname="demo-lazyformsubmit" handler="post"&gt;&lt;/rtr-lazyroute&gt;
+                        &lt;rtr-lazyroute method="post" path="demo-lazyformsubmit"
+                            importPath="demo/demo-lazyformsubmit.html" tagname="demo-lazyformsubmit" handler="post"&gt;&lt;/rtr-lazyroute&gt;
                     &lt;/rtr-router&gt;
                     &lt;!-- route paths must start with a "/" character --&gt;
-                    &lt;form id="lazyformsubmit" action="/rtr/demo-lazyformsubmit" method="post"&gt;
+                    &lt;form id="lazyformsubmit" action="demo-lazyformsubmit" method="post"&gt;
                         &lt;label for="txtName2"&gt;Name:&lt;/label&gt;
                         &lt;input id="txtName2" name="txtName2" type="text" placeholder="enter you name here"&gt;&lt;br&gt;
                         &lt;select id="selOccupation2" name="selOccupation2" multiple="multiple"&gt;
@@ -296,7 +296,7 @@
                 &lt;/body&gt;
                 &lt;/html&gt;
             </code></pre>
-            <form id="formsubmit2" action="/rtr/demo-lazyformsubmit" method="post">
+            <form data-rtr-route id="formsubmit2" action="/rtr/demo-lazyformsubmit" method="post">
                 <label for="txtName2">Name:</label>
                 <input id="txtName2" name="txtName2" type="text" placeholder="enter you name here"><br>
                 <select id="selOccupation2" name="selOccupation2" multiple="multiple">
@@ -344,7 +344,7 @@
 &lt;/body&gt;
 &lt;/html&gt;
             </code></pre>
-            <a href="/rtr/demo-redirect">Try Redirecting A Routing Event</a>
+            <a data-rtr-route href="/rtr/demo-redirect">Try Redirecting A Routing Event</a>
             <div class="info" id="demo-redirect-info"></div>
         </article>
         <!-- TODO(JS): data-rtr-nopushstate attribute -->

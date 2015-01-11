@@ -48,7 +48,8 @@ license that can be found in the LICENSE file.
      * not found return undefined.
      */
     function getRoute(verb, url) {
-        var a = url.substring(1).split("/"),
+        // var a = url.substring(1).split("/"),
+        var a = url.split("/"),
             params = [],
             rel = false,
             b, c, eq, route, handlers;
@@ -60,7 +61,8 @@ license that can be found in the LICENSE file.
                 handlers = routes[route][verb];
                 if (handlers) {
                     //Get the url.
-                    b = route.substring(route.indexOf("/") + 1).split("/");
+                    // b = route.substring(route.indexOf("/") + 1).split("/");
+                    b = route.split("/");
                     if (a.length === b.length || contains(route, "*")) {
                         eq = true;
                         //The url and the route have the same number of segments so the route can
@@ -74,7 +76,7 @@ license that can be found in the LICENSE file.
                             if (contains(b[i], ":")) {
                                 //0.4.0 - checking for "some:thing"
                                 c = b[i].split(":");
-                                if (c.length === 2) {
+                                if (c.length === 2 && c[0]) {
                                     if (a[i].substr(0, c[0].length) === c[0]) {
                                         params.push(a[i].substr(c[0].length));
                                     }

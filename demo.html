@@ -68,6 +68,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <h1>rtr Demo</h1>
     <section>
         <article>
+            <p>Adding <em>data-rtr-route</em> to annchor tags and form tags makes them routable:</p>
+            <pre><code>
+&lt;a data-rtr-route href="/rtr/components/rtr/demo-staticpath"&gt;Try Routing A Click Event On An Anchor Tag&lt;/a&gt;
+&lt;form data-rtr-route id="formsubmit" action="/rtr/components/rtr/demo-formsubmit" method="post"&gt;
+            </code></pre>
+        </article>
+        <article>
             <p>Routing a click event on an <em>anchor</em> tag:</p>
             <pre><code>
 &lt;html&gt;
@@ -81,7 +88,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     &lt;rtr-router&gt;
         &lt;demo-staticpath method="get" path="/rtr/components/rtr/demo-staticpath" handler="get"&gt;&lt;/demo-staticpath&gt;
     &lt;/rtr-router&gt;
-    &lt;a href="/rtr/components/rtr/demo-staticpath"&gt;Try Routing A Click Event On An Anchor Tag&lt;/a&gt;
+    &lt;a data-rtr-route href="/rtr/components/rtr/demo-staticpath"&gt;Try Routing A Click Event On An Anchor Tag&lt;/a&gt;
     &lt;script&gt;
     (function(){
         "use strict";
@@ -111,7 +118,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         &lt;rtr-lazyroute method="get" path="/rtr/components/rtr/demo-lazystaticpath"
         importPath="/rtr/components/rtr/demo/demo-lazystaticpath.html" tagname="demo-lazystaticpath" handler="get"&gt;&lt;/rtr-lazyroute&gt;
     &lt;/rtr-router&gt;
-    &lt;a href="/rtr/components/rtr/demo-lazystaticpath"&gt;Try Lazy Routing A Click Event On An Anchor Tag&lt;/a&gt;
+    &lt;a data-rtr-route href="/rtr/components/rtr/demo-lazystaticpath"&gt;Try Lazy Routing A Click Event On An Anchor Tag&lt;/a&gt;
     &lt;script&gt;
     (function(){
         "use strict";
@@ -142,7 +149,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         &lt;rtr-lazyroute method="get" path="/rtr/components/rtr/demo-parameterizedpath/year/:y/month/:m/day/:d"
         importPath="/rtr/components/rtr/demo/demo-parameterizedpath.html" tagname="demo-parameterizedpath" handler="get"&gt;&lt;/rtr-lazyroute&gt;
     &lt;/rtr-router&gt;
-    &lt;a href="/rtr/components/rtr/demo-parameterizedpath/year/2015/month/1/day/5"&gt;Try Routing A Parameterized Path&lt;/a&gt;
+    &lt;a data-rtr-route href="/rtr/components/rtr/demo-parameterizedpath/year/2015/month/1/day/5"&gt;Try Routing A Parameterized Path&lt;/a&gt;
     &lt;script&gt;
     (function(){
         "use strict";
@@ -172,7 +179,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         &lt;rtr-lazyroute method="get" path=/rtr/components/rtr/demo-lazyparameterizedpath/year/:y/month/:m/day/:d"
         importPath="/rtr/components/rtr/demo/demo-lazyparameterizedpath.html" tagname="demo-lazyparameterizedpath" handler="get"&gt;&lt;/rtr-lazyroute&gt;
     &lt;/rtr-router&gt;
-    &lt;a href="/rtr/components/rtr/demo-lazyparameterizedpath/year/2015/month/1/day/5"&gt;Try Lazy Routing A Parameterized Path&lt;/a&gt;
+    &lt;a data-rtr-route href="/rtr/components/rtr/demo-lazyparameterizedpath/year/2015/month/1/day/5"&gt;Try Lazy Routing A Parameterized Path&lt;/a&gt;
     &lt;script&gt;
     (function(){
         "use strict";
@@ -202,7 +209,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     &lt;rtr-router&gt;
         &lt;demo-formsubmit methdo="post" path="/rtr/components/rtr/demo-formsubmit" handler="post"&gt;&lt;/demo-parameterizedpath>
     &lt;/rtr-router&gt;
-    &lt;form id="formsubmit" action="/rtr/components/rtr/demo-formsubmit" method="post"&gt;
+    &lt;form data-rtr-route id="formsubmit" action="/rtr/components/rtr/demo-formsubmit" method="post"&gt;
         &lt;label for="txtName"&gt;Name:&lt;/label&gt;
         &lt;input id="txtName" name="txtName" type="text" placeholder="enter you name here"&gt;&lt;br&gt;
         &lt;select id="selOccupation" name="selOccupation" multiple="multiple"&gt;
@@ -258,7 +265,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         &lt;rtr-lazyroute method="post" path="/rtr/components/rtr/demo-lazyformsubmit"
         importPath="/rtr/components/rtr/demo/demo-lazyformsubmit.html" tagname="demo-lazyformsubmit" handler="post"&gt;&lt;/rtr-lazyroute&gt;
     &lt;/rtr-router&gt;
-    &lt;form id="lazyformsubmit" action="/rtr/components/rtr/demo-lazyformsubmit" method="post"&gt;
+    &lt;form data-rtr-route id="lazyformsubmit" action="/rtr/components/rtr/demo-lazyformsubmit" method="post"&gt;
         &lt;label for="txtName2"&gt;Name:&lt;/label&gt;
         &lt;input id="txtName2" name="txtName2" type="text" placeholder="enter you name here"&gt;&lt;br&gt;
         &lt;select id="selOccupation2" name="selOccupation2" multiple="multiple"&gt;
@@ -316,7 +323,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         &lt;demo-redirect method="get" path="/rtr/components/rtr/demo-redirect" handler="get"&gt;&lt;/demo-redirect&gt;
         &lt;demo-redirecttarget methdo="get" path="/rtr/components/rtr/demo-redirecttarget" handler="get"&gt;&lt;/demo-redirecttarget&gt;
     &lt;/rtr-router&gt;
-    &lt;a href="/rtr/components/rtr/demo-redirect"&gt;Try Redirecting A Routing Event&lt;/a&gt;
+    &lt;a data-rtr-route href="/rtr/components/rtr/demo-redirect"&gt;Try Redirecting A Routing Event&lt;/a&gt;
     &lt;script&gt;
     (function(){
         "use strict";

@@ -53,17 +53,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 <body unresolved>
     <rtr-router>
-        <demo-staticpath methdo="get" path="/components/rtr/demo-staticpath" handler="get"></demo-staticpath>
-        <rtr-lazyroute method="get" path="/components/rtr/demo-lazystaticpath"
+        <demo-staticpath methdo="get" path="/rtr/components/rtr/demo-staticpath" handler="get"></demo-staticpath>
+        <rtr-lazyroute method="get" path="/rtr/components/rtr/demo-lazystaticpath"
         importPath="/components/rtr/demo/demo-lazystaticpath.html" tagname="demo-lazystaticpath" handler="get"></rtr-lazyroute>
-        <demo-parameterizedpath methdo="get" path="/components/rtr/demo-parameterizedpath/year/:y/month/:m/day/:d" handler="get"></demo-parameterizedpath>
-        <rtr-lazyroute method="get" path="/components/rtr/demo-lazyparameterizedpath/year/:y/month/:m/day/:d"
+        <demo-parameterizedpath methdo="get" path="/rtr/components/rtr/demo-parameterizedpath/year/:y/month/:m/day/:d" handler="get"></demo-parameterizedpath>
+        <rtr-lazyroute method="get" path="/rtr/components/rtr/demo-lazyparameterizedpath/year/:y/month/:m/day/:d"
         importPath="/components/rtr/demo/demo-lazyparameterizedpath.html" tagname="demo-lazyparameterizedpath" handler="get"></rtr-lazyroute>
-        <demo-formsubmit method="post" path="/components/rtr/demo-formsubmit" handler="post"></demo-formsubmit>
-        <rtr-lazyroute method="post" path="/components/rtr/demo-lazyformsubmit"
+        <demo-formsubmit method="post" path="/rtr/components/rtr/demo-formsubmit" handler="post"></demo-formsubmit>
+        <rtr-lazyroute method="post" path="/rtr/components/rtr/demo-lazyformsubmit"
         importPath="/components/rtr/demo/demo-lazyformsubmit.html" tagname="demo-lazyformsubmit" handler="post"></rtr-lazyroute>
-        <demo-redirect methdo="get" path="/components/rtr/demo-redirect" handler="get"></demo-redirect>
-        <demo-redirecttarget methdo="get" path="/components/rtr/demo-redirecttarget" handler="get"></demo-redirecttarget>
+        <demo-redirect methdo="get" path="/rtr/components/rtr/demo-redirect" handler="get"></demo-redirect>
+        <demo-redirecttarget methdo="get" path="/rtr/components/rtr/demo-redirecttarget" handler="get"></demo-redirecttarget>
     </rtr-router>
     <h1>rtr Demo</h1>
     <section>
@@ -96,7 +96,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 &lt;/body&gt;
                 &lt;/html&gt;
             </code></pre>
-            <a data-rtr-route href="/components/rtr/demo-staticpath">Try Routing A Click Event On An Anchor Tag</a>
+            <a data-rtr-route href="/rtr/components/rtr/demo-staticpath">Try Routing A Click Event On An Anchor Tag</a>
             <div class="info" id="demo-staticpath-info"></div>
         </article>
         <article>
@@ -128,7 +128,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 &lt;/body&gt;
                 &lt;/html&gt;
             </code></pre>
-            <a data-rtr-route href="/components/rtr/demo-lazystaticpath">Try Lazy Routing A Click Event On An Anchor Tag</a>
+            <a data-rtr-route href="/rtr/components/rtr/demo-lazystaticpath">Try Lazy Routing A Click Event On An Anchor Tag</a>
             <div class="info" id="demo-lazystaticpath-info"></div>
         </article>
         <article>
@@ -161,7 +161,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 &lt;/body&gt;
                 &lt;/html&gt;
             </code></pre>
-            <a data-rtr-route href="/components/rtr/demo-parameterizedpath/year/2015/month/1/day/5">Try Routing A Parameterized Path</a>
+            <a data-rtr-route href="/rtr/components/rtr/demo-parameterizedpath/year/2015/month/1/day/5">Try Routing A Parameterized Path</a>
             <div class="info" id="demo-parameterizedpath-info"></div>
         </article>
         <article>
@@ -193,7 +193,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 &lt;/body&gt;
                 &lt;/html&gt;
             </code></pre>
-            <a data-rtr-route href="/components/rtr/demo-lazyparameterizedpath/year/2015/month/1/day/5">Try Lazy Routing A Parameterized Path</a>
+            <a data-rtr-route href="/rtr/components/rtr/demo-lazyparameterizedpath/year/2015/month/1/day/5">Try Lazy Routing A Parameterized Path</a>
             <div class="info" id="demo-lazyparameterizedpath-info"></div>
         </article>
         <article>
@@ -238,7 +238,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 &lt;/body&gt;
                 &lt;/html&gt;
             </code></pre>
-            <form data-rtr-route id="formsubmit" action="/components/rtr/demo-formsubmit" method="post">
+            <form data-rtr-route id="formsubmit" action="/rtr/components/rtr/demo-formsubmit" method="post">
                 <label for="txtName">Name:</label>
                 <input id="txtName" name="txtName" type="text" placeholder="enter you name here"><br>
                 <select id="selOccupation" name="selOccupation" multiple="multiple">
@@ -296,7 +296,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 &lt;/body&gt;
                 &lt;/html&gt;
             </code></pre>
-            <form data-rtr-route id="formsubmit2" action="/components/rtr/demo-lazyformsubmit" method="post">
+            <form data-rtr-route id="formsubmit2" action="/rtr/components/rtr/demo-lazyformsubmit" method="post">
                 <label for="txtName2">Name:</label>
                 <input id="txtName2" name="txtName2" type="text" placeholder="enter you name here"><br>
                 <select id="selOccupation2" name="selOccupation2" multiple="multiple">
@@ -344,7 +344,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 &lt;/body&gt;
                 &lt;/html&gt;
             </code></pre>
-            <a data-rtr-route href="/components/rtr/demo-redirect">Try Redirecting A Routing Event</a>
+            <a data-rtr-route href="/rtr/components/rtr/demo-redirect">Try Redirecting A Routing Event</a>
             <div class="info" id="demo-redirect-info"></div>
         </article>
         <!-- TODO(JS): data-rtr-nopushstate attribute -->

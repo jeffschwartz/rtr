@@ -1,8 +1,8 @@
 {
   "name": "rtr",
-  "version": "0.0.1",
+  "version": "0.0.0-0.0.1",
   "authors": [
-    "Jeffrey Schwartz <jefftschwartz@gmail.com>"
+    "Jeffrey Schwartz"
   ],
   "description": "A router built on top of Polymer",
   "keywords": [

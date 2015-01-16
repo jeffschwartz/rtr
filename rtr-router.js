@@ -172,8 +172,7 @@ license that can be found in the LICENSE file.
             console.log("routes hash", routes);
         },
         /**
-         * @method addRoute called by `domReady` to add routes to the routes hash
-         *  (see domeReady above).
+         * @method addRoute called by domReady to add routes to the routes hash (see domeReady above).
          * @param  {element} routeEl - Can be either an rtr-route or rtr-lazyroute element.
          */
         addRoute: function(routeEl) {

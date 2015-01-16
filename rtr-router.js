@@ -172,8 +172,8 @@ license that can be found in the LICENSE file.
             console.log("routes hash", routes);
         },
         /**
-         * @method addRoute called by domReady to add routes to the routes hash (see domeReady above).
-         * @param  {element} routeEl - Can be either an rtr-route or rtr-lazyroute element.
+         * @method addRoute Called by domReady. Adds a route to the routes hash (see domeReady above).
+         * @param {element} routeEl Either a rtr-route element or a rtr-lazyroute element.
          */
         addRoute: function(routeEl) {
             if (!routes[routeEl.path]) {
@@ -189,10 +189,9 @@ license that can be found in the LICENSE file.
         },
         /**
          * @method route Is called to route a request.
-         * @param  {string} method - Either get, post, put, delete.
-         * @param  {string} path - The request path.
-         * @param  {object} valuesHash - A hash of values to pass to the target handler if the
-         * request is for a form submit.
+         * @param  {string} method Either get, post, put, delete.
+         * @param  {string} path The request path.
+         * @param  {object} valuesHash A hash of values to pass to the target handler if the request is for a form submit.
          */
         route: function(method, path, valuesHash) {
             console.log("router.route called");

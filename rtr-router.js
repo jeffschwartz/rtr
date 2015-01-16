@@ -189,9 +189,9 @@ license that can be found in the LICENSE file.
         },
         /**
          * @method route Is called to route a request.
-         * @param  {string} method Either get, post, put, delete.
+         * @param  {string} method Either "get", "post", "put" or "delete".
          * @param  {string} path The request path.
-         * @param  {object} valuesHash A hash of values to pass to the target handler if the request is for a form submit.
+         * @param  {object} hash A hash of form element names (keys) and their values (values) to pass to the target handler as the last argument if the request is for a form submit.
          */
         route: function(method, path, valuesHash) {
             console.log("router.route called");

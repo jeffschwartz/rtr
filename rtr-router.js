@@ -172,9 +172,9 @@ license that can be found in the LICENSE file.
             console.log("routes hash", routes);
         },
         /**
-         * @method addRoute a lifecycle callback. The `addRoute` method is called by `domReady` to
-         * add routes to the routes hash (see domeReady above).
-         * @param  {element} routeEl - A light DOM child element of the router element.
+         * @method addRoute called by `domReady` to add routes to the routes hash
+         *  (see domeReady above).
+         * @param  {element} routeEl - Can be either an rtr-route or rtr-lazyroute element.
          */
         addRoute: function(routeEl) {
             if (!routes[routeEl.path]) {

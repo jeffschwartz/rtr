@@ -151,11 +151,19 @@ license that can be found in the LICENSE file.
         //TODO(JS): perhaps allow user defined callback here
         console.log("router::routeNotFound called with route = " + url);
     }
+    /**
+    * ##### Example
+    * <rtr-router></rtr-router>
+    * @element rtr-router
+    * @blurb An element that provides routing.
+    * @status alpha
+    * @homepage https://github.com/jeffschwartz/rtr
+    */
     Polymer("rtr-router", {
         /**
          * The `domReady` method is a lifecycle callback.
          *
-         * @method domReady
+         * @method domReady a lifecycle callback.
          */
         domReady: function() {
             var self = this;
@@ -171,6 +179,7 @@ license that can be found in the LICENSE file.
          * The `addRoute` method is called by `domReady` to add a route to the routes hash
          * (see above).
          *
+         * @method addRoute a lifecycle callback.
          * @param  {element} routeEl - A light DOM child element of the router element.
          */
         addRoute: function(routeEl) {

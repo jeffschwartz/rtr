@@ -175,13 +175,11 @@ license that can be found in the LICENSE file.
          */
         formSubmitHandler: function(evt) {
             var action, method, valuesHash;
-            if (historyStarted && evt.target.tagName.toUpperCase() ===
-                "FORM") {
+            if (historyStarted && evt.target.tagName.toUpperCase() === "FORM") {
                 action = evt.target.attributes.action.value;
                 method = evt.target.attributes.method.value;
                 console.log("attribute action", action);
                 console.log("attribute method", method);
-                // if (action.indexOf("/") === 0) {
                 if (evt.target.attributes.hasOwnProperty("data-rtr-route")) {
                     evt.preventDefault();
                     method = method ? method : "get"; // Defaults to "get" if method omitted

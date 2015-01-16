@@ -152,8 +152,6 @@ license that can be found in the LICENSE file.
         console.log("router::routeNotFound called with route = " + url);
     }
     /**
-    * ##### Example
-    * <rtr-router></rtr-router>
     * @element rtr-router
     * @blurb An element that provides routing.
     * @status alpha
@@ -161,8 +159,6 @@ license that can be found in the LICENSE file.
     */
     Polymer("rtr-router", {
         /**
-         * The `domReady` method is a lifecycle callback.
-         *
          * @method domReady a lifecycle callback.
          */
         domReady: function() {
@@ -176,10 +172,8 @@ license that can be found in the LICENSE file.
             console.log("routes hash", routes);
         },
         /**
-         * The `addRoute` method is called by `domReady` to add a route to the routes hash
-         * (see above).
-         *
-         * @method addRoute a lifecycle callback.
+         * @method addRoute a lifecycle callback. The `addRoute` method is called by `domReady` to
+         * add routes to the routes hash (see domeReady above).
          * @param  {element} routeEl - A light DOM child element of the router element.
          */
         addRoute: function(routeEl) {
@@ -195,8 +189,7 @@ license that can be found in the LICENSE file.
                 routeEl[routeEl.handler].bind(routeEl));
         },
         /**
-         * The `route` method is called to route a request.
-         *
+         * @method route Is called to route a request.
          * @param  {string} method - Either get, post, put, delete.
          * @param  {string} path - The request path.
          * @param  {object} valuesHash - A hash of values to pass to the target handler if the

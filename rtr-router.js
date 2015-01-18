@@ -152,8 +152,9 @@ license that can be found in the LICENSE file.
         console.log("router::routeNotFound called with route = " + url);
     }
     /**
+    *An element that provides routing.
     * @element rtr-router
-    * An element that provides routing.
+    * @summary An element that provides routing.
     * @status alpha
     * @homepage https://github.com/jeffschwartz/rtr
     * @author Jeff Schwartz

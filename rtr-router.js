@@ -9,9 +9,9 @@ license that can be found in the LICENSE file.
     /**
      * Routes the request.
      *
-     * @param  {string} verb - Eighter get, post, put, delete.
-     * @param  {strung} url - The request path.
-     * @param  {object} valuesHash - A values hash if request is for a form submit.
+     * @param  {string} verb Eighter get, post, put, delete.
+     * @param  {strung} url The request path.
+     * @param  {object} valuesHash A values hash if request is for a form submit.
      */
     function route(verb, url, valuesHash) {
         //TODO(JS) a way to do some work prior to processing the 1st routing request
@@ -30,8 +30,8 @@ license that can be found in the LICENSE file.
     /**
      * Returns true if s1 contains the character s2.
      *
-     * @param  {string} s1 - The string to search if it contains the character s2.
-     * @param  {string} s2 - The character to search for.
+     * @param  {string} s1 The string to search if it contains the character s2.
+     * @param  {string} s2 The character to search for.
      * @return {boolean} true if found, otherwise false.
      */
     function contains(s1, s2) {
@@ -42,8 +42,8 @@ license that can be found in the LICENSE file.
     /**
      * Parses the request and attempts to match it to route handlers.
      *
-     * @param  {string} verb - Either get, post, put, delete.
-     * @param  {string} url -  A URL path that begins with a "/".
+     * @param  {string} verb Either get, post, put, delete.
+     * @param  {string} url A URL path that begins with a "/".
      * @return {object} If a match is found returns a hash with a handlers and a params property. If
      * not found return undefined.
      */
@@ -124,7 +124,7 @@ license that can be found in the LICENSE file.
     /**
      * Routes the request to the target handlers.
      *
-     * @param  {object} route - A hash which contains a handlers and a params property.
+     * @param  {object} route A hash which contains a handlers and a params property.
      */
     function routeFound(route) {
         route.handlers.forEach(function(r){
@@ -145,7 +145,7 @@ license that can be found in the LICENSE file.
     /**
      * Called when target handlers cannot be found for the request.
      *
-     * @param  {string} url - The request path.
+     * @param  {string} url The request path.
      */
     function routeNotFound(url) {
         //TODO(JS): perhaps allow user defined callback here

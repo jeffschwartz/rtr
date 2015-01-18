@@ -181,7 +181,7 @@ license that can be found in the LICENSE file.
         },
         /**
          * @method formSubmitHandler Form tag submit handler.
-         * @param  {event} evt - An event object.
+         * @param  {event} evt An event object.
          */
         formSubmitHandler: function(evt) {
             var action, method, valuesHash;
@@ -222,8 +222,8 @@ license that can be found in the LICENSE file.
         },
         /**
          * @method start Call to start processing routing requests.
-         * @param  {boolean} pushState - true to replace the current location state.
-         * @param  {boolean} trigger -   true to trigger routing for the current location.
+         * @param  {boolean} pushState true to replace the current location state.
+         * @param  {boolean} trigger true to trigger routing for the current location.
          */
         start: function(pushState, trigger) {
             historyStarted = true;
@@ -242,7 +242,7 @@ license that can be found in the LICENSE file.
         },
         /**
          * @method navigate Call to redirect to a route handler.
-         * @param  {object} options - A hash of options. See https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.
+         * @param  {object} options A hash of options. See https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.
          */
         navigate: function(options) {
             if (historyStarted) {

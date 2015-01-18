@@ -119,7 +119,9 @@ license that can be found in the LICENSE file.
     }
     /**
     * @element rtr-history
-    * @blurb An element that reperesents a lazy route. A lazy route defers importing the intended handler until it is actually called via a route request and acts as a delegate, calling the handler to service the route request.
+    * @blurb An element that reperesents a lazy route. A lazy route defers importing the intended
+handler until it is actually called via a route request and acts as a delegate, calling the handler
+to service the route request.
     * @status alpha
     * @homepage https://github.com/jeffschwartz/rtr
     */
@@ -141,7 +143,8 @@ license that can be found in the LICENSE file.
                 .bind(this));
         },
         /**
-         * @method domReady A lifecycle callback.
+         * @method domReady A lifecycle callback. Adds routerEl to itself
+to itself.
          */
         domReady: function() {
             this.routerEl = document.querySelector("rtr-router");
@@ -203,8 +206,7 @@ license that can be found in the LICENSE file.
             }
         },
         /**
-         * @method popstateHandler Popstate event handler.
-         * See https://developer.mozilla.org/en-US/docs/WindowEventHandlers.onpopstate for details.
+         * @method popstateHandler Popstate event handler. See https://developer.mozilla.org/en-US/docs/WindowEventHandlers.onpopstate for details.
          * @param  {event} evt An event object.
          */
         popstateHandler: function(evt) {
@@ -237,8 +239,8 @@ license that can be found in the LICENSE file.
         },
         /**
          * @method navigate Call to redirect to other route handler.
-         * @param  {object} options - A hash of options.
-         * See https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.
+         * @param  {object} options - A hash of options. See
+https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.
          */
         navigate: function(options) {
             if (historyStarted) {

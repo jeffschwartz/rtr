@@ -21,7 +21,8 @@ license that can be found in the LICENSE file.
     */
     Polymer("rtr-lazyroute", {
         /**
-         * @method domReady A lifecycle callback. Adds rtrRouter rtrHistory, targetEl propertie to itself.
+         * @method domReady A lifecycle callback. Adds rtrRouter rtrHistory, targetEl propertie to
+itself.
          */
         domReady: function() {
             this.rtrRouter = this.parentElement;
@@ -30,7 +31,7 @@ license that can be found in the LICENSE file.
             this.targetEl = null;
         },
         /**
-         * @method routeHandler On receiving the 1st request for any lazy loaded route it will dynamically import and create the appropriate route-element as defined by its attributes. It then calls the target route handler (also defined in its attributes) associated with the request passing it arguments.
+         * @method routeHandler On receiving the 1st request for any lazy loaded route it will dynamically import and create the appropriate route-element as defined by its attributes. It then calls the target route handler (also defined in its attributes)  associated with the request passing it arguments.
          */
         routeHandler: function() {
             var self = this,

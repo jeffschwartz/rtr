@@ -152,15 +152,16 @@ license that can be found in the LICENSE file.
         console.log("router::routeNotFound called with route = " + url);
     }
     /**
-    *An element that provides routing.
     * @element rtr-router
+    * An element that provides routing.
     * @status alpha
     * @homepage https://github.com/jeffschwartz/rtr
     * @author Jeff Schwartz
     */
     Polymer("rtr-router", {
         /**
-         * @method domReady - A lifecycle callback. Adds rtrHistory property to itself and propagates
+         * @method domReady
+         * A lifecycle callback. Adds rtrHistory property to itself and propagates
          * the routes array.
          */
         domReady: function() {
@@ -174,7 +175,8 @@ license that can be found in the LICENSE file.
             console.log("routes hash", routes);
         },
         /**
-         * @method addRoute - Called by domReady. Adds a route to the routes hash (see domeReady above).
+         * @method addRoute
+         * Called by domReady. Adds a route to the routes hash (see domeReady above).
          * @param {element} routeEl - Either a rtr-route element or a rtr-lazyroute element.
          */
         addRoute: function(routeEl) {
@@ -190,10 +192,12 @@ license that can be found in the LICENSE file.
                 routeEl[routeEl.handler].bind(routeEl));
         },
         /**
-         * @method route - Called to route a request to its target handlers.
+         * @method route
+         * Called to route a request to its target handlers.
          * @param  {string} method - Either "get", "post", "put" or "delete".
          * @param  {string} path - The request path.
-         * @param  {object} hash - A hash of form element names (keys) and their values (values) to
+         * @param  {object} hash
+         * A hash of form element names (keys) and their values (values) to
          * pass to the target handler as  the last argument if the request is for a form submit.
          */
         route: function(method, path, valuesHash) {

@@ -118,9 +118,10 @@ license that can be found in the LICENSE file.
         return valuesHash;
     }
     /**
-    * @element rtr-history An element that reperesents a lazy route. A lazy route defers importing
-    * the intended handler until it is actually called via a route request and acts as a delegate,
-    * calling the handler to service the route request.
+    * @element rtr-history
+    * An element that reperesents a lazy route. A lazy route defers importing the intended handler
+    * until it is actually called via a route request and acts as a delegate, calling the handler
+    * to service the route request.
     * @status alpha
     * @homepage https://github.com/jeffschwartz/rtr
     */

@@ -14,7 +14,8 @@ license that can be found in the LICENSE file.
 (function() {
     "use strict";
     /**
-    * @element rtr-lazyroute An element that reperesents a lazy route. A lazy route defers
+    * @element rtr-lazyroute
+    * An element that reperesents a lazy route. A lazy route defers
     * importing the intended handler until it is actually called via a route request and acts as a
     * delegate, calling the handler to service the route request.
     * @status alpha

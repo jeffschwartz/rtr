@@ -119,13 +119,8 @@ license that can be found in the LICENSE file.
     }
     /**
     * @element rtr-history
-    *
-    * @blurb An element that reperesents a lazy route. A lazy route defers importing the <br>
-    * intended handler until it is actually called via a route request and acts as a delegate, <br>
-    * calling the handler to service the route request.
-    *
+    * @blurb An element that reperesents a lazy route. A lazy route defers importing the intended handler until it is actually called via a route request and acts as a delegate, calling the handler to service the route request.
     * @status alpha
-    *
     * @homepage https://github.com/jeffschwartz/rtr
     */
     Polymer("rtr-history", {
@@ -154,7 +149,6 @@ license that can be found in the LICENSE file.
         },
         /**
          * @method anchorClickHandler Anchor tag click event handler.
-         *
          * @param  {event} evt An event object.
          */
         anchorClickHandler: function(evt) {
@@ -181,7 +175,6 @@ license that can be found in the LICENSE file.
         },
         /**
          * @method formSubmitHandler Form tag submit handler.
-         *
          * @param  {event} evt - An event object.
          */
         formSubmitHandler: function(evt) {
@@ -212,7 +205,6 @@ license that can be found in the LICENSE file.
         /**
          * @method popstateHandler Popstate event handler.
          * See https://developer.mozilla.org/en-US/docs/WindowEventHandlers.onpopstate for details.
-         *
          * @param  {event} evt An event object.
          */
         popstateHandler: function(evt) {
@@ -225,9 +217,7 @@ license that can be found in the LICENSE file.
         },
         /**
          * @method start Call to start processing routing requests.
-         *
          * @param  {boolean} pushState - true to replace the current location state.
-         *
          * @param  {boolean} trigger -   true to trigger routing for the current location.
          */
         start: function(pushState, trigger) {
@@ -247,7 +237,6 @@ license that can be found in the LICENSE file.
         },
         /**
          * @method navigate Call to redirect to other route handler.
-         *
          * @param  {object} options - A hash of options.
          * See https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.
          */

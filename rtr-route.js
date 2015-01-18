@@ -7,11 +7,8 @@ license that can be found in the LICENSE file.
     "use strict";
     /**
     * @element rtr-route
-    *
     * @blurb An element that reperesents a route.
-    *
     * @status alpha
-    *
     * @homepage https://github.com/jeffschwartz/rtr
     */
     Polymer("rtr-route", {

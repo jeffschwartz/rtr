@@ -160,8 +160,7 @@ license that can be found in the LICENSE file.
     */
     Polymer("rtr-router", {
         /**
-         * @method domReady
-         * A lifecycle callback. Adds rtrHistory property to itself and propagates
+         * @method domReady A lifecycle callback. Adds rtrHistory property to itself and propagates
          * the routes array.
          */
         domReady: function() {

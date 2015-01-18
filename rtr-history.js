@@ -127,6 +127,9 @@ license that can be found in the LICENSE file.
     * @author Jeff Schwartz
     */
     Polymer("rtr-history", {
+        /**
+         * @method ready A lifecycle callback. Wires up event handlers for "click", "submit" and "popstate" events.
+         */
         ready: function() {
             //Verify browser supports pushstate
             console.log(history.pushState ?
@@ -144,8 +147,7 @@ license that can be found in the LICENSE file.
                 .bind(this));
         },
         /**
-         * @method domReady A lifecycle callback. Adds routerEl to itself
-         * to itself.
+         * @method domReady A lifecycle callback. Adds routerEl to itself to itself.
          */
         domReady: function() {
             this.routerEl = document.querySelector("rtr-router");
@@ -207,8 +209,7 @@ license that can be found in the LICENSE file.
             }
         },
         /**
-         * @method popstateHandler Popstate event handler. See
-         * https://developer.mozilla.org/en-US/docs/WindowEventHandlers.onpopstate for details.
+         * @method popstateHandler Popstate event handler. See https://developer.mozilla.org/en-US/docs/WindowEventHandlers.onpopstate for details.
          * @param {event} evt An event object.
          */
         popstateHandler: function(evt) {
@@ -240,9 +241,8 @@ license that can be found in the LICENSE file.
             console.log("history started!");
         },
         /**
-         * @method navigate Call to redirect to other route handler.
-         * @param  {object} options - A hash of options. See
-         * https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.
+         * @method navigate Call to redirect to a route handler.
+         * @param  {object} options - A hash of options. See https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.
          */
         navigate: function(options) {
             if (historyStarted) {

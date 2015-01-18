@@ -195,8 +195,7 @@ license that can be found in the LICENSE file.
          * Called to route a request to its target handlers.
          * @param  {string} method Either "get", "post", "put" or "delete".
          * @param  {string} path The request path.
-         * @param  {object} hash  A hash of form element names (keys) and their values (values) to
-         * pass to the target handler as  the last argument if the request is for a form submit.
+         * @param  {object} hash  A hash of form element names (keys) and their values (values) to pass to the target handler as  the last argument if the request is for a form submit.
          */
         route: function(method, path, valuesHash) {
             console.log("router.route called");

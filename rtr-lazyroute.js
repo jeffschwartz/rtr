@@ -15,10 +15,13 @@ license that can be found in the LICENSE file.
     "use strict";
     /**
     * @element rtr-lazyroute
+    *
     * @blurb An element that reperesents a lazy route. A lazy route defers importing the <br>
     * intended handler until it is actually called via a route request and acts as a delegate, <br>
     * calling the handler to service the route request.
+    *
     * @status alpha
+    *
     * @homepage https://github.com/jeffschwartz/rtr
     */
     Polymer("rtr-lazyroute", {
@@ -62,6 +65,7 @@ license that can be found in the LICENSE file.
         },
         /**
          * @method callTarget Calls the target element's handler passing it arguments.
+         *
          * @param  {object} args A collection of arguments to be passed to the target handler.
          */
         callTarget: function (args) {

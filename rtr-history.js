@@ -117,6 +117,17 @@ license that can be found in the LICENSE file.
         }
         return valuesHash;
     }
+    /**
+    * @element rtr-history
+    *
+    * @blurb An element that reperesents a lazy route. A lazy route defers importing the <br>
+    * intended handler until it is actually called via a route request and acts as a delegate, <br>
+    * calling the handler to service the route request.
+    *
+    * @status alpha
+    *
+    * @homepage https://github.com/jeffschwartz/rtr
+    */
     Polymer("rtr-history", {
         ready: function() {
             //Verify browser supports pushstate
@@ -135,16 +146,16 @@ license that can be found in the LICENSE file.
                 .bind(this));
         },
         /**
-         * domReady - domReady event handler.
+         * @method domReady A lifecycle callback.
          */
         domReady: function() {
             this.routerEl = document.querySelector("rtr-router");
             console.log(this.routerEl);
         },
         /**
-         * anchorClickHandler - anchor tag click event handler.
+         * @method anchorClickHandler Anchor tag click event handler.
          *
-         * @param  {event} evt - An event object.
+         * @param  {event} evt An event object.
          */
         anchorClickHandler: function(evt) {
             var method = "get" /* Allways a "get" */ ,
@@ -169,7 +180,7 @@ license that can be found in the LICENSE file.
             }
         },
         /**
-         * formSubmitHandler - form tag submit handler.
+         * @method formSubmitHandler Form tag submit handler.
          *
          * @param  {event} evt - An event object.
          */
@@ -199,10 +210,10 @@ license that can be found in the LICENSE file.
             }
         },
         /**
-         * popstateHandler - popstate event handler.
+         * @method popstateHandler Popstate event handler.
          * See https://developer.mozilla.org/en-US/docs/WindowEventHandlers.onpopstate for details.
          *
-         * @param  {event} - evt An event object.
+         * @param  {event} evt An event object.
          */
         popstateHandler: function(evt) {
             console.log("popstate event caught");
@@ -213,9 +224,10 @@ license that can be found in the LICENSE file.
             }
         },
         /**
-         * start - Call to start processing routing requests.
+         * @method start Call to start processing routing requests.
          *
          * @param  {boolean} pushState - true to replace the current location state.
+         *
          * @param  {boolean} trigger -   true to trigger routing for the current location.
          */
         start: function(pushState, trigger) {
@@ -234,7 +246,7 @@ license that can be found in the LICENSE file.
             console.log("history started!");
         },
         /**
-         * navigate - Call to redirect to other route handler.
+         * @method navigate Call to redirect to other route handler.
          *
          * @param  {object} options - A hash of options.
          * See https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.

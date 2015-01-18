@@ -154,7 +154,6 @@ license that can be found in the LICENSE file.
     /**
     *An element that provides routing.
     * @element rtr-router
-    * @summary An element that provides routing.
     * @status alpha
     * @homepage https://github.com/jeffschwartz/rtr
     * @author Jeff Schwartz

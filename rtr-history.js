@@ -124,6 +124,7 @@ license that can be found in the LICENSE file.
     * to service the route request.
     * @status alpha
     * @homepage https://github.com/jeffschwartz/rtr
+    * @author Jeff Schwartz
     */
     Polymer("rtr-history", {
         ready: function() {

@@ -118,10 +118,9 @@ license that can be found in the LICENSE file.
         return valuesHash;
     }
     /**
-    * @element rtr-history
-    * @blurb An element that reperesents a lazy route. A lazy route defers importing the intended
-handler until it is actually called via a route request and acts as a delegate, calling the handler
-to service the route request.
+    * @element rtr-history An element that reperesents a lazy route. A lazy route defers importing
+    * the intended handler until it is actually called via a route request and acts as a delegate,
+    * calling the handler to service the route request.
     * @status alpha
     * @homepage https://github.com/jeffschwartz/rtr
     */
@@ -144,7 +143,7 @@ to service the route request.
         },
         /**
          * @method domReady A lifecycle callback. Adds routerEl to itself
-to itself.
+         * to itself.
          */
         domReady: function() {
             this.routerEl = document.querySelector("rtr-router");
@@ -206,8 +205,9 @@ to itself.
             }
         },
         /**
-         * @method popstateHandler Popstate event handler. See https://developer.mozilla.org/en-US/docs/WindowEventHandlers.onpopstate for details.
-         * @param  {event} evt An event object.
+         * @method popstateHandler Popstate event handler. See
+         * https://developer.mozilla.org/en-US/docs/WindowEventHandlers.onpopstate for details.
+         * @param {event} evt An event object.
          */
         popstateHandler: function(evt) {
             console.log("popstate event caught");
@@ -240,7 +240,7 @@ to itself.
         /**
          * @method navigate Call to redirect to other route handler.
          * @param  {object} options - A hash of options. See
-https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.
+         * https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.
          */
         navigate: function(options) {
             if (historyStarted) {

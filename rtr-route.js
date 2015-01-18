@@ -6,8 +6,7 @@ license that can be found in the LICENSE file.
 (function() {
     "use strict";
     /**
-    * @element rtr-route
-    * @blurb An element that reperesents a route.
+    * @element rtr-route An element that reperesents a route.
     * @status alpha
     * @homepage https://github.com/jeffschwartz/rtr
     */

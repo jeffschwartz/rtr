@@ -14,15 +14,16 @@ license that can be found in the LICENSE file.
 (function() {
     "use strict";
     /**
-    * @element rtr-lazyroute
-    * @blurb An element that reperesents a lazy route. A lazy route defers importing the intended handler until it is actually called via a route request and acts as a delegate, calling the handler to service the route request.
+    * @element rtr-lazyroute An element that reperesents a lazy route. A lazy route defers
+    * importing the intended handler until it is actually called via a route request and acts as a
+    * delegate, calling the handler to service the route request.
     * @status alpha
     * @homepage https://github.com/jeffschwartz/rtr
     */
     Polymer("rtr-lazyroute", {
         /**
          * @method domReady A lifecycle callback. Adds rtrRouter rtrHistory, targetEl propertie to
-itself.
+         * itself.
          */
         domReady: function() {
             this.rtrRouter = this.parentElement;
@@ -31,7 +32,10 @@ itself.
             this.targetEl = null;
         },
         /**
-         * @method routeHandler On receiving the 1st request for any lazy loaded route it will dynamically import and create the appropriate route-element as defined by its attributes. It then calls the target route handler (also defined in its attributes)  associated with the request passing it arguments.
+         * @method routeHandler On receiving the 1st request for any lazy loaded route it will
+         * dynamically import and create the appropriate route-element as defined by its
+         * attributes. It then calls the target route handler (also defined in its attributes)
+         * associated with the request passing it arguments.
          */
         routeHandler: function() {
             var self = this,

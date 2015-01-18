@@ -9,9 +9,9 @@ license that can be found in the LICENSE file.
     /**
      * Routes the request.
      *
-     * @param  {string} verb - Eighter get, post, put, delete.
-     * @param  {strung} url - The request path.
-     * @param  {object} valuesHash - A values hash if request is for a form submit.
+     * @param  {string} verb Eighter get, post, put, delete.
+     * @param  {strung} url The request path.
+     * @param  {object} valuesHash A values hash if request is for a form submit.
      */
     function route(verb, url, valuesHash) {
         //TODO(JS) a way to do some work prior to processing the 1st routing request
@@ -30,8 +30,8 @@ license that can be found in the LICENSE file.
     /**
      * Returns true if s1 contains the character s2.
      *
-     * @param  {string} s1 - The string to search if it contains the character s2.
-     * @param  {string} s2 - The character to search for.
+     * @param  {string} s1 The string to search if it contains the character s2.
+     * @param  {string} s2 The character to search for.
      * @return {boolean} true if found, otherwise false.
      */
     function contains(s1, s2) {
@@ -42,8 +42,8 @@ license that can be found in the LICENSE file.
     /**
      * Parses the request and attempts to match it to route handlers.
      *
-     * @param  {string} verb - Either get, post, put, delete.
-     * @param  {string} url -  A URL path that begins with a "/".
+     * @param  {string} verb Either get, post, put, delete.
+     * @param  {string} url A URL path that begins with a "/".
      * @return {object} If a match is found returns a hash with a handlers and a params property. If
      * not found return undefined.
      */
@@ -124,7 +124,7 @@ license that can be found in the LICENSE file.
     /**
      * Routes the request to the target handlers.
      *
-     * @param  {object} route - A hash which contains a handlers and a params property.
+     * @param  {object} route A hash which contains a handlers and a params property.
      */
     function routeFound(route) {
         route.handlers.forEach(function(r){
@@ -145,7 +145,7 @@ license that can be found in the LICENSE file.
     /**
      * Called when target handlers cannot be found for the request.
      *
-     * @param  {string} url - The request path.
+     * @param  {string} url The request path.
      */
     function routeNotFound(url) {
         //TODO(JS): perhaps allow user defined callback here
@@ -153,13 +153,14 @@ license that can be found in the LICENSE file.
     }
     /**
     * @element rtr-router
-    * @blurb An element that provides routing.
+    * An element that provides routing.
     * @status alpha
     * @homepage https://github.com/jeffschwartz/rtr
+    * @author Jeff Schwartz
     */
     Polymer("rtr-router", {
         /**
-         * @method domReady a lifecycle callback.
+         * @method domReady A lifecycle callback. Adds rtrHistory property to itself and propagates the routes array.
          */
         domReady: function() {
             var self = this;
@@ -172,9 +173,8 @@ license that can be found in the LICENSE file.
             console.log("routes hash", routes);
         },
         /**
-         * @method addRoute called by `domReady` to add routes to the routes hash
-         *  (see domeReady above).
-         * @param  {element} routeEl - Can be either an rtr-route or rtr-lazyroute element.
+         * @method addRoute Called by domReady. Adds a route to the routes hash (see domeReady above).
+         * @param {element} routeEl Either a rtr-route element or a rtr-lazyroute element.
          */
         addRoute: function(routeEl) {
             if (!routes[routeEl.path]) {
@@ -189,11 +189,10 @@ license that can be found in the LICENSE file.
                 routeEl[routeEl.handler].bind(routeEl));
         },
         /**
-         * @method route Is called to route a request.
-         * @param  {string} method - Either get, post, put, delete.
-         * @param  {string} path - The request path.
-         * @param  {object} valuesHash - A hash of values to pass to the target handler if the
-         * request is for a form submit.
+         * @method route Called to route a request to its target handlers.
+         * @param  {string} method Either "get", "post", "put" or "delete".
+         * @param  {string} path The request path.
+         * @param  {object} hash  A hash of form element names (keys) and their values (values) to pass to the target handler as  the last argument if the request is for a form submit.
          */
         route: function(method, path, valuesHash) {
             console.log("router.route called");

@@ -5,12 +5,17 @@ license that can be found in the LICENSE file.
 */
 (function() {
     "use strict";
+    /**
+    * @element rtr-route
+    * An element that reperesents a route.
+    * @status alpha
+    * @homepage https://github.com/jeffschwartz/rtr
+    * @author Jeff Schwartz
+    */
     Polymer("rtr-route", {
         /**
-        * The `domReady` method is a lifecycle callback.
-        *
-        * @method domReady
-        */
+         * @method domReady A lifecycle callback. Adds rtrRouter and rtrHistory properties to itself.
+         */
         domReady: function () {
             this.rtrRouter = this.parentElement;
             //rtr-history is the only element in the shadow-root

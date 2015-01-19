@@ -13,10 +13,10 @@
             this.rtrHistory.navigate({
                 state: {
                     verb: "get",
-                    path: "/rtr/demo-redirecttarget"
+                    path: "/rtr/components/rtr/demo-redirecttarget"
                 },
                 method: "get",
-                url: "/rtr/demo-redirecttarget",
+                url: "/rtr/components/rtr/demo-redirecttarget",
                 pushState: false,
                 trigger: true
             });

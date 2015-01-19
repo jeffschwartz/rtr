@@ -172,7 +172,9 @@ license that can be found in the LICENSE file.
     Polymer("rtr-router", {
 
         /**
-         * @description A lifecycle callback. Adds rtrHistory property to itself and propagates the routes array.
+         * A lifecycle callback. Adds rtrHistory property to itself and propagates the routes
+         * array.
+         *
          * @method domReady
          */
         domReady: function() {
@@ -187,7 +189,9 @@ license that can be found in the LICENSE file.
         },
 
         /**
-         * @method addRoute Called by domReady. Adds a route to the routes hash (see domeReady above).
+         * Called by domReady. Adds a route to the routes hash (see domeReady above).
+         *
+         * @method addRoute 
          * @param {element} routeEl Either a rtr-route element or a rtr-lazyroute element.
          */
         addRoute: function(routeEl) {

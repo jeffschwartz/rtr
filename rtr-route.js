@@ -8,7 +8,8 @@ license that can be found in the LICENSE file.
     /**
     * An element that reperesents a route. You must extend your own custom route elements from rtr-route (i.e. extends="rtr-route") and provide a route handler function that will be called for the route.
     * @element rtr-route
-    * @attribute method Either "get", "post", "put" or "delete".
+    * @attribute {string} method default "get" 
+    * Either "get", "post", "put" or "delete".
     * @attribute path The URL asociated with this route.
     * @attribute handler The name of the function that is to be called to handle the route.
     * @status alpha

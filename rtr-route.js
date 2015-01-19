@@ -5,6 +5,7 @@ license that can be found in the LICENSE file.
 */
 (function() {
     "use strict";
+
     /**
     * An element that reperesents a route. You must extend your own custom route elements from rtr-route (i.e. extends="rtr-route") and provide a route handler function that will be called for the route.
     * @element rtr-route
@@ -13,6 +14,7 @@ license that can be found in the LICENSE file.
     * @author Jeff Schwartz
     */
     Polymer("rtr-route", {
+
         /**
         * The method (think REST) associated with the routing request (e.g. "get", "post", "put", "delete", etc.).
         *
@@ -21,6 +23,7 @@ license that can be found in the LICENSE file.
         * @default "get"
         */
         method: "get", // A sensible daefault
+
         /**
         * The path (think URL) used for the routing reques.
         *
@@ -29,6 +32,7 @@ license that can be found in the LICENSE file.
         * @default ""
         */
         path: "",
+
         /**
         * The name of the function that is to be called to handle the route.
         *
@@ -37,6 +41,7 @@ license that can be found in the LICENSE file.
         * @default ""
         */
         handler: "",
+
         /**
          * @method domReady A lifecycle callback. Adds rtrRouter and rtrHistory properties to itself.
          */

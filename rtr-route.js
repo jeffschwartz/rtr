@@ -15,13 +15,13 @@ license that can be found in the LICENSE file.
     */
     Polymer("rtr-route", {
 
-        /**
-        * The method (think REST) associated with the routing request (e.g. "get", "post", "put", "delete", etc.).
-        *
-        * @attribute method
-        * @type string
-        * @default 'get'
-        */
+    /**
+    * The method (think REST) associated with the routing request (e.g. "get", "post", "put", "delete", etc.).
+    *
+    * @attribute method
+    * @type string
+    * @default 'get'
+    */
         method: "get", // A sensible daefault
 
         /**

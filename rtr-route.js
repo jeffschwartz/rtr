@@ -8,15 +8,35 @@ license that can be found in the LICENSE file.
     /**
     * An element that reperesents a route. You must extend your own custom route elements from rtr-route (i.e. extends="rtr-route") and provide a route handler function that will be called for the route.
     * @element rtr-route
-    * @attribute {string} method default "get" 
-    * Either "get", "post", "put" or "delete".
-    * @attribute path The URL asociated with this route.
-    * @attribute handler The name of the function that is to be called to handle the route.
     * @status alpha
     * @homepage https://github.com/jeffschwartz/rtr
     * @author Jeff Schwartz
     */
     Polymer("rtr-route", {
+        /**
+        * The method (think REST) associated with the routing request (e.g. "get", "post", "put", "delete", etc.).
+        *
+        * @attribute method
+        * @type string
+        * @default "get"
+        */
+        method: "get", // A sensible daefault
+        /**
+        * The path (think URL) used for the routing reques.
+        *
+        * @attribute path
+        * @type string
+        * @default ""
+        */
+        path: "",
+        /**
+        * The name of the function that is to be called to handle the route.
+        *
+        * @attribute handler
+        * @type string
+        * @default ""
+        */
+        handler: "",
         /**
          * @method domReady A lifecycle callback. Adds rtrRouter and rtrHistory properties to itself.
          */
@@ -24,9 +44,6 @@ license that can be found in the LICENSE file.
             this.rtrRouter = this.parentElement;
             //rtr-history is the only element in the shadow-root
             this.rtrHistory = this.parentElement.shadowRoot.children[0];
-        },
-        method: "get", // A sensible daefault
-        path: "",
-        handler: ""
+        }
     });
 }());

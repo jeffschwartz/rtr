@@ -5,7 +5,9 @@ license that can be found in the LICENSE file.
 */
 (function(w) {
     "use strict";
+
     var historyStarted = false;
+
     /**
      * nameValueHash - Creates a hash with properties 'name' and "value".
      *
@@ -19,6 +21,7 @@ license that can be found in the LICENSE file.
         obj.value = value;
         return obj;
     }
+
     /**
      * serialize - Modified from OS/MIT code found at https://code.google.com/p/form-serialize/
      * Serialize a form.
@@ -101,6 +104,7 @@ license that can be found in the LICENSE file.
         }
         return q;
     }
+
     /**
      * valuesHashFromSerializedArray - Creates a hash from an array whose elements
      * are hashes whose properties are "name" and "value".
@@ -117,6 +121,7 @@ license that can be found in the LICENSE file.
         }
         return valuesHash;
     }
+
     /**
     * @element rtr-history
     * An element that reperesents a lazy route. A lazy route defers importing the intended handler
@@ -127,6 +132,7 @@ license that can be found in the LICENSE file.
     * @author Jeff Schwartz
     */
     Polymer("rtr-history", {
+
         /**
          * @method ready A lifecycle callback. Wires up event handlers for "click", "submit" and "popstate" events.
          */
@@ -146,6 +152,7 @@ license that can be found in the LICENSE file.
             w.addEventListener("popstate", this.popstateHandler
                 .bind(this));
         },
+
         /**
          * @method domReady A lifecycle callback. Adds routerEl to itself to itself.
          */
@@ -153,6 +160,7 @@ license that can be found in the LICENSE file.
             this.routerEl = document.querySelector("rtr-router");
             console.log(this.routerEl);
         },
+
         /**
          * @method anchorClickHandler Anchor tag click event handler.
          * @param  {event} evt An event object.
@@ -179,6 +187,7 @@ license that can be found in the LICENSE file.
                 }
             }
         },
+
         /**
          * @method formSubmitHandler Form tag submit handler.
          * @param  {event} evt An event object.
@@ -208,6 +217,7 @@ license that can be found in the LICENSE file.
                 }
             }
         },
+
         /**
          * @method popstateHandler Popstate event handler. See https://developer.mozilla.org/en-US/docs/WindowEventHandlers.onpopstate for details.
          * @param {event} evt An event object.
@@ -220,6 +230,7 @@ license that can be found in the LICENSE file.
                 this.routerEl.route(evt.state.verb, w.location.pathname);
             }
         },
+
         /**
          * @method start Call to start processing routing requests.
          * @param  {boolean} pushState true to replace the current location state.
@@ -240,6 +251,7 @@ license that can be found in the LICENSE file.
             }
             console.log("history started!");
         },
+
         /**
          * @method navigate Call to redirect to a route handler.
          * @param  {object} options A hash of options. See https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.

@@ -8,25 +8,21 @@ license that can be found in the LICENSE file.
 
     /**
     * An element that reperesents a route. You must extend your own custom route elements from rtr-route (i.e. extends="rtr-route") and provide a route handler function that will be called for the route.
+    *
     * @element rtr-route
-    *
-    * @attribute method The method (think REST) associated with the routing request (e.g. "get", "post", "put", "delete", etc.).
-    * @type string
-    * @default "get"
-    *
     * @status alpha
     * @homepage https://github.com/jeffschwartz/rtr
     * @author Jeff Schwartz
     */
     Polymer("rtr-route", {
 
-        // /**
-        // * The method (think REST) associated with the routing request (e.g. "get", "post", "put", "delete", etc.).
-        // *
-        // * @attribute method
-        // * @type string
-        // * @default "get"
-        // */
+        /**
+        * The method (think REST) associated with the routing request (e.g. "get", "post", "put", "delete", etc.).
+        *
+        * @attribute method
+        * @type string
+        * @default 'get'
+        */
         method: "get", // A sensible daefault
 
         /**
@@ -34,7 +30,7 @@ license that can be found in the LICENSE file.
         *
         * @attribute path
         * @type string
-        * @default ""
+        * @default ''
         */
         path: "",
 
@@ -43,7 +39,7 @@ license that can be found in the LICENSE file.
         *
         * @attribute handler
         * @type string
-        * @default ""
+        * @default ''
         */
         handler: "",
 

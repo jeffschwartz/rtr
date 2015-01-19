@@ -5,7 +5,12 @@ license that can be found in the LICENSE file.
 */
 (function(w) {
     "use strict";
+
+    /**
+     * An array of routes.
+     */
     var routes = {};
+
     /**
      * Routes the request.
      *
@@ -27,6 +32,7 @@ license that can be found in the LICENSE file.
             routeNotFound(verb, url);
         }
     }
+
     /**
      * Returns true if s1 contains the character s2.
      *
@@ -39,6 +45,7 @@ license that can be found in the LICENSE file.
             return ch === s2;
         });
     }
+
     /**
      * Parses the request and attempts to match it to route handlers.
      *
@@ -121,6 +128,7 @@ license that can be found in the LICENSE file.
             }
         }
     }
+
     /**
      * Routes the request to the target handlers.
      *
@@ -142,6 +150,7 @@ license that can be found in the LICENSE file.
             }
         });
     }
+
     /**
      * Called when target handlers cannot be found for the request.
      *
@@ -151,16 +160,22 @@ license that can be found in the LICENSE file.
         //TODO(JS): perhaps allow user defined callback here
         console.log("router::routeNotFound called with route = " + url);
     }
+
     /**
-    * @element rtr-router
     * An element that provides routing.
+    *
+    * @element rtr-router
     * @status alpha
     * @homepage https://github.com/jeffschwartz/rtr
     * @author Jeff Schwartz
     */
     Polymer("rtr-router", {
+
         /**
-         * @method domReady A lifecycle callback. Adds rtrHistory property to itself and propagates the routes array.
+         * A lifecycle callback. Adds rtrHistory property to itself and propagates the routes
+         * array.
+         *
+         * @method domReady
          */
         domReady: function() {
             var self = this;
@@ -172,8 +187,11 @@ license that can be found in the LICENSE file.
             });
             console.log("routes hash", routes);
         },
+
         /**
-         * @method addRoute Called by domReady. Adds a route to the routes hash (see domeReady above).
+         * Called by domReady. Adds a route to the routes hash (see domeReady above).
+         *
+         * @method addRout
          * @param {element} routeEl Either a rtr-route element or a rtr-lazyroute element.
          */
         addRoute: function(routeEl) {
@@ -188,8 +206,11 @@ license that can be found in the LICENSE file.
                 routeEl.routeHandler.bind(routeEl) :
                 routeEl[routeEl.handler].bind(routeEl));
         },
+
         /**
-         * @method route Called to route a request to its target handlers.
+         * Called to route a request to its target handlers.
+         *
+         * @method route
          * @param  {string} method Either "get", "post", "put" or "delete".
          * @param  {string} path The request path.
          * @param  {object} hash  A hash of form element names (keys) and their values (values) to pass to the target handler as  the last argument if the request is for a form submit.

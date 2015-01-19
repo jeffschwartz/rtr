@@ -3,21 +3,23 @@ Copyright 2015 Jeffrey Schwartz. All rights reserved.
 Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
 */
-/**
- * lazyroute-element acts as a delegate for routing requests. On receiving the 1st request
- * for any lazy loaded route it will dynamically import and create the appropriate route-element as
- * defined by its attributes. It then calls the target route handler (also defined in its
- * attributes) associated with the request (see routeHanlder below).
- */
  //TODO(JS): Eliminate having to pass the tag name as an attribute. Posibly obtain the tag name from
  // the imported file itself?
 (function() {
     "use strict";
     /**
     * @element rtr-lazyroute
-    * An element that reperesents a lazy route. A lazy route defers
-    * importing the intended handler until it is actually called via a route request and acts as a
-    * delegate, calling the handler to service the route request.
+    * lazyroute-element allows the defered loading of rtr-route elements until they are the target
+    * of a routing request. On receiving the 1st routing request for anylazy loaded route,
+    * rtr-lazyroute dynamically imports the route-element defined by the importpath attribute by
+    * calling the Polymer.import method and then adds that element to the DOM giving it a tag name
+    * defined by the tagname attribute. For this and all subsequent route requests it then calls the
+    * target route handler defined by the handler attribute to handle the route.
+    * @attribute method Either "get", "post", "put" or "delete".
+    * @attribute path The URL asociated with this route.
+    * @attribute handler The name of the function defined in the rtr-route element that is to be called to handle the route.
+    * @attribute importpath The file name path this is used to dynamically import the rtr-route element.
+    * @attribute tagname The tag name that will be used when adding the rtr-route element to the DOM.
     * @status alpha
     * @homepage https://github.com/jeffschwartz/rtr
     * @author Jeff Schwartz

@@ -34,6 +34,7 @@ license that can be found in the LICENSE file.
     "use strict";
 
     Polymer("rtr-route", {
+
         /**
          * The method (think REST) associated with the routing request
          * (e.g. "get", "post", "put", "delete", etc.).
@@ -63,7 +64,7 @@ license that can be found in the LICENSE file.
         handler: "",
 
         /**
-          * @method domReady A lifecycle callback. Adds rtrRouter and rtrHistory properties to itself.
+         * @method domReady A lifecycle callback. Adds rtrRouter and rtrHistory properties to itself.
          */
         domReady: function () {
             this.rtrRouter = this.parentElement;

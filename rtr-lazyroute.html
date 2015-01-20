@@ -9,8 +9,7 @@ license that can be found in the LICENSE file.
 The 'rtr-lazyroute' element adds support and functionality for lazy (defered) loading of route handlers (i.e. elements that extend rtr-route). It allows the defered loading of rtr-route elements until they are the target of a routing request. On receiving the 1st routing request for any lazy loaded route, rtr-lazyroute dynamically imports the route-element defined by the importpath attribute by calling the Polymer.import method and then adds that element to the DOM giving it a tag name defined by the tagname attribute. For this and all subsequent route requests it then calls the target route handler defined by the handler attribute to handle the route.
 
     <rtr-lazyroute
-        method="get"
-        path="a/url/path"
+        method="get"        path="a/url/path"
         handler="name_of_method_to_call"></rtr-lazyroute>
         importPath="/path/to/the/route/handler/import-file.html"
         tagname="valid-tagname"

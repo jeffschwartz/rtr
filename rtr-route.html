@@ -6,7 +6,7 @@ license that can be found in the LICENSE file.
 <!--
 @group Router Core Elements
 
-The 'rtr-route' element is an abstract base custom element and must be extended to be useful. It exposes base support and functionality for defining method handlers that are called in response to routing requests which match its "method" (think REST verbs) and "path" (think URLs) attributes.
+The 'rtr-route' element is an abstract base custom element which represent a route and must be extended to be useful. It exposes base support and functionality for defining method handlers that are called in response to routing requests which match its "method" (think REST verbs) and "path" (think URLs) attributes. You must extend your own custom route elements from rtr-route (i.e. extends="rtr-route") and provide a route handler function that will be called for the route.
 
     <rtr-route
         method="get"
@@ -26,14 +26,6 @@ The 'rtr-route' element is an abstract base custom element and must be extended 
     (function() {
         "use strict";
 
-        /**
-        * An element that reperesents a route. You must extend your own custom route elements from rtr-route (i.e. extends="rtr-route") and provide a route handler function that will be called for the route.
-        *
-        * @element rtr-route
-        * @status alpha
-        * @homepage https://github.com/jeffschwartz/rtr
-        * @author Jeff Schwartz
-        */
         Polymer("rtr-route", {
 
             /**

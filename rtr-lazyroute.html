@@ -3,6 +3,23 @@ Copyright 2015 Jeffrey Schwartz. All rights reserved.
 Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
 -->
+<!--
+@group Router Core Elements
+
+The 'rtr-lazyroute' element adds support and functionality for lazy (defered) loading of route handlers (extends rtr-route).
+
+    <rtr-lazyroute
+        method="ge"
+        path="a/url/path"
+        handler="name_of_method_to_call"></rtr-lazyroute>
+        importPath="/path/to/the/route/handler/import-file.html"
+        tagname="valid-tagname"
+
+@element rtr-lazyroute
+@status alpha
+@homepage https://github.com/jeffschwartz/rtr
+@author Jeff Schwartz
+-->
 <link rel="import" href="../polymer/polymer.html">
 <polymer-element name="rtr-lazyroute" constructor="RtrLazyRoute" attributes="method path handler importPath tagname">
     <template>

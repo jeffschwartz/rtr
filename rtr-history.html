@@ -147,7 +147,9 @@ license that can be found in the LICENSE file.
 
     Polymer("rtr-history", {
         /**
-         * @method ready A lifecycle callback. Wires up event handlers for "click", "submit" and "popstate" events.
+         * A lifecycle callback. Wires up event handlers for "click", "submit" and "popstate" events.
+         *
+         * @method ready
          */
         ready: function() {
             //Verify browser supports pushstate
@@ -167,7 +169,9 @@ license that can be found in the LICENSE file.
         },
 
         /**
-         * @method domReady A lifecycle callback. Adds routerEl to itself to itself.
+         * A lifecycle callback. Adds routerEl to itself to itself.
+         *
+         * @method domReady
          */
         domReady: function() {
             this.routerEl = document.querySelector("rtr-router");
@@ -175,7 +179,9 @@ license that can be found in the LICENSE file.
         },
 
         /**
-         * @method anchorClickHandler Anchor tag click event handler.
+         * Anchor tag click event handler.
+         *
+         * @method anchorClickHandler
          * @param  {event} evt An event object.
          */
         anchorClickHandler: function(evt) {
@@ -202,7 +208,9 @@ license that can be found in the LICENSE file.
         },
 
         /**
-         * @method formSubmitHandler Form tag submit handler.
+         * Form tag submit handler.
+         *
+         * @method formSubmitHandler
          * @param  {event} evt An event object.
          */
         formSubmitHandler: function(evt) {
@@ -232,7 +240,10 @@ license that can be found in the LICENSE file.
         },
 
         /**
-         * @method popstateHandler Popstate event handler. See https://developer.mozilla.org/en-US/docs/WindowEventHandlers.onpopstate for details.
+         * Popstate event handler.
+         * See https://developer.mozilla.org/en-US/docs/WindowEventHandlers.onpopstate for details.
+         *
+         * @method popstateHandler
          * @param {event} evt An event object.
          */
         popstateHandler: function(evt) {
@@ -245,7 +256,9 @@ license that can be found in the LICENSE file.
         },
 
         /**
-         * @method start Call to start processing routing requests.
+         * Call to start processing routing requests.
+         *
+         * @method start
          * @param  {boolean} pushState true to replace the current location state.
          * @param  {boolean} trigger true to trigger routing for the current location.
          */
@@ -266,7 +279,9 @@ license that can be found in the LICENSE file.
         },
 
         /**
-         * @method navigate Call to redirect to a route handler.
+         * Call to redirect to a route handler.
+         *
+         * @method navigate
          * @param  {object} options A hash of options. See https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.
          */
         navigate: function(options) {

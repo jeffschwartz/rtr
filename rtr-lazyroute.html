@@ -84,7 +84,9 @@ license that can be found in the LICENSE file.
         tagName: "",
 
         /**
-         * @method domReady A lifecycle callback. Adds rtrRouter rtrHistory, targetEl propertie to itself.
+         * A lifecycle callback. Adds rtrRouter rtrHistory, targetEl propertie to itself.
+         *
+         * @method domReady
          */
         domReady: function() {
             this.rtrRouter = this.parentElement;
@@ -94,7 +96,12 @@ license that can be found in the LICENSE file.
         },
 
         /**
-         * @method routeHandler On receiving the 1st request for any lazy loaded route it will dynamically import and create the appropriate route-element as defined by its attributes. It then calls the target route handler (also defined in its attributes) associated with the request passing it arguments.
+         * On receiving the 1st request for any lazy loaded route it will dynamically import and
+         * create the appropriate route-element as defined by its attributes. It then calls the
+         * target route handler (also defined in its attributes) associated with the request passing
+         * it arguments.
+         *
+         * @method routeHandler
          */
         routeHandler: function() {
             var self = this,
@@ -119,7 +126,9 @@ license that can be found in the LICENSE file.
             }
         },
         /**
-         * @method callTarget Calls the target element's handler passing it arguments.
+         * Calls the target element's handler passing it arguments.
+         *
+         * @method callTarget
          * @param  {object} args A collection of arguments to be passed to the target handler.
          */
         callTarget: function (args) {

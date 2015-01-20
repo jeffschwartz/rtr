@@ -3,6 +3,21 @@ Copyright 2015 Jeffrey Schwartz. All rights reserved.
 Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
 -->
+<!--
+@group Router Core Elements
+
+The 'rtr-route' element is an abstract base custom element and must be extended to be useful. It exposes base support and functionality for defining method handlers that are called in response to routing requests which match its "method" (think REST verbs) and "path" (think URLs) attributes.
+
+    <rtr-route
+        method="get"
+        path="a/url/path"
+        handler="name_of_method_to_call"></rtr-route>
+
+@element rtr-route
+@status alpha
+@homepage https://github.com/jeffschwartz/rtr
+@author Jeff Schwartz
+-->
 <link rel="import" href="../polymer/polymer.html">
 <polymer-element name="rtr-route" constructor="RtrRoute" attributes="method path handler">
     <template>

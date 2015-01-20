@@ -30,47 +30,48 @@ license that can be found in the LICENSE file.
     <template>
     </template>
     <script>
-    (function() {
-        "use strict";
+(function() {
+    "use strict";
 
-        Polymer("rtr-route", {
+    Polymer("rtr-route", {
 
-            /**
-            * The method (think REST) associated with the routing request (e.g. "get", "post", "put", "delete", etc.).
-            *
-            * @attribute method
-            * @type string
-            * @default 'get'
-            */
-            method: "get", // A sensible daefault
+        /**
+         * The method (think REST) associated with the routing request
+         * (e.g. "get", "post", "put", "delete", etc.).
+         *
+         * @attribute method
+         * @type string
+         * @default 'get'
+         */
+        method: "get", // A sensible daefault
 
-            /**
-            * The path (think URL) used for the routing reques.
-            *
-            * @attribute path
-            * @type string
-            * @default ''
-            */
-            path: "",
+        /**
+         * The path (think URL) used for the routing reques.
+         *
+         * @attribute path
+         * @type string
+         * @default ''
+         */
+        path: "",
 
-            /**
-            * The name of the function that is to be called to handle the route.
-            *
-            * @attribute handler
-            * @type string
-            * @default ''
-            */
-            handler: "",
+        /**
+         * The name of the function that is to be called to handle the route.
+         *
+         * @attribute handler
+         * @type string
+         * @default ''
+         */
+        handler: "",
 
-            /**
-             * @method domReady A lifecycle callback. Adds rtrRouter and rtrHistory properties to itself.
-             */
-            domReady: function () {
-                this.rtrRouter = this.parentElement;
-                //rtr-history is the only element in the shadow-root
-                this.rtrHistory = this.parentElement.shadowRoot.children[0];
-            }
-        });
-    }());
+        /**
+          * @method domReady A lifecycle callback. Adds rtrRouter and rtrHistory properties to itself.
+         */
+        domReady: function () {
+            this.rtrRouter = this.parentElement;
+            //rtr-history is the only element in the shadow-root
+            this.rtrHistory = this.parentElement.shadowRoot.children[0];
+        }
+    });
+}());
     </script>
 </polymer-element>

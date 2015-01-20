@@ -4,17 +4,20 @@ Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
 -->
 <!--
-@group Router Core Elements
-
-The 'rtr-router' element adds support and functionality for routing. It uses the html5 history API for manipulating browser history.
-
-    <rtr-router></rtr-router>
-
-@element rtr-router
-@status alpha
-@homepage https://github.com/jeffschwartz/rtr
-@author Jeff Schwartz
+/**
+ * @group Router Core Elements
+ *
+ * The 'rtr-router' element adds support and functionality for routing. It uses the html5 history API for manipulating browser history.
+ *
+ *    <rtr-router></rtr-router>
+ *
+ * @status alpha
+ * @homepage https://github.com/jeffschwartz/rtr
+ * @author Jeff Schwartz
+ * @element rtr-router
+ */
 -->
+
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="rtr-history.html">
 <link rel="import" href="rtr-route.html">
@@ -185,8 +188,7 @@ The 'rtr-router' element adds support and functionality for routing. It uses the
         Polymer("rtr-router", {
 
             /**
-             * @method domReady
-             * A lifecycle callback. Adds rtrHistory property to itself and propagates the routes array.
+             * @method domReady A lifecycle callback. Adds rtrHistory property to itself and propagates the routes array.
              */
             domReady: function() {
                 var self = this;
@@ -200,9 +202,7 @@ The 'rtr-router' element adds support and functionality for routing. It uses the
             },
 
             /**
-             * Called by domReady. Adds a route to the routes hash (see domeReady above).
-             *
-             * @method addRout
+             * @method addRout Called by domReady. Adds a route to the routes hash (see domeReady above).
              * @param {element} routeEl Either a rtr-route element or a rtr-lazyroute element.
              */
             addRoute: function(routeEl) {
@@ -219,9 +219,7 @@ The 'rtr-router' element adds support and functionality for routing. It uses the
             },
 
             /**
-             * Called to route a request to its target handlers.
-             *
-             * @method route
+             * @method route Called to route a request to its target handlers.
              * @param  {string} method Either "get", "post", "put" or "delete".
              * @param  {string} path The request path.
              * @param  {object} hash  A hash of form element names (keys) and their values (values) to pass to the target handler as  the last argument if the request is for a form submit.

@@ -2,7 +2,7 @@
 
 rtr-router
 ============
-See the [component page](http://polymerlabs.github.io/rtr-router) for more information.
+See the [component page](http://jeffschwartz.github.io/rtr/components/rtr/) for more information.
 
 Example
 =======

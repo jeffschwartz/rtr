@@ -71,10 +71,12 @@ license that can be found in the LICENSE file.
  *      <a data-rtr-route href="a/url/path/2015/01/01">...</a>
  *
  * 'rtr-router' will match the "get" request (because all anchor tags are get requests) for the path
- * 'a/url/path/:year/:month/:day' with the handler method named 'aRouteHandlerWithParameters and call it with the
- * parameter values "2015" (i.e. year), "01" (i.e. month) and "01" (i.e. day).
+ * 'a/url/path/:year/:month/:day' with the handler method named 'aRouteHandlerWithParameters and
+ * call it with the parameter values "2015" (i.e. year), "01" (i.e. month) and "01" (i.e. day).
  *
- * 'rtr-router' also supports passing form elements (i.e. a hash of name/value pairs where name equals the value of the form element's name attribute) to its route handler when routing a form submit:
+ * 'rtr-router' also supports passing form elements (i.e. a hash of name/value pairs where name
+ * equals the value of the form element's name attribute) to its route handler when routing a form
+ * submit:
  *
  *      <rtr-router>
  *          <my-formsubmit
@@ -84,7 +86,8 @@ license that can be found in the LICENSE file.
  *          </my-formsubmit>
  *      </rtr-router>
  *
- * Now when a user submits the following form:
+ * Now when a user fills in the below form, enters the name "Superman" and selects both "Web
+ * Developer" and "JavaScript Developer" as their occupaton and then submits the form:
  *
  *      <form data-rtr-route id="formsubmit" action="a/url/path" method="post">
  *          <label for="txtName">Name:</label>
@@ -101,12 +104,13 @@ license that can be found in the LICENSE file.
  *          <button type="submt">Try Routing A Form Submit Event</button>
  *      </form>
  *
- * 'rtr-router' will match the "post" request (because it matches the form method attribute's value) for the path
- * 'a/url/path' with the handler method named 'aFormRouteHandler' and call it passing it values hash:
+ * 'rtr-router' will match the "post" request (it uses the form's method attribute value) for the
+ * path 'a/url/path' with the handler method named 'aFormRouteHandler' and call it passing it a
+ * values hash with the following values:
  *
  *      {
  *          selOccupation: ["javascript_dev", "web_dev"],
- *          txtName: ""
+ *          txtName: "SuperMan"
  *      }
  *
  * @element rtr-route

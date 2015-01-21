@@ -25,18 +25,20 @@ license that can be found in the LICENSE file.
  * called to handle the routing request.
  *
  * Two types of route handlers are supported:
- *      1) Those whose import files are imported when your markup is loaded. See rtr-route.
- *      2) Those that defer importing their import files until they are actually needed
- *         {i.e. lazy loading} to handle a routing request. See rtr-lazyroute.
  *
- * With route handlers defined you declaratively include them in the body of your markup:
+ *      1) Those whose import files are imported when your markup is loaded. See rtr-route.
+ *
+ *      2) Those that defer importing their import files until they are actually needed
+ *         {i.e. lazily loaded} to handle a routing request. See rtr-lazyroute.
+ *
+ * With your route handlers defined you nowdeclaratively include them in the body of your markup:
  *
  *      <rtr-router>
  *          <demo-staticpath methdo="get" path="/rtr/components/rtr/demo-staticpath" handler="get"></demo-staticpath>
  *          <rtr-lazyroute method="get" path="/rtr/components/rtr/demo-lazystaticpath"
  *      </rtr-router>
  *
- * Wnen a user clicks on an anchor element or submits a form whose markup is decorated with the 
+ * Wnen a user clicks on an anchor element or submits a form whose markup is decorated with the
  * 'data-rtr-route' or 'rtr-route' attributes 'rtr-router' calls all the methods in all the route
  * handlers declared to handle the routing request.
  *

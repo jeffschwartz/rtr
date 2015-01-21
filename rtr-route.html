@@ -7,16 +7,37 @@ license that can be found in the LICENSE file.
 /**
  * @group Router Core Elements
  *
- * 'rtr-route' element is an abstract base custom element which represent a route and must be
- * extended to be useful. It exposes base support and functionality for defining method handlers
- * that are called in response to routing requests which match its "method" (think REST verbs) and
- * "path" (think URLs) attributes. You must extend your own custom route elements from rtr-route
- * (i.e. extends="rtr-route") and provide a route handler function that will be called for the route.
+ * 'rtr-route' element is an abstract base custom element which represent a route. Your route
+ * handler must extend rtr-route to be useful (i.e. extends="rtr-router"):
  *
- *     <my-route
- *         method="get"
- *         path="a/url/path"
- *         handler="name_of_method_to_call"></my-route>
+ *      <link rel="import" href="../../polymer/polymer.html">
+ *      <link rel="import" href="../rtr-route.html">
+ *      <polymer-element name="demo-staticpath" extends="rtr-route">
+ *          <script>
+ *          (function() {
+ *              "use strict";
+ *              Polymer("my-route", {
+ *                  myHandler: function(){
+ *                      // Code to handle the route
+ *                      ...
+ *                  }
+ *              });
+ *          }());
+ *          </script>*
+ *      </polymer-element>
+ *
+ * 'rtr-route' provides support and functionality for calling your route handlers in response to
+ * routing requests which match its "method" (think REST verbs) and "path" (think URLs) attributes.
+ * You must extend your own custom route elements from rtr-route (i.e. extends="rtr-route") and
+ * provide a route handler method that will be called for the route.
+ *
+ *      <rtr-router>
+ *          <my-route
+ *            method="get"
+ *            path="a/url/path"
+ *            handler="myHandler">
+ *          </my-route>
+ *      </rtr-router>
  *
  * @element rtr-route
  * @status alpha

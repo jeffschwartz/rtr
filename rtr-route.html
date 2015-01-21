@@ -8,7 +8,8 @@ license that can be found in the LICENSE file.
  * @group Router Core Elements
  *
  * 'rtr-route' element is an abstract base custom element which represent a route. Your route
- * handler must extend rtr-route to be useful (i.e. extends="rtr-router"):
+ * handler must extend rtr-route to be useful (i.e. extends="rtr-router") and provide a route
+ * handler method that will be called for the route:
  *
  *      <link rel="import" href="../../polymer/polymer.html">
  *      <link rel="import" href="../rtr-route.html">
@@ -17,27 +18,60 @@ license that can be found in the LICENSE file.
  *          (function() {
  *              "use strict";
  *              Polymer("my-route", {
- *                  myHandler: function(){
+ *                  aRouteHandler: function(){
+ *                      // Code to handle the route
+ *                      ...
+ *                  },
+ *                  aRouteHandlerWithParameters: function(year, month, day){
  *                      // Code to handle the route
  *                      ...
  *                  }
  *              });
  *          }());
- *          </script>*
+ *          </script>
  *      </polymer-element>
  *
- * 'rtr-route' provides support and functionality for calling your route handlers in response to
- * routing requests which match its "method" (think REST verbs) and "path" (think URLs) attributes.
- * You must extend your own custom route elements from rtr-route (i.e. extends="rtr-route") and
- * provide a route handler method that will be called for the route.
+ * With your route handler defined you now declaratively include it in the body of your markup:
  *
  *      <rtr-router>
  *          <my-route
  *            method="get"
  *            path="a/url/path"
- *            handler="myHandler">
+ *            handler="aRouteHandler">
  *          </my-route>
  *      </rtr-router>
+ *
+ * *** Note: You can have multiple route handlers defined as child elements of 'rtr-router'.
+ *
+ * Now when a user clicks the following link element in the document:
+ *      <a data-rtr-route href="a/url/path">...</a>
+ *
+ * 'rtr-router' will match the "get" request (because all anchor tags are get requests) for the path
+ * 'a/url/path' with the handler method named 'aRouteHanlder' and call it. When 'aRouteHandler' is
+ * called its context (its this) is set to your route handler object for convenience.
+ *
+ * 'rtr-router' also supports parameterized paths and passes the parameters defined in the path to
+ * its route handler:
+ *
+ *      <rtr-router>
+ *          <my-route
+ *            method="get"
+ *            path="a/url/path"
+ *            handler="aRouteHandler">
+ *          </my-route>
+ *          <my-route
+ *            method="get"
+ *            path="a/url/path/:year/:month/:day"
+ *            handler="aRouteHandlerWithParameters>
+ *          </my-route>
+ *      </rtr-router>
+ *
+ * Now when a user clicks the following link element in the document:
+ *      <a data-rtr-route href="a/url/path/2015/01/01">...</a>
+ *
+ * 'rtr-router' will match the "get" request (because all anchor tags are get requests) for the path
+ * 'a/url/path' with the handler method named 'aRouteHandlerWithParameters and call it with the
+ * parameter values "2015" (i.e. year), "01" (i.e. month) and "01" (i.e. day).
  *
  * @element rtr-route
  * @status alpha

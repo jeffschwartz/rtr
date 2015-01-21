@@ -32,6 +32,26 @@ license that can be found in the LICENSE file.
     var historyStarted = false;
 
     /**
+     * canBeRouted - return true if routable, false otherwise.
+     *
+     * @param {object} evtTargetAttributes - An element's attributes hash.
+     */
+    function canBeRouted(evtTargetAttributes) {
+        return evtTargetAttributes.hasOwnProperty("data-rtr-route") ||
+        evtTargetAttributes.hasOwnProperty("rtr-route");
+    }
+
+    /**
+     * canBePushed - return true if state can be pushed, false otherwise.
+     *
+     * @param {object} evtTargetAttributes - An element's attributes hash.
+     */
+    function canBePushed(evtTargetAttributes) {
+        return !evtTargetAttributes.hasOwnProperty("data-rtr-nopushstate") ||
+        !evtTargetAttributes.hasOwnProperty("rtr-nopushstate");
+    }
+
+    /**
      * nameValueHash - Creates a hash with properties 'name' and "value".
      *
      * @param  {string} name -  The name of the property.
@@ -192,10 +212,9 @@ license that can be found in the LICENSE file.
                 href = evt.target.attributes.href.value;
                 console.log("attribute href", href);
                 // if (href.indexOf("/") === 0) {
-                if (evt.target.attributes.hasOwnProperty("data-rtr-route")) {
+                if(canBeRouted(evt.target.attributes)) {
                     evt.preventDefault();
-                    if (!evt.target.attributes.hasOwnProperty(
-                            "data-rtr-nopushstate")) {
+                    if(canBePushed(evt.target.attributes)) {
                         w.history.pushState({
                             verb: "get",
                             path: href
@@ -220,14 +239,13 @@ license that can be found in the LICENSE file.
                 method = evt.target.attributes.method.value;
                 console.log("attribute action", action);
                 console.log("attribute method", method);
-                if (evt.target.attributes.hasOwnProperty("data-rtr-route")) {
+                if(canBeRouted(evt.target.attributes)) {
                     evt.preventDefault();
                     method = method ? method : "get"; // Defaults to "get" if method omitted
                     valuesHash = valuesHashFromSerializedArray(
                         serialize(evt.target));
                     console.log("valuesHash", valuesHash);
-                    if (!evt.target.attributes.hasOwnProperty(
-                            "data-rtr-nopushstate")) {
+                    if (canBePushed(evt.target.attributes)) {
                         w.history.pushState({
                             verb: method,
                             path: action

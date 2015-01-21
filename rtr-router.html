@@ -10,6 +10,26 @@ license that can be found in the LICENSE file.
  * 'rtr-router' element adds support and functionality for routing. It uses the html5 history
  * API for manipulating browser history.
  *
+ * 'rtr-router' allows you to declaratively enable routing for any anchor tag click and form tag
+ * submit event by simply including either the "data-rtr-route" or the "rtr-route" attribute on
+ * any anchor and form tags in your markup.
+ *
+ *      <a data-rtr-route href="some/path/for/anchor">...</a>
+ *
+ *      <form data-rtr-route id="someId" action="some/path/for/form" method="post">...</form>
+ *
+ * With routing declaratively enabled you then create route handlers to "handle" the routing
+ * requests.
+ *
+ * A route handler is simply a custom element that you define which contains a method that will be
+ * called to handle the routing request.
+ *
+ * Two types of route handlers are supported:
+ *      1) Those whose import files are imported when your markup is loaded. See rtr-route.
+ *      2) Those that defer importing their import files until they are actually needed
+ *         {i.e. lazy loading} to handle a routing request. See rtr-lazyroute.
+ *
+ * With route handlers defined you declaratively include them in the body of your markup:
  *      <rtr-router>
  *          <demo-staticpath methdo="get" path="/rtr/components/rtr/demo-staticpath" handler="get"></demo-staticpath>
  *          <rtr-lazyroute method="get" path="/rtr/components/rtr/demo-lazystaticpath"

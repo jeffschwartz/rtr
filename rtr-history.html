@@ -9,10 +9,18 @@ license that can be found in the LICENSE file.
  *
  * 'rtr-history' element adds support and functionality for routing. It uses the html5 history
  * API for manipulating browser history. It works hand-in-hand with 'rtr-router' to provide routing
- * support. It is an implementation only element and it is intended to be used only by the
- * rtr-router element itself which adds it as a child to its Shadow DOM (i.e. shadow-root).
+ * support. The rtr-router element adds it as a child to its Shadow DOM (i.e. #shadow-root):
  *
- *      <rtr-history></rtr-history>
+ *      #shadow-root
+ *          <rtr-history></rtr-history>
+ *
+ * *** Note: 'rtr-router' allways calls window.history.pushState passing it the url path associated
+ * with the current routing request. This permits the user to navigate back and forward through
+ * the window's history which in turn results in routing requests. You can override this default
+ * behavior thereby preventing 'rtr-router' from calling window.history.pushState when it routes the
+ * request by adding the 'data-rtr-nopushstate' attribute to any anchor or form element:
+ *
+ *      <a data-rtr-nopushstate data-rtr-route href="a/url/path">...</a>
  *
  * @element rtr-history
  * @status alpha
@@ -274,7 +282,7 @@ license that can be found in the LICENSE file.
         },
 
         /**
-         * Call to start processing routing requests.
+         * Call this when your application is ready to start processing routing requests.
          *
          * @method start
          * @param  {boolean} pushState true to replace the current location state.
@@ -297,7 +305,7 @@ license that can be found in the LICENSE file.
         },
 
         /**
-         * Call to redirect to a route handler.
+         * Call this to redirect the current routing request to a different route handler.
          *
          * @method navigate
          * @param  {object} options A hash of options. See https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.

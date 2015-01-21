@@ -44,6 +44,7 @@ license that can be found in the LICENSE file.
  * *** Note: You can have multiple route handlers defined as child elements of 'rtr-router'.
  *
  * Now when a user clicks the following link element in the document:
+ *
  *      <a data-rtr-route href="a/url/path">...</a>
  *
  * 'rtr-router' will match the "get" request (because all anchor tags are get requests) for the path
@@ -67,10 +68,11 @@ license that can be found in the LICENSE file.
  *      </rtr-router>
  *
  * Now when a user clicks the following link element in the document:
+ *
  *      <a data-rtr-route href="a/url/path/2015/01/01">...</a>
  *
  * 'rtr-router' will match the "get" request (because all anchor tags are get requests) for the path
- * 'a/url/path' with the handler method named 'aRouteHandlerWithParameters and call it with the
+ * 'a/url/path/:year/:month/:day' with the handler method named 'aRouteHandlerWithParameters and call it with the
  * parameter values "2015" (i.e. year), "01" (i.e. month) and "01" (i.e. day).
  *
  * @element rtr-route

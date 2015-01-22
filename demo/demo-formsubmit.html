@@ -1,6 +1,22 @@
 <!-- By Jeffrey Schwartz - Licensed under MIT -->
 <link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../rtr-route.html">
-<script src="demo-formsubmit.js"></script>
 <polymer-element name="demo-formsubmit" extends="rtr-route">
+    <template>
+    </template>
+    <script>
+(function() {
+    "use strict";
+    Polymer("demo-formsubmit", {
+        domReady: function() {
+            this.infoEl = document.getElementById("demo-formsubmit-info");
+        },
+        post: function(valuesHash){
+            this.infoEl.innerHTML = "demo-formsubmit \"post\" handler was called with a form's valuesHash" +
+            "<br>name = " + valuesHash.txtName + "<br>occupation = " + valuesHash.selOccupation.toString();
+            console.log("demo-formsubmit \"post\" called");
+        }
+    });
+}());
+    </script>
 </polymer-element>

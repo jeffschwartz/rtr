@@ -1,6 +1,22 @@
 <!-- By Jeffrey Schwartz - Licensed under MIT -->
 <link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../rtr-route.html">
-<script src="demo-lazyparameterizedpath.js"></script>
 <polymer-element name="demo-lazyparameterizedpath" extends="rtr-route">
+    <template>
+    </template>
+    <script>
+(function() {
+    "use strict";
+    Polymer("demo-lazyparameterizedpath", {
+        domReady: function() {
+            this.infoEl = document.getElementById("demo-lazyparameterizedpath-info");
+        },
+        get: function(year, month, day){
+            this.infoEl.innerHTML = "demo-lazyparameterizedpath \"get\" handler was called with parameters" +
+                "<br>year = " + year + "<br>month = " + month + "<br>day = " + day;
+            console.log("demo-lazyparameterizedpath \"get\" called");
+        }
+    });
+}());
+    </script>
 </polymer-element>

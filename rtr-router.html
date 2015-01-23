@@ -71,22 +71,22 @@ license that can be found in the LICENSE file.
     /**
      * Routes the request.
      *
-     * @param  {string} verb Eighter get, post, put, delete.
-     * @param  {strung} url The request path.
+     * @param  {string} method Think REST - get, post, put, delete, etc.
+     * @param  {strung} path The request path.
      * @param  {object} valuesHash A values hash if request is for a form submit.
      */
-    function route(verb, url, valuesHash) {
+    function route(method, path, valuesHash) {
         //TODO(JS) a way to do some work prior to processing the 1st routing request
-        var rt = getRoute(verb, url);
-        //Push valuesHash onto route.params so it will be passed to
-        //the handler, following any parameter arguments, as the last argument.
+        var rt = getRoute(method, path);
         if (rt) {
             if (valuesHash) {
+                //Push valuesHash onto route.params so it will be passed to
+                //the handler, following any parameter arguments, as the last argument.
                 rt.params.push(valuesHash);
             }
             routeFound(rt);
         } else {
-            routeNotFound(verb, url);
+            routeNotFound(method, path);
         }
     }
 
@@ -106,12 +106,12 @@ license that can be found in the LICENSE file.
     /**
      * Parses the request and attempts to match it to route handlers.
      *
-     * @param  {string} verb Either get, post, put, delete.
+     * @param  {string} method Either get, post, put, delete.
      * @param  {string} url A URL path that begins with a "/".
      * @return {object} If a match is found returns a hash with a handlers and a params property. If
      * not found return undefined.
      */
-    function getRoute(verb, url) {
+    function getRoute(method, url) {
         // var a = url.substring(1).split("/"),
         var a = url.split("/"),
             params = [],
@@ -121,8 +121,8 @@ license that can be found in the LICENSE file.
             if (routes.hasOwnProperty(route)) {
                 //Get the "veb".
                 // vrb = route.substring(0, route.indexOf(" "));
-                // If the route has a matching verb then handlers will be set to the callback
-                handlers = routes[route][verb];
+                // If the route has a matching method then handlers will be set to the callback
+                handlers = routes[route][method];
                 if (handlers) {
                     //Get the url.
                     // b = route.substring(route.indexOf("/") + 1).split("/");
@@ -258,7 +258,7 @@ license that can be found in the LICENSE file.
          * Called to route a request to its target handlers.
          *
          * @method route
-         * @param  {string} method Either "get", "post", "put" or "delete".
+         * @param  {string} method Think REST (e.g. "get", "post", "put", "delete", etc.).
          * @param  {string} path The request path.
          * @param  {object} hash  A hash of form element names (keys) and their values (values) to pass to the target handler as  the last argument if the request is for a form submit.
          */

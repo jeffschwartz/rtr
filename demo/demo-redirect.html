@@ -18,13 +18,7 @@
                 "and is redirecting to demo-redirecttarget";
             console.log("demo-redirect \"get\" called");
             this.rtrHistory.navigate({
-                state: {
-                    verb: "get",
-                    path: "/rtr/components/rtr/demo-redirecttarget"
-                },
-                method: "get",
-                url: "/rtr/components/rtr/demo-redirecttarget",
-                pushState: false,
+                path: "/rtr/components/rtr/demo-redirecttarget",
                 trigger: true
             });
         }

@@ -114,6 +114,7 @@ license that can be found in the LICENSE file.
  *      }
  *
  * @element rtr-route
+ * @abstract
  * @status alpha
  * @homepage https://github.com/jeffschwartz/rtr
  * @author Jeff Schwartz
@@ -141,7 +142,7 @@ license that can be found in the LICENSE file.
         method: "get", // A sensible daefault
 
         /**
-         * The path (think URL) used for the routing reques.
+         * The path (think URL) used for the routing request.
          *
          * @attribute path
          * @type string
@@ -160,6 +161,8 @@ license that can be found in the LICENSE file.
 
         /**
          * A lifecycle callback. Adds rtrRouter and rtrHistory properties to itself.
+         * If you override this method in your extended 'rtr-route' element you must call
+         * this.super() or bad things will happen.
          *
          * @method domReady
          */

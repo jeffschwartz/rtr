@@ -14,6 +14,19 @@ license that can be found in the LICENSE file.
  *      #shadow-root
  *          <rtr-history></rtr-history>
  *
+ * *** Important: Once your application is ready you must call rtrHistory.start to begin processing
+ * routing requests.
+ *
+ *    <script>
+ *        (function(){
+ *            "use strict";
+ *            window.addEventListener("polymer-ready", function(){
+ *                var routerEl = document.querySelector("rtr-router");
+ *                routerEl.rtrHistory.start(false, false);
+ *            });
+ *        }());
+ *    </script>
+ *
  * *** Note: 'rtr-router' allways calls window.history.pushState passing it the url path associated
  * with the current routing request. This permits the user to navigate back and forward through
  * the window's history which in turn results in routing requests. You can override this default
@@ -277,7 +290,7 @@ license that can be found in the LICENSE file.
             console.log("event", evt);
             // Ignore 'popstate' events without state and until history.start is called.
             if (historyStarted && evt.state) {
-                this.routerEl.route(evt.state.verb, w.location.pathname);
+                this.routerEl.route(evt.state.method, w.location.pathname);
             }
         },
 
@@ -293,7 +306,7 @@ license that can be found in the LICENSE file.
             //TODO(JS): test with pushState false
             if (pushState) {
                 w.history.replaceState({
-                    verb: "get",
+                    method: "get",
                     path: w.location.pathname
                 }, null, w.location.pathname);
             }
@@ -307,29 +320,37 @@ license that can be found in the LICENSE file.
         /**
          * Call this to redirect the current routing request to a different route handler.
          *
+         *    this.rtrHistory.navigate({
+         *        path: "/rtr/components/rtr/demo-redirecttarget",
+         *        trigger: true
+         *    });
+         *
+         * See https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.
+         *
          * @method navigate
-         * @param  {object} options A hash of options. See https://developer.mozilla.org/en-US/docs/Web/API/Window.history for details.
+         * @param  {object} options
+         *      @param {string} options.title Optional. The window's title. Defaults to window.title.
+         *      @param {object} options.method Optional. Think REST (e.g. "get", "post", "put", "delete", etc.). Defaults to "get".
+         *      @param {object} options.path Optional. The path used for the routing reques. Defaults to window.location.pathname.
+         *      @param {boolean} options.replace Optional. If true then window.history.replaceState is called. Defaults to false - window.history.pushState is called.
+         *      @param {boolean} options.pushState Optional. If true then options.method and options.path will be passed as state to window.history.replaceState or window.history.pushState. Defaults to false - no state is passed.
+         *      @param {boolean} options.trigger Optional. If true then a routing request is also triggered. Defaults to false - no routing request is triggered.
          */
         navigate: function(options) {
             if (historyStarted) {
                 options = options || {};
-                options.state = options.state || null;
                 options.title = options.title || document.title;
                 options.method = options.method || "get";
-                options.url = options.url || w.location.pathname;
+                options.path = options.path || w.location.pathname;
+                options.replace = options.replace || false;
                 options.pushState = options.pushState || false;
                 options.trigger = options.trigger || false;
-                options.replace = options.replace || false;
-                //TODO(JS): test with pushState false
                 if (options.pushState) {
                     w.history[options.replace ? "replaceState" :
-                        "pushState"](options.state,
-                        options.title, options.url);
+                        "pushState"]({method: options.method, path: options.path},
+                        options.title, options.path);
                 }
-                //TODO(JS): test with trigger false
                 if (options.trigger) {
-                    //TODO(JS): implement
-                    // v.router.route(options.method, options.url);
                     this.routerEl.route(options.method, options
                         .url);
                 }

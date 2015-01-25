@@ -14,15 +14,15 @@ license that can be found in the LICENSE file.
  *      #shadow-root
  *          <rtr-history></rtr-history>
  *
- * *** Important: Once your application is ready you must call rtrHistory.start to begin processing
+ * *** Important: Once your application is ready you must call rtrHistoryEl.start to begin processing
  * routing requests.
  *
  *    <script>
  *        (function(){
  *            "use strict";
  *            window.addEventListener("polymer-ready", function(){
- *                var routerEl = document.querySelector("rtr-router");
- *                routerEl.rtrHistory.start(false, false);
+ *                var rtrRouterEl = document.querySelector("rtr-router");
+ *                rtrRouterEl.rtrHistoryEl.start(false, false);
  *            });
  *        }());
  *    </script>
@@ -43,7 +43,7 @@ license that can be found in the LICENSE file.
 -->
 
 <link rel="import" href="../polymer/polymer.html">
-<polymer-element name="rtr-history">
+<polymer-element name="rtr-history" constructor="RtrHistory">
     <template>
     </template>
     <script>
@@ -190,11 +190,11 @@ license that can be found in the LICENSE file.
         /**
         * The rtr-router element.
         *
-        * @property routerEl
-        * @type Element
+        * @property rtrRouterEl
+        * @type RtrRouter
         * @default rtr-router
         */
-        routerEl: null,
+        rtrRouterEl: null,
 
         /**
          * A lifecycle callback. Wires up event handlers for "click", "submit" and "popstate" events.
@@ -219,13 +219,13 @@ license that can be found in the LICENSE file.
         },
 
         /**
-         * A lifecycle callback. Adds routerEl to itself to itself.
+         * A lifecycle callback. Adds rtrRouterEl to itself to itself.
          *
          * @method domReady
          */
         domReady: function() {
-            this.routerEl = document.querySelector("rtr-router");
-            console.log(this.routerEl);
+            this.rtrRouterEl = document.querySelector("rtr-router");
+            console.log(this.rtrRouterEl);
         },
 
         /**
@@ -251,7 +251,7 @@ license that can be found in the LICENSE file.
                         // }, null, evt.target.href);
                         }, null, evt.target.attributes.href.value);
                     }
-                    this.routerEl.route(method, href);
+                    this.rtrRouterEl.route(method, href);
                 }
             }
         },
@@ -281,7 +281,7 @@ license that can be found in the LICENSE file.
                             path: action
                         }, null, action);
                     }
-                    this.routerEl.route(method, action,
+                    this.rtrRouterEl.route(method, action,
                         valuesHash);
                 }
             }
@@ -299,7 +299,7 @@ license that can be found in the LICENSE file.
             console.log("event", evt);
             // Ignore 'popstate' events without state and until history.start is called.
             if (historyStarted && evt.state) {
-                this.routerEl.route(evt.state.method, w.location.pathname);
+                this.rtrRouterEl.route(evt.state.method, w.location.pathname);
             }
         },
 
@@ -321,7 +321,7 @@ license that can be found in the LICENSE file.
             }
             //TODO(JS): test with trigger false
             if (trigger) {
-                this.routerEl.route("get", w.location.pathname);
+                this.rtrRouterEl.route("get", w.location.pathname);
             }
             console.log("history started!");
         },
@@ -329,7 +329,7 @@ license that can be found in the LICENSE file.
         /**
          * Call this to redirect the current routing request to a different route handler.
          *
-         *    this.rtrHistory.navigate({
+         *    this.rtrHistoryEl.navigate({
          *        path: "/rtr/components/rtr/demo-redirecttarget",
          *        trigger: true
          *    });
@@ -360,7 +360,7 @@ license that can be found in the LICENSE file.
                         options.title, options.path);
                 }
                 if (options.trigger) {
-                    this.routerEl.route(options.method, options
+                    this.rtrRouterEl.route(options.method, options
                         .path);
                 }
             }

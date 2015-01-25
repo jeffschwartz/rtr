@@ -160,11 +160,11 @@ license that can be found in the LICENSE file.
         /**
         * The rtr-router element.
         *
-        * @property rtrRouter
+        * @property rtrRouterEl
         * @type RtrRouter
         * @default rtr-router
         */
-        rtrRouter: null,
+        rtrRouterEl: null,
 
         /**
         * The rtr-history element.
@@ -183,7 +183,7 @@ license that can be found in the LICENSE file.
          * @method domReady
          */
         domReady: function () {
-            this.rtrRouter = this.parentElement;
+            this.rtrRouterEl = this.parentElement;
             //rtr-history is the only element in the shadow-root
             this.rtrHistoryEl = this.parentElement.shadowRoot.children[0];
         }

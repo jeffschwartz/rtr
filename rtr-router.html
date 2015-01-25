@@ -222,23 +222,23 @@ license that can be found in the LICENSE file.
         /**
         * The rtr-history element.
         *
-        * @property rtrHistory
-        * @type Element
+        * @property rtrHistoryEl
+        * @type RtrHistory
         * @default rtr-history
         */
-        rtrHistory: null,
+        rtrHistoryEl: null,
 
         /**
-         * A lifecycle callback. Adds rtrHistory property to itself and propagates the routes array.
+         * A lifecycle callback. Adds rtrHistoryEl property to itself and propagates the routes array.
          *
          * @method domReady
          */
         domReady: function() {
             var self = this;
-            this.rtrHistory = this.shadowRoot.querySelector("rtr-history");
-            [].forEach.call(this.children, function(routeEl) {
-                if (routeEl instanceof w.RtrRoute || routeEl instanceof w.RtrLazyRoute) {
-                    self.addRoute(routeEl);
+            this.rtrHistoryEl = this.shadowRoot.querySelector("rtr-history");
+            [].forEach.call(this.children, function(rtrRouteEl) {
+                if (rtrRouteEl instanceof w.RtrRoute || rtrRouteEl instanceof w.RtrLazyRoute) {
+                    self.addRoute(rtrRouteEl);
                 }
             });
             console.log("routes hash", routes);
@@ -248,19 +248,19 @@ license that can be found in the LICENSE file.
          * Called by domReady. Adds a route to the routes hash (see domeReady above).
          *
          * @method addRout
-         * @param {element} routeEl Either a rtr-route element or a rtr-lazyroute element.
+         * @param {element} rtrRouteEl Either a rtr-route element or a rtr-lazyroute element.
          */
-        addRoute: function(routeEl) {
-            if (!routes[routeEl.path]) {
-                routes[routeEl.path] = {};
+        addRoute: function(rtrRouteEl) {
+            if (!routes[rtrRouteEl.path]) {
+                routes[rtrRouteEl.path] = {};
             }
-            if (!routes[routeEl.path][routeEl.method]) {
-                routes[routeEl.path][routeEl.method] = [];
+            if (!routes[rtrRouteEl.path][rtrRouteEl.method]) {
+                routes[rtrRouteEl.path][rtrRouteEl.method] = [];
             }
-            routes[routeEl.path][routeEl.method].push(
-                routeEl instanceof w.RtrLazyRoute ?
-                routeEl.routeHandler.bind(routeEl) :
-                routeEl[routeEl.handler].bind(routeEl));
+            routes[rtrRouteEl.path][rtrRouteEl.method].push(
+                rtrRouteEl instanceof w.RtrLazyRoute ?
+                rtrRouteEl.routeHandler.bind(rtrRouteEl) :
+                rtrRouteEl[rtrRouteEl.handler].bind(rtrRouteEl));
         },
 
         /**

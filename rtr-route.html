@@ -161,7 +161,7 @@ license that can be found in the LICENSE file.
         * The rtr-router element.
         *
         * @property rtrRouter
-        * @type Element
+        * @type RtrRouter
         * @default rtr-router
         */
         rtrRouter: null,
@@ -169,14 +169,14 @@ license that can be found in the LICENSE file.
         /**
         * The rtr-history element.
         *
-        * @property rtrHistory
-        * @type Element
+        * @property rtrHistoryEl
+        * @type RtrHistory
         * @default rtr-history
         */
-        rtrHistory: null,
+        rtrHistoryEl: null,
 
         /**
-         * A lifecycle callback. Adds rtrRouter and rtrHistory properties to itself.
+         * A lifecycle callback. Adds rtrRouter and rtrHistoryEl properties to itself.
          * If you override this method in your extended 'rtr-route' element you must call
          * this.super() or bad things will happen.
          *
@@ -185,7 +185,7 @@ license that can be found in the LICENSE file.
         domReady: function () {
             this.rtrRouter = this.parentElement;
             //rtr-history is the only element in the shadow-root
-            this.rtrHistory = this.parentElement.shadowRoot.children[0];
+            this.rtrHistoryEl = this.parentElement.shadowRoot.children[0];
         }
     });
 }());

@@ -1,8 +1,11 @@
-## rtr, a router built on top of Polymer. Supports anchor tabs, form submits, lazy loading. Everything is an element so there is nothing new to learn. Watch this repo for further progress. If you are daring then checkout the development branch which gets merged with feature branches as they mature. If you are really daring then checkout the feature branches.
+&lt;rtr-router&gt; is a router built on top of Polymer
+======================================================
+* Supports routing for <b>anchor tag click events</b>, <b>form submit events</b>, as well as <b>lazy loading of route handlers</b>.
+* <b>Everything is a custom element</b> so there is nothing new to learn.
 
-rtr-router
-============
-See the [component page](http://jeffschwartz.github.io/rtr/components/rtr/) for more information.
+Documentation And Demo
+======================
+See the [component page](http://jeffschwartz.github.io/rtr/components/rtr/) for complete <b>documentation</b> and <b>demo</b>.
 
 Example
 =======
@@ -21,6 +24,9 @@ Example
             tagname="myrtr-lazyloaded"></rtr-lazyroute>
     </rtr-router>
 
+Watch this repo for further progress.
+=====================================
+If you are daring then checkout the development branch which gets merged with feature branches as they mature. If you are really daring then checkout the feature branches.
 
 LICENSE
 =======

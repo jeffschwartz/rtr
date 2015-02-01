@@ -24,9 +24,13 @@ Example
             tagname="myrtr-lazyloaded"></rtr-lazyroute>
     </rtr-router>
 
-Watch this repo for further progress.
+How you can contribute to this project
+======================================
+No project is an island and this project is no different. Your participation is fundamental to this project's success. It needs your feedback in the form of bug reports and feature requests, both of which can be filed [here](https://github.com/jeffschwartz/rtr/issues).
+
+Watch this repo for further progress
 =====================================
-If you are daring then checkout the development branch which gets merged with feature branches as they mature. If you are really daring then checkout the feature branches.
+The master branch represents the current stable tip of the repo. Development branches are merged into the master branch as the development branche matures. If you are daring then checkout the development branch which gets merged with feature branches as they mature. If you are really daring then checkout the feature branches (if there are any).
 
 LICENSE
 =======

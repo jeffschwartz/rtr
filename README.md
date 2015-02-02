@@ -1,6 +1,9 @@
 &lt;rtr-router&gt; is a router built on top of Polymer
 ======================================================
-* Supports routing for <b>anchor tag click events</b>, <b>form submit events</b>, as well as <b>lazy loading of route handlers</b>.
+* Routing for <b>anchor tag click events</b> and <b>form submit events</b>.
+* Optional <b>lazy loading</b> of route handlers.
+* <b>Static</b> and <b>parameterized</b> paths.
+* Form submits are conveniently routed to their handlers with a <b>hash of input values</b>.
 * <b>Everything is a custom element</b> so there is nothing new to learn.
 
 Documentation And Demo
@@ -9,19 +12,26 @@ See the [component page](http://jeffschwartz.github.io/rtr/components/rtr/) for 
 
 Example
 =======
+Define your routes declaratively:
+
     <rtr-router>
-        <myrtr-somepath method="get" path="/somepath" handler="get"></myrtr-somepath>
-        <myrtr-somepath method="post" path="/somepath" handler="post"></myrtr-somepath>
-        <myrtr-somepath method="put" path="/somepath" handler="put"></myrtr-somepath>
-        <myrtr-somepath method="delete" path="/somepath" handler="del"></myrtr-somepath>
-        <rtr-lazyroute method="get" path="/somelazypath" handler="get" importPath="myrtr-lazyloaded.html"
-            tagname="myrtr-lazyloaded"></rtr-lazyroute>
-        <rtr-lazyroute method="post" path="/somelazypath" handler="post" importPath="myrtr-lazyloaded.html"
-            tagname="myrtr-lazyloaded"></rtr-lazyroute>
-        <rtr-lazyroute method="put" path="/somelazypath" handler="put" importPath="myrtr-lazyloaded.html"
-            tagname="myrtr-lazyloaded"></rtr-lazyroute>
-        <rtr-lazyroute method="delete" path="/somelazypath" handler="del" importPath="myrtr-lazyloaded.html"
-            tagname="myrtr-lazyloaded"></rtr-lazyroute>
+        <demo-staticpath methdo="get" path="/rtr/demo-staticpath" handler="get"></demo-staticpath>
+        <rtr-lazyroute method="get" path="/rtr/demo-lazystaticpath"
+            importPath="/rtr/components/rtr/demo/demo-lazystaticpath.html"
+            tagname="demo-lazystaticpath" handler="get"></rtr-lazyroute>
+        <demo-parameterizedpath methdo="get"
+            path="/rtr/demo-parameterizedpath/year/:y/month/:m/day/:d"
+            handler="get"></demo-parameterizedpath>
+        <rtr-lazyroute method="get"
+            path="/rtr/demo-lazyparameterizedpath/year/:y/month/:m/day/:d"
+            importPath="/rtr/components/rtr/demo/demo-lazyparameterizedpath.html"
+            tagname="demo-lazyparameterizedpath" handler="get"></rtr-lazyroute>
+        <demo-formsubmit method="post" path="/rtr/demo-formsubmit" handler="post"></demo-formsubmit>
+        <rtr-lazyroute method="post" path="/rtr/demo-lazyformsubmit"
+            importPath="/rtr/components/rtr/demo/demo-lazyformsubmit.html"
+            tagname="demo-lazyformsubmit" handler="post"></rtr-lazyroute>
+        <demo-redirect methdo="get" path="/rtr/demo-redirect" handler="get"></demo-redirect>
+        <demo-redirecttarget methdo="get" path="/rtr/demo-redirecttarget" handler="get"></demo-redirecttarget>
     </rtr-router>
 
 How you can contribute to this project

@@ -15,8 +15,11 @@ Example
 Define your routes declaratively:
 
     <rtr-router>
-        <demo-staticpath methdo="get" path="/rtr/demo-staticpath" handler="get"></demo-staticpath>
-        <rtr-lazyroute method="get" path="/rtr/demo-lazystaticpath"
+        <demo-staticpath methdo="get"
+            path="/rtr/demo-staticpath"
+            handler="get"></demo-staticpath>
+        <rtr-lazyroute method="get"
+            path="/rtr/demo-lazystaticpath"
             importPath="/rtr/components/rtr/demo/demo-lazystaticpath.html"
             tagname="demo-lazystaticpath" handler="get"></rtr-lazyroute>
         <demo-parameterizedpath methdo="get"
@@ -25,13 +28,22 @@ Define your routes declaratively:
         <rtr-lazyroute method="get"
             path="/rtr/demo-lazyparameterizedpath/year/:y/month/:m/day/:d"
             importPath="/rtr/components/rtr/demo/demo-lazyparameterizedpath.html"
-            tagname="demo-lazyparameterizedpath" handler="get"></rtr-lazyroute>
-        <demo-formsubmit method="post" path="/rtr/demo-formsubmit" handler="post"></demo-formsubmit>
-        <rtr-lazyroute method="post" path="/rtr/demo-lazyformsubmit"
+            tagname="demo-lazyparameterizedpath"
+            handler="get"></rtr-lazyroute>
+        <demo-formsubmit method="post"
+            path="/rtr/demo-formsubmit"
+            handler="post"></demo-formsubmit>
+        <rtr-lazyroute method="post"
+            path="/rtr/demo-lazyformsubmit"
             importPath="/rtr/components/rtr/demo/demo-lazyformsubmit.html"
-            tagname="demo-lazyformsubmit" handler="post"></rtr-lazyroute>
-        <demo-redirect methdo="get" path="/rtr/demo-redirect" handler="get"></demo-redirect>
-        <demo-redirecttarget methdo="get" path="/rtr/demo-redirecttarget" handler="get"></demo-redirecttarget>
+            tagname="demo-lazyformsubmit"
+            handler="post"></rtr-lazyroute>
+        <demo-redirect methdo="get"
+            path="/rtr/demo-redirect"
+            handler="get"></demo-redirect>
+        <demo-redirecttarget methdo="get"
+            path="/rtr/demo-redirecttarget"
+            handler="get"></demo-redirecttarget>
     </rtr-router>
 
 How you can contribute to this project

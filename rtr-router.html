@@ -77,6 +77,27 @@ license that can be found in the LICENSE file.
     var routes = {};
 
     /**
+     * Called by domReady. Adds a route to the routes hash (see domeReady above).
+     *
+     * @param {RtrRoute|RtrLazyRoute|object} route rtr-route element, or rtr-lazyroute element, or a hash obtained from either a rtr-lazyroute or a rtr-route  "routes" property (the "routes" property is assigned its value from these element's "routes" attributes).
+     */
+    function addRoute(route) {
+        /* jshint validthis:true */
+        if (!routes[route.path]) {
+            routes[route.path] = {};
+        }
+        if (!routes[route.path][route.method]) {
+            routes[route.path][route.method] = [];
+        }
+        routes[route.path][route.method].push(
+            route instanceof w.RtrLazyRoute ?
+            this.routeHandler.bind(this) :
+            // route.routeHandler.bind(route) :
+            // route[route.handler].bind(route));
+            this[route.handler].bind(this));
+    }
+
+    /**
      * Routes the request.
      *
      * @param  {string} method Think REST - get, post, put, delete, etc.
@@ -247,34 +268,15 @@ license that can be found in the LICENSE file.
             [].forEach.call(this.children, function(rtrRouteEl) {
                 if (rtrRouteEl instanceof w.RtrRoute || rtrRouteEl instanceof w.RtrLazyRoute) {
                     if(rtrRouteEl.routes && rtrRouteEl.routes.length) {
-                        //Call this.addRoute once for each route hash in routes.
-                        rtrRouteEl.routes.forEach(self.addRoute);
+                        //Call addRoute once for each route hash in routes.
+                        rtrRouteEl.routes.forEach(addRoute, rtrRouteEl);
                     }else{
-                        //Call this. addRoute with the element itself.
-                        self.addRoute(rtrRouteEl);
+                        //Call addRoute with the element itself.
+                        addRoute.call(rtrRouteEl, rtrRouteEl);
                     }
                 }
             });
             console.log("routes hash", routes);
-        },
-
-        /**
-         * Called by domReady. Adds a route to the routes hash (see domeReady above).
-         *
-         * @method addRoute
-         * @param {RtrRoute|RtrLazyRoute|object} route rtr-route element, or rtr-lazyroute element, or a hash obtained from either a rtr-lazyroute or a rtr-route  "routes" property (the "routes" property is assigned its value from these element's "routes" attributes).
-         */
-        addRoute: function(route) {
-            if (!routes[route.path]) {
-                routes[route.path] = {};
-            }
-            if (!routes[route.path][route.method]) {
-                routes[route.path][route.method] = [];
-            }
-            routes[route.path][route.method].push(
-                route instanceof w.RtrLazyRoute ?
-                route.routeHandler.bind(route) :
-                route[route.handler].bind(route));
         },
 
         /**

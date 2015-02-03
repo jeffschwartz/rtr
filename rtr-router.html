@@ -34,8 +34,16 @@ license that can be found in the LICENSE file.
  * With your route handlers defined you now declaratively include them in the body of your markup:
  *
  *      <rtr-router>
- *          <demo-staticpath methdo="get" path="/rtr/components/rtr/demo-staticpath" handler="get"></demo-staticpath>
- *          <rtr-lazyroute method="get" path="/rtr/components/rtr/demo-lazystaticpath"
+ *          <demo-staticpath
+ *              methdo="get"
+ *              path="/rtr/components/rtr/demo-staticpath"
+ *              handler="get"></demo-staticpath>
+ *          <rtr-lazyroute
+ *              method="get"
+ *              path="/rtr/components/rtr/demo-lazystaticpath"
+ *              importPath="/rtr/components/rtr/demo/demo-lazystaticpath.html"
+ *              tagname="demo-lazystaticpath"
+ *              handler="get"></rtr-lazyroute>
  *      </rtr-router>
  *
  * Wnen a user clicks on an anchor element or submits a form whose markup is decorated with the
@@ -67,6 +75,27 @@ license that can be found in the LICENSE file.
      * An array of routes.
      */
     var routes = {};
+
+    /**
+     * Called by domReady. Adds a route to the routes hash (see domeReady above).
+     *
+     * @param {RtrRoute|RtrLazyRoute|object} route rtr-route element, or rtr-lazyroute element, or a hash obtained from either a rtr-lazyroute or a rtr-route  "routes" property (the "routes" property is assigned its value from these element's "routes" attributes).
+     */
+    function addRoute(route) {
+        /* jshint validthis:true */
+        if (!routes[route.path]) {
+            routes[route.path] = {};
+        }
+        if (!routes[route.path][route.method]) {
+            routes[route.path][route.method] = [];
+        }
+        routes[route.path][route.method].push(
+            route instanceof w.RtrLazyRoute ?
+            this.routeHandler.bind(this) :
+            // route.routeHandler.bind(route) :
+            // route[route.handler].bind(route));
+            this[route.handler].bind(this));
+    }
 
     /**
      * Routes the request.
@@ -238,29 +267,16 @@ license that can be found in the LICENSE file.
             this.rtrHistoryEl = this.shadowRoot.querySelector("rtr-history");
             [].forEach.call(this.children, function(rtrRouteEl) {
                 if (rtrRouteEl instanceof w.RtrRoute || rtrRouteEl instanceof w.RtrLazyRoute) {
-                    self.addRoute(rtrRouteEl);
+                    if(rtrRouteEl.routes && rtrRouteEl.routes.length) {
+                        //Call addRoute once for each route hash in routes.
+                        rtrRouteEl.routes.forEach(addRoute, rtrRouteEl);
+                    }else{
+                        //Call addRoute with the element itself.
+                        addRoute.call(rtrRouteEl, rtrRouteEl);
+                    }
                 }
             });
             console.log("routes hash", routes);
-        },
-
-        /**
-         * Called by domReady. Adds a route to the routes hash (see domeReady above).
-         *
-         * @method addRout
-         * @param {element} rtrRouteEl Either a rtr-route element or a rtr-lazyroute element.
-         */
-        addRoute: function(rtrRouteEl) {
-            if (!routes[rtrRouteEl.path]) {
-                routes[rtrRouteEl.path] = {};
-            }
-            if (!routes[rtrRouteEl.path][rtrRouteEl.method]) {
-                routes[rtrRouteEl.path][rtrRouteEl.method] = [];
-            }
-            routes[rtrRouteEl.path][rtrRouteEl.method].push(
-                rtrRouteEl instanceof w.RtrLazyRoute ?
-                rtrRouteEl.routeHandler.bind(rtrRouteEl) :
-                rtrRouteEl[rtrRouteEl.handler].bind(rtrRouteEl));
         },
 
         /**

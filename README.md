@@ -20,35 +20,45 @@ Define your routes using JavaScript:
         <template>
         </template>
         <script>
-    ```javascript
-    (function() {
-        "use strict";
-        Polymer("demo-routes", {
-            staticPath: function(){
-                document.getElementById("demo-staticpath-info").textContent =
-                    "demo-staticpath \"staticPath\" route handler called";
-                console.log("demo-staticpath \"staticPath\" route handler called");
-            },
-            parameterizedPath: function(year, month, day) {
-                document.getElementById("demo-parameterizedpath-info").innerHTML =
-                    "demo-parameterizedpath \"parameterizedPath\" route handler was called with parameters" +
-                    "<br>year = " + year + "<br>month = " + month + "<br>day = " + day;
-                console.log("demo-parameterizedpath \"parameterizedPath\" route handler called");
-            },
-            formSubmit: function(valuesHash) {
-                document.getElementById("demo-formsubmit-info").innerHTML =
-                    "demo-formsubmit \"formSubmit\" route handler was called with a form's valuesHash" +
-                    "<br>name = " + valuesHash.txtName + "<br>occupation = " + valuesHash.selOccupation.toString();
-                console.log("demo-formsubmit \"formSubmit\" route handler called");
-            }
-        });
-    }());
-    ```
+```javascript
+(function() {
+    "use strict";
+    Polymer("demo-routes", {
+        staticPath: function(){
+            document.getElementById("demo-staticpath-info").textContent =
+                "demo-staticpath \"staticPath\" route handler called";
+            console.log("demo-staticpath \"staticPath\" route handler called");
+        },
+        parameterizedPath: function(year, month, day) {
+            document.getElementById("demo-parameterizedpath-info").innerHTML =
+                "demo-parameterizedpath \"parameterizedPath\" route handler was called with parameters" +
+                "<br>year = " + year + "<br>month = " + month + "<br>day = " + day;
+            console.log("demo-parameterizedpath \"parameterizedPath\" route handler called");
+        },
+        formSubmit: function(valuesHash) {
+            document.getElementById("demo-formsubmit-info").innerHTML =
+                "demo-formsubmit \"formSubmit\" route handler was called with a form's valuesHash" +
+                "<br>name = " + valuesHash.txtName + "<br>occupation = " + valuesHash.selOccupation.toString();
+            console.log("demo-formsubmit \"formSubmit\" route handler called");
+        }
+    });
+}());
+```
         </script>
     </polymer-element>
 
 Declare your routes in your markup:
 
+    <html>
+    <head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>rtr Demo</title>
+    <script src="../webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="rtr-router.html">
+    <link rel="import" href="demo/demo-routes.html">
+    </head>
+    <body>
+    ...
     <rtr-router>
         <!-- demo-routes: declares multiple route handlers -->
         <demo-routes
@@ -66,6 +76,9 @@ Declare your routes in your markup:
                 "handler": "formSubmit"
             }]'></demo-routes>
     </rtr-router>
+    ...
+    </body>
+    </html>
 
 How you can contribute to this project
 ======================================

@@ -12,39 +12,73 @@ See the [component page](http://jeffschwartz.github.io/rtr/components/rtr/) for 
 
 Example
 =======
-Define your routes declaratively:
+Define your routes using JavaScript:
 
+    <link rel="import" href="../../polymer/polymer.html">
+    <link rel="import" href="../rtr-route.html">
+    <polymer-element name="demo-routes" extends="rtr-route">
+        <template>
+        </template>
+        <script>
+```javascript
+(function() {
+    "use strict";
+    Polymer("demo-routes", {
+        staticPath: function(){
+            document.getElementById("demo-staticpath-info").textContent =
+                "demo-staticpath \"staticPath\" route handler called";
+            console.log("demo-staticpath \"staticPath\" route handler called");
+        },
+        parameterizedPath: function(year, month, day) {
+            document.getElementById("demo-parameterizedpath-info").innerHTML =
+                "demo-parameterizedpath \"parameterizedPath\" route handler was called with parameters" +
+                "<br>year = " + year + "<br>month = " + month + "<br>day = " + day;
+            console.log("demo-parameterizedpath \"parameterizedPath\" route handler called");
+        },
+        formSubmit: function(valuesHash) {
+            document.getElementById("demo-formsubmit-info").innerHTML =
+                "demo-formsubmit \"formSubmit\" route handler was called with a form's valuesHash" +
+                "<br>name = " + valuesHash.txtName + "<br>occupation = " + valuesHash.selOccupation.toString();
+            console.log("demo-formsubmit \"formSubmit\" route handler called");
+        }
+    });
+}());
+```
+        </script>
+    </polymer-element>
+
+Declare your routes in your markup:
+
+    <html>
+    <head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>rtr Demo</title>
+    <script src="../webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="rtr-router.html">
+    <link rel="import" href="demo/demo-routes.html">
+    </head>
+    <body>
+    ...
     <rtr-router>
-        <demo-staticpath methdo="get"
-            path="/rtr/demo-staticpath"
-            handler="get"></demo-staticpath>
-        <rtr-lazyroute method="get"
-            path="/rtr/demo-lazystaticpath"
-            importPath="/rtr/components/rtr/demo/demo-lazystaticpath.html"
-            tagname="demo-lazystaticpath" handler="get"></rtr-lazyroute>
-        <demo-parameterizedpath methdo="get"
-            path="/rtr/demo-parameterizedpath/year/:y/month/:m/day/:d"
-            handler="get"></demo-parameterizedpath>
-        <rtr-lazyroute method="get"
-            path="/rtr/demo-lazyparameterizedpath/year/:y/month/:m/day/:d"
-            importPath="/rtr/components/rtr/demo/demo-lazyparameterizedpath.html"
-            tagname="demo-lazyparameterizedpath"
-            handler="get"></rtr-lazyroute>
-        <demo-formsubmit method="post"
-            path="/rtr/demo-formsubmit"
-            handler="post"></demo-formsubmit>
-        <rtr-lazyroute method="post"
-            path="/rtr/demo-lazyformsubmit"
-            importPath="/rtr/components/rtr/demo/demo-lazyformsubmit.html"
-            tagname="demo-lazyformsubmit"
-            handler="post"></rtr-lazyroute>
-        <demo-redirect methdo="get"
-            path="/rtr/demo-redirect"
-            handler="get"></demo-redirect>
-        <demo-redirecttarget methdo="get"
-            path="/rtr/demo-redirecttarget"
-            handler="get"></demo-redirecttarget>
+        <!-- demo-routes: declares multiple route handlers -->
+        <demo-routes
+            routes='[{
+                "method": "get",
+                "path": "/rtr/components/rtr/demo-staticpath",
+                "handler": "staticPath"
+            }, {
+                "method": "get",
+                "path": "/rtr/components/rtr/demo-parameterizedpath/year/:y/month/:m/day/:d",
+                "handler": "parameterizedPath"
+            }, {
+                "method": "post",
+                "path": "/rtr/components/rtr/demo-formsubmit",
+                "handler": "formSubmit"
+            }]'></demo-routes>
     </rtr-router>
+    ...
+    </body>
+    </html>
 
 How you can contribute to this project
 ======================================

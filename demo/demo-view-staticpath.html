@@ -6,15 +6,15 @@
         <p>Routing a click event on an <em>anchor</em> tag:</p>
         <pre><code>
 &lt;html&gt;
-    &lt;head&gt;
-        &lt;meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"&gt;
-        &lt;script src="../webcomponentsjs/webcomponents.min.js"&gt;&lt;/script&gt;
-        &lt;link rel="import" href="rtr-router.html"&gt;
-        &lt;link rel="import" href="demo/demo-staticpath.html"&gt;
-    &lt;/head&gt;
+&lt;head&gt;
+    &lt;meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"&gt;
+    &lt;script src="../webcomponentsjs/webcomponents.min.js"&gt;&lt;/script&gt;
+    &lt;link rel="import" href="rtr-router.html"&gt;
+    &lt;link rel="import" href="demo/demo-routes.html"&gt;
+&lt;/head&gt;
 &lt;body unresolved&gt;
     &lt;rtr-router&gt;
-        &lt;demo-staticpath method="get" path="/rtr/components/rtr/demo-staticpath" handler="get"&gt;&lt;/demo-staticpath&gt;
+        &lt;demo-routes method="get" path="/rtr/components/rtr/demo-staticpath" handler="staticPath"&gt;&lt;/demo-routes&gt;
     &lt;/rtr-router&gt;
     &lt;a data-rtr-route href="/rtr/components/rtr/demo-staticpath"&gt;Try Routing A Click Event On An Anchor Tag&lt;/a&gt;
     &lt;script&gt;

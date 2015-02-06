@@ -27,6 +27,10 @@ license that can be found in the LICENSE file.
  *        }());
  *    </script>
  *
+ * *** Note: If you need to "bootstrap" your application you can do so by passing an optional
+ * callback function and an optional context to use when calling the callback function as the 3rd
+ * and 4th arguments, respectively, to rtr-history's start method (see below for details).
+ *
  * *** Note: 'rtr-router' allways calls window.history.pushState passing it the url path associated
  * with the current routing request. This permits the user to navigate back and forward through
  * the window's history which in turn results in routing requests. You can override this default
@@ -309,17 +313,26 @@ license that can be found in the LICENSE file.
          * @method start
          * @param  {boolean} pushState true to replace the current location state.
          * @param  {boolean} trigger true to trigger routing for the current location.
+         * @param  {function} bootstrap optional callback function that can be used to do application specific processing (e.g. making an ajax request to bootstrap the application with data) at the time when start is called but prior to processing the 1st routing request.
+         * @param  {boolean} bootstrapContext optional context to use when calling bootstrap.
          */
-        start: function(pushState, trigger) {
+        start: function(pushState, trigger, bootstrap, bootstrapContext) {
+            //Guard against multiple invocations.
+            if(historyStarted) {return;}
+            if(bootstrap) {
+                if(bootstrapContext) {
+                    bootstrap.call(bootstrapContext);
+                } else {
+                    bootstrap();
+                }
+            }
             historyStarted = true;
-            //TODO(JS): test with pushState false
             if (pushState) {
                 w.history.replaceState({
                     method: "get",
                     path: w.location.pathname
                 }, null, w.location.pathname);
             }
-            //TODO(JS): test with trigger false
             if (trigger) {
                 this.rtrRouterEl.route("get", w.location.pathname);
             }

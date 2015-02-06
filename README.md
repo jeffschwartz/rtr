@@ -4,6 +4,7 @@
 * Optional <b>lazy loading</b> of route handlers.
 * <b>Static</b> and <b>parameterized</b> paths.
 * Form submits are conveniently routed to their handlers with a <b>hash of input values</b>.
+* Conveniently <b>bootstrap your application</b> prior to processing its first routing request.
 * <b>Everything is a custom element</b> so there is nothing new to learn.
 
 Documentation And Demo

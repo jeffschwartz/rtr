@@ -314,7 +314,7 @@ license that can be found in the LICENSE file.
          * @param  {boolean} pushState true to replace the current location state.
          * @param  {boolean} trigger true to trigger routing for the current location.
          * @param  {function} bootstrap optional callback function that can be used to do application specific processing (e.g. making an ajax request to bootstrap the application with data) at the time when start is called but prior to processing the 1st routing request.
-         * @param  {boolean} bootstrapContext optional context to use when calling bootstrap.
+         * @param  {object} bootstrapContext optional context to use (i.e. its "this") when calling bootstrap.
          */
         start: function(pushState, trigger, bootstrap, bootstrapContext) {
             //Guard against multiple invocations.

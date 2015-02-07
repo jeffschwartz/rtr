@@ -1,6 +1,6 @@
 {
   "name": "rtr",
-  "version": "0.0.0-0.0.1",
+  "version": "0.1.0",
   "authors": [
     "Jeffrey Schwartz"
   ],
@@ -12,7 +12,9 @@
     "rtr-router",
     "rtr-history",
     "rtr-route",
-    "rtr-lazyroute"
+    "rtr-lazyroute",
+    "router",
+    "routing"
   ],
   "main": "rtr-router.html",
   "license": "BSD Like",

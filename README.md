@@ -7,6 +7,12 @@
 * Conveniently <b>bootstrap your application</b> prior to processing its first routing request.
 * <b>Everything is a custom element</b> so there is nothing new to learn.
 
+Quick Start
+===========
+Two quick start options are available:
+* Clone the repo: <code>git clone https://github.com/jeffschwartz/rtr.git</code>.
+* Install with [Bower](http://bower.io): <code>bower install rtr --save</code>.
+
 Documentation And Demo
 ======================
 See the [component page](http://jeffschwartz.github.io/rtr/components/rtr/) for complete <b>documentation</b> and <b>demo</b>.

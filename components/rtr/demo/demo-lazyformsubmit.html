@@ -1,0 +1,22 @@
+<!-- By Jeffrey Schwartz - Licensed under MIT -->
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../rtr-route.html">
+<polymer-element name="demo-lazyformsubmit" extends="rtr-route">
+    <template>
+    </template>
+    <script>
+(function() {
+    "use strict";
+    Polymer("demo-lazyformsubmit", {
+        domReady: function() {
+            this.infoEl = document.getElementById("demo-lazyformsubmit-info");
+        },
+        post: function(valuesHash){
+            this.infoEl.innerHTML = "demo-lazyformsubmit \"post\" handler was called with a form's valuesHash" +
+            "<br>name = " + valuesHash.txtName2 + "<br>occupation = " + valuesHash.selOccupation2.toString();
+            console.log("demo-lazyformsubmit \"post\" called");
+        }
+    });
+}());
+    </script>
+</polymer-element>

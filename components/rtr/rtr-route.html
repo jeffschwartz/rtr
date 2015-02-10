@@ -1,0 +1,216 @@
+<!--
+Copyright 2015 Jeffrey Schwartz. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+-->
+<!--
+/**
+ * @group Router Core Elements
+ *
+ * 'rtr-route' element is an abstract base custom element which represent a route. Your route
+ * handler must extend rtr-route to be useful (i.e. extends="rtr-router") and provide a route
+ * handler method that will be called for the route:
+ *
+ *      <link rel="import" href="../../polymer/polymer.html">
+ *      <link rel="import" href="../rtr-route.html">
+ *      <polymer-element name="my-route" extends="rtr-route">
+ *          <script>
+ *          (function() {
+ *              "use strict";
+ *              Polymer("my-route", {
+ *                  aRouteHandler: function(){
+ *                      // Code to handle the route
+ *                      ...
+ *                  },
+ *                  aRouteHandlerWithParameters: function(year, month, day){
+ *                      // Code to handle the route
+ *                      ...
+ *                  },
+ *                  aFormRouteHandler: function(valuesHash){
+ *                      // Code to handle the route
+ *                      ...
+ *                  }
+ *              });
+ *          }());
+ *          </script>
+ *      </polymer-element>
+ *
+ * With your route handler defined you now declaratively include it in the body of your markup:
+ *
+ *      <rtr-router>
+ *          <my-route
+ *            method="get"
+ *            path="a/url/path"
+ *            handler="aRouteHandler">
+ *          </my-route>
+ *      </rtr-router>
+ *
+ * *** Note: You can have multiple route handlers defined as child elements of 'rtr-router'.
+ *
+ * Now when a user clicks the following link element in the document:
+ *
+ *      <a data-rtr-route href="a/url/path">...</a>
+ *
+ * 'rtr-router' will match the "get" request (because all anchor tags are get requests) for the path
+ * 'a/url/path' with the handler method named 'aRouteHanlder' and call it. When 'aRouteHandler' is
+ * called its context (its this) is set to your route handler object for convenience.
+ *
+ * 'rtr-router' also supports parameterized paths and passes the parameters defined in the path to
+ * its route handler:
+ *
+ *      <rtr-router>
+ *          <my-route
+ *            method="get"
+ *            path="a/url/path/:year/:month/:day"
+ *            handler="aRouteHandlerWithParameters>
+ *          </my-route>
+ *      </rtr-router>
+ *
+ * Now when a user clicks the following link element in the document:
+ *
+ *      <a data-rtr-route href="a/url/path/2015/01/01">...</a>
+ *
+ * 'rtr-router' will match the "get" request (because all anchor tags are get requests) for the path
+ * 'a/url/path/:year/:month/:day' with the handler method named 'aRouteHandlerWithParameters and
+ * call it with the parameter values "2015" (i.e. year), "01" (i.e. month) and "01" (i.e. day).
+ *
+ * 'rtr-router' also supports passing form elements (i.e. a hash of name/value pairs where name
+ * equals the value of the form element's name attribute) to its route handler when routing a form
+ * submit:
+ *
+ *      <rtr-router>
+ *          <my-formsubmit
+ *            method="post"
+ *            path="a/url/path"
+ *            handler="aFormRouteHandler">
+ *          </my-formsubmit>
+ *      </rtr-router>
+ *
+ * Now when a user fills in the below form, enters the name "Superman" and selects both "Web
+ * Developer" and "JavaScript Developer" as their occupaton and then submits the form:
+ *
+ *      <form data-rtr-route id="formsubmit" action="a/url/path" method="post">
+ *          <label for="txtName">Name:</label>
+ *          <input id="txtName" name="txtName" type="text" placeholder="enter you name here"><br>
+ *          <select id="selOccupation" name="selOccupation" multiple="multiple">
+ *              <option value="web_dev" selected="selected">Web Developer</option>
+ *              <option value="javascript_dev" selected="selected">JavaScript Developer</option>
+ *              <option value="ui_engineer">UI Engineer</option>
+ *              <option value="java_dev">Java developer</option>
+ *              <option value="db_admin">DB Administrator</option>
+ *              <option value="senior_php">Senior PHP programmer</option>
+ *              <option value="sap_engineer">SAP Engineer</option>
+ *          </select>
+ *          <button type="submt">Try Routing A Form Submit Event</button>
+ *      </form>
+ *
+ * 'rtr-router' will match the "post" request (it uses the form's method attribute value) for the
+ * path 'a/url/path' with the handler method named 'aFormRouteHandler' and call it passing it a
+ * values hash with the following values:
+ *
+ *      {
+ *          selOccupation: ["javascript_dev", "web_dev"],
+ *          txtName: "SuperMan"
+ *      }
+ *
+ * @element rtr-route
+ * @status release
+ * @homepage https://github.com/jeffschwartz/rtr
+ * @author Jeff Schwartz
+ */
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<polymer-element name="rtr-route" constructor="RtrRoute" attributes="routes method path handler">
+    <template>
+    </template>
+    <script>
+(function() {
+    "use strict";
+
+    Polymer("rtr-route", {
+        /**
+         * An array of route hashes. Allows multiple routes to be declared. Each hash must be
+         * configured using a double-quoted JSON string. Example:
+         *
+         *     <some-routes routes='[{
+         *         "method": "get",
+         *         "path": "/some/path/for/get",
+         *         "handler": "somepathHandlerForGet"
+         *     }, {
+         *         "method": "post",
+         *         "path": "/some/path/for/post",
+         *         "handler": "somepathHandlerForPost"
+         *     }, {
+         *     .
+         *     .
+         *     }]'></some-routes>
+         *
+         * @attribute routes
+         * @type array
+         * @default []
+         */
+        routes: [],
+
+        /**
+         * The method (think REST) associated with the routing request
+         * (e.g. "get", "post", "put", "delete", etc.).
+         *
+         * @attribute method
+         * @type string
+         * @default 'get'
+         */
+        method: "get", // A sensible daefault
+
+        /**
+         * The path (think URL) used for the routing request.
+         *
+         * @attribute path
+         * @type string
+         * @default ''
+         */
+        path: "",
+
+        /**
+         * The name of the function that is to be called to handle the route.
+         *
+         * @attribute handler
+         * @type string
+         * @default ''
+         */
+        handler: "",
+
+        /**
+        * The rtr-router element.
+        *
+        * @property rtrRouterEl
+        * @type RtrRouter
+        * @default rtr-router
+        */
+        rtrRouterEl: null,
+
+        /**
+        * The rtr-history element.
+        *
+        * @property rtrHistoryEl
+        * @type RtrHistory
+        * @default rtr-history
+        */
+        rtrHistoryEl: null,
+
+        /**
+         * A lifecycle callback. Adds rtrRouter and rtrHistoryEl properties to itself.
+         * If you override this method in your extended 'rtr-route' element you must call
+         * this.super() or bad things will happen.
+         *
+         * @method domReady
+         */
+        domReady: function () {
+            this.rtrRouterEl = this.parentElement;
+            //rtr-history is the only element in the shadow-root
+            this.rtrHistoryEl = this.parentElement.shadowRoot.children[0];
+        }
+    });
+}());
+    </script>
+</polymer-element>

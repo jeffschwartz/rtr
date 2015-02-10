@@ -1,0 +1,37 @@
+<!-- By Jeffrey Schwartz - Licensed under MIT -->
+<link rel="import" href="../../polymer/polymer.html">
+<polymer-element name="demo-view-redirect" noscript>
+    <template>
+        <link rel="stylesheet" href="demo-view-common.css">
+        <p><em>Redirecting</em> a routing event:</p>
+        <pre><code>
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"&gt;
+    &lt;script src="../webcomponentsjs/webcomponents.min.js"&gt;&lt;/script&gt;
+    &lt;link rel="import" href="rtr-router.html"&gt;
+    &lt;link rel="import" href="demo/demo-redirect.html"&gt;
+    &lt;link rel="import" href="demo/demo-redirecttarget.html"&gt;
+&lt;/head&gt;
+&lt;body unresolved&gt;
+    &lt;rtr-router&gt;
+        &lt;demo-redirect method="get" path="/rtr/components/rtr/demo-redirect" handler="get"&gt;&lt;/demo-redirect&gt;
+        &lt;demo-redirecttarget methdo="get" path="/rtr/components/rtr/demo-redirecttarget" handler="get"&gt;&lt;/demo-redirecttarget&gt;
+    &lt;/rtr-router&gt;
+    &lt;a data-rtr-route href="/rtr/components/rtr/demo-redirect"&gt;Try Redirecting A Routing Event&lt;/a&gt;
+    &lt;script&gt;
+    (function(){
+        "use strict";
+        window.addEventListener("polymer-ready", function(){
+            var rtrRouterEl = document.querySelector("rtr-router");
+            rtrRouterEl.rtrHistoryEl.start(false, false);
+        });
+    }());
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code></pre>
+        <content select="a"></content>
+        <content select="div"></content>
+    </template>
+</polymer-element>

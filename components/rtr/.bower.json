@@ -1,0 +1,41 @@
+{
+  "name": "rtr",
+  "authors": [
+    "Jeffrey Schwartz"
+  ],
+  "description": "A router built on top of Polymer",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "rtr-router",
+    "rtr-history",
+    "rtr-route",
+    "rtr-lazyroute",
+    "router",
+    "routing"
+  ],
+  "main": "rtr-router.html",
+  "license": "BSD Like",
+  "homepage": "https://github.com/jeffschwartz/rtr",
+  "ignore": [
+    "/.*",
+    "/tests/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.5.2"
+  },
+  "devDependencies": {
+    "web-component-tester": "Polymer/web-component-tester#^2.0.5"
+  },
+  "_release": "4d0440064a",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "4d0440064a094c39b1c705c798a7d0fd480df27e"
+  },
+  "_source": "git://github.com/jeffschwartz/rtr.git",
+  "_target": "master",
+  "_originalSource": "jeffschwartz/rtr",
+  "_direct": true
+}

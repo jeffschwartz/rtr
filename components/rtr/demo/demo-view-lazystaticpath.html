@@ -1,0 +1,35 @@
+<!-- By Jeffrey Schwartz - Licensed under MIT -->
+<link rel="import" href="../../polymer/polymer.html">
+<polymer-element name="demo-view-lazystaticpath" noscript>
+    <template>
+        <link rel="stylesheet" href="demo-view-common.css">
+        <p>Lazy routing a click event on an <em>anchor</em> tag:</p>
+        <pre><code>
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"&gt;
+    &lt;script src="../webcomponentsjs/webcomponents.min.js"&gt;&lt;/script&gt;
+    &lt;link rel="import" href="rtr-router.html"&gt;
+&lt;/head&gt;
+&lt;body unresolved&gt;
+    &lt;rtr-router&gt;
+        &lt;rtr-lazyroute method="get" path="/rtr/components/rtr/demo-lazystaticpath"
+        importPath="/rtr/components/rtr/demo/demo-lazystaticpath.html" tagname="demo-lazystaticpath" handler="get"&gt;&lt;/rtr-lazyroute&gt;
+    &lt;/rtr-router&gt;
+    &lt;a data-rtr-route href="/rtr/components/rtr/demo-lazystaticpath"&gt;Try Lazy Routing A Click Event On An Anchor Tag&lt;/a&gt;
+    &lt;script&gt;
+    (function(){
+        "use strict";
+        window.addEventListener("polymer-ready", function(){
+            var rtrRouterEl = document.querySelector("rtr-router");
+            rtrRouterEl.rtrHistoryEl.start(false, false);
+        });
+    }());
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code></pre>
+        <content select="a"></content>
+        <content select="div"></content>
+    </template>
+</polymer-element>

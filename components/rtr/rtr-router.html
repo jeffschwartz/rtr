@@ -1,0 +1,297 @@
+<!--
+Copyright 2015 Jeffrey Schwartz. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+-->
+<!--
+/**
+ * @group Router Core Elements
+ *
+ * 'rtr-router' element adds support and functionality for routing. It uses the html5 history
+ * API for manipulating browser history.
+ *
+ * 'rtr-router' allows you to declaratively enable routing for any anchor tag click and form tag
+ * submit event by simply including either the "data-rtr-route" or the "rtr-route" attribute on
+ * any anchor and form tags in your markup.
+ *
+ *      <a data-rtr-route href="some/path/for/anchor">...</a>
+ *
+ *      <form data-rtr-route id="someId" action="some/path/for/form" method="post">...</form>
+ *
+ * With routing declaratively enabled you then create route handlers to "handle" the routing
+ * requests.
+ *
+ * A route handler is simply a custom element that you define which contains a method that will be
+ * called to handle the routing request.
+ *
+ * Two types of route handlers are supported:
+ *
+ * 1) Those whose import files are imported when your markup is loaded. See rtr-route.
+ *
+ * 2) Those that defer importing their import files until they are actually needed
+ *    {i.e. lazy loaded} to handle a routing request. See rtr-lazyroute.
+ *
+ * With your route handlers defined you now declaratively include them in the body of your markup:
+ *
+ *      <rtr-router>
+ *          <demo-staticpath
+ *              methdo="get"
+ *              path="/rtr/components/rtr/demo-staticpath"
+ *              handler="get"></demo-staticpath>
+ *          <rtr-lazyroute
+ *              method="get"
+ *              path="/rtr/components/rtr/demo-lazystaticpath"
+ *              importPath="/rtr/components/rtr/demo/demo-lazystaticpath.html"
+ *              tagname="demo-lazystaticpath"
+ *              handler="get"></rtr-lazyroute>
+ *      </rtr-router>
+ *
+ * Wnen a user clicks on an anchor element or submits a form whose markup is decorated with the
+ * 'data-rtr-route' or 'rtr-route' attributes 'rtr-router' calls all the methods in all the route
+ * handlers declared to handle the routing request.
+ *
+ * Please see 'rtr-route' and 'rtr-lazyroute' for details regarding defining route handlers.
+ *
+ * @element rtr-router
+ * @status release
+ * @homepage https://github.com/jeffschwartz/rtr
+ * @author Jeff Schwartz
+ */
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="rtr-history.html">
+<link rel="import" href="rtr-route.html">
+<link rel="import" href="rtr-lazyroute.html">
+<polymer-element name="rtr-router" constructor="RtrRouter">
+    <template>
+        <rtr-history></rtr-history>
+    </template>
+    <script>
+(function(w) {
+    "use strict";
+
+    /**
+     * An array of routes.
+     */
+    var routes = {};
+
+    /**
+     * Called by domReady. Adds a route to the routes hash (see domeReady above).
+     *
+     * @param {RtrRoute|RtrLazyRoute|object} route rtr-route element, or rtr-lazyroute element, or a hash obtained from either a rtr-lazyroute or a rtr-route  "routes" property (the "routes" property is assigned its value from these element's "routes" attributes).
+     */
+    function addRoute(route) {
+        /* jshint validthis:true */
+        if (!routes[route.path]) {
+            routes[route.path] = {};
+        }
+        if (!routes[route.path][route.method]) {
+            routes[route.path][route.method] = [];
+        }
+        routes[route.path][route.method].push(
+            route instanceof w.RtrLazyRoute ?
+            this.routeHandler.bind(this) :
+            // route.routeHandler.bind(route) :
+            // route[route.handler].bind(route));
+            this[route.handler].bind(this));
+    }
+
+    /**
+     * Routes the request.
+     *
+     * @param  {string} method Think REST - get, post, put, delete, etc.
+     * @param  {strung} path The request path.
+     * @param  {object} valuesHash A values hash if request is for a form submit.
+     */
+    function route(method, path, valuesHash) {
+        //TODO(JS) a way to do some work prior to processing the 1st routing request
+        var rt = getRoute(method, path);
+        if (rt) {
+            if (valuesHash) {
+                //Push valuesHash onto route.params so it will be passed to
+                //the handler, following any parameter arguments, as the last argument.
+                rt.params.push(valuesHash);
+            }
+            routeFound(rt);
+        } else {
+            routeNotFound(method, path);
+        }
+    }
+
+    /**
+     * Returns true if s1 contains the character s2.
+     *
+     * @param  {string} s1 The string to search if it contains the character s2.
+     * @param  {string} s2 The character to search for.
+     * @return {boolean} true if found, otherwise false.
+     */
+    function contains(s1, s2) {
+        return [].some.call(s1, function(ch) {
+            return ch === s2;
+        });
+    }
+
+    /**
+     * Parses the request and attempts to match it to route handlers.
+     *
+     * @param  {string} method Either get, post, put, delete.
+     * @param  {string} url A URL path that begins with a "/".
+     * @return {object} If a match is found returns a hash with a handlers and a params property. If
+     * not found return undefined.
+     */
+    function getRoute(method, url) {
+        // var a = url.substring(1).split("/"),
+        var a = url.split("/"),
+            params = [],
+            rel = false,
+            b, c, eq, route, handlers;
+        for (route in routes) {
+            if (routes.hasOwnProperty(route)) {
+                //Get the "veb".
+                // vrb = route.substring(0, route.indexOf(" "));
+                // If the route has a matching method then handlers will be set to the callback
+                handlers = routes[route][method];
+                if (handlers) {
+                    //Get the url.
+                    // b = route.substring(route.indexOf("/") + 1).split("/");
+                    b = route.split("/");
+                    if (a.length === b.length || contains(route, "*")) {
+                        eq = true;
+                        //The url and the route have the same number of segments so the route can
+                        //be either static or it could contain parameterized segments.
+                        for (var i = 0, len = b.length; i < len; i++) {
+                            //If the segments are equal then continue looping.
+                            if (a[i] === b[i]) {
+                                continue;
+                            }
+                            //If the route segment is parameterized then save the parameter and continue looping.
+                            if (contains(b[i], ":")) {
+                                //0.4.0 - checking for "some:thing"
+                                c = b[i].split(":");
+                                if (c.length === 2 && c[0]) {
+                                    if (a[i].substr(0, c[0].length) === c[0]) {
+                                        params.push(a[i].substr(c[0].length));
+                                    }
+                                } else {
+                                    params.push(a[i]);
+                                }
+                                continue;
+                            }
+                            //If the route is a relative route, push it onto the array and break out of the loop.
+                            if (contains(b[i], "*")) {
+                                rel = true;
+                                eq = false;
+                                break;
+                            }
+                            //If none of the above
+                            eq = false;
+                            break;
+                        }
+                        //The route matches the url so attach the params (it could be empty) to the route and return the route.
+                        if (eq) {
+                            //function to call, function arguments to call with...
+                            return {
+                                // controllerName: routes[route][0],
+                                handlers: handlers,
+                                params: params
+                            };
+                        }
+                        if (rel) {
+                            //function to call, function arguments to call with...
+                            for (var ii = i, llen = a.length, relUrl = ""; ii < llen; ii++) {
+                                relUrl += ("/" + a[ii]);
+                            }
+                            //function to call, function arguments to call with...
+                            return {
+                                // controllerName: routes[route][0],
+                                handlers: handlers,
+                                params: [relUrl]
+                            };
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Routes the request to the target handlers.
+     *
+     * @param  {object} route A hash which contains a handlers and a params property.
+     */
+    function routeFound(route) {
+        route.handlers.forEach(function(r){
+            /*
+              *** Note ***
+              The handler function, r, has already been bound to its Route or LazyRoute
+              object (see addRoute below). Using apply and call on them as is done below
+              cannot change the calling context they were bound to because once bound the
+              function's calling context cannot be changed.
+            */
+            if (route.params.length) {
+                r.apply(null, route.params);
+            } else {
+                r.call(null);
+            }
+        });
+    }
+
+    /**
+     * Called when target handlers cannot be found for the request.
+     *
+     * @param  {string} url The request path.
+     */
+    function routeNotFound(url) {
+        //TODO(JS): perhaps allow user defined callback here
+        console.log("router::routeNotFound called with route = " + url);
+    }
+
+    Polymer("rtr-router", {
+        /**
+        * The rtr-history element.
+        *
+        * @property rtrHistoryEl
+        * @type RtrHistory
+        * @default rtr-history
+        */
+        rtrHistoryEl: null,
+
+        /**
+         * A lifecycle callback. Adds rtrHistoryEl property to itself and propagates the routes array.
+         *
+         * @method domReady
+         */
+        domReady: function() {
+            var self = this;
+            this.rtrHistoryEl = this.shadowRoot.querySelector("rtr-history");
+            [].forEach.call(this.children, function(rtrRouteEl) {
+                if (rtrRouteEl instanceof w.RtrRoute || rtrRouteEl instanceof w.RtrLazyRoute) {
+                    if(rtrRouteEl.routes && rtrRouteEl.routes.length) {
+                        //Call addRoute once for each route hash in routes.
+                        rtrRouteEl.routes.forEach(addRoute, rtrRouteEl);
+                    }else{
+                        //Call addRoute with the element itself.
+                        addRoute.call(rtrRouteEl, rtrRouteEl);
+                    }
+                }
+            });
+            console.log("routes hash", routes);
+        },
+
+        /**
+         * Called to route a request to its target handlers.
+         *
+         * @method route
+         * @param  {string} method Think REST (e.g. "get", "post", "put", "delete", etc.).
+         * @param  {string} path The request path.
+         * @param  {object} hash  A hash of form element names (keys) and their values (values) to pass to the target handler as  the last argument if the request is for a form submit.
+         */
+        route: function(method, path, valuesHash) {
+            console.log("router.route called");
+            route(method, path, valuesHash);
+        }
+    });
+}(window));
+    </script>
+</polymer-element>

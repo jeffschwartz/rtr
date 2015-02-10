@@ -1,0 +1,48 @@
+<!-- By Jeffrey Schwartz - Licensed under MIT -->
+<link rel="import" href="../../polymer/polymer.html">
+<polymer-element name="demo-view-lazyformsubmit" noscript>
+    <template>
+        <link rel="stylesheet" href="demo-view-common.css">
+        <p>Lazy routing a <em>form submit</em> event:</p>
+        <pre><code>
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"&gt;
+    &lt;script src="../webcomponentsjs/webcomponents.min.js"&gt;&lt;/script&gt;
+    &lt;link rel="import" href="rtr-router.html"&gt;
+&lt;/head&gt;
+&lt;body unresolved&gt;
+    &lt;rtr-router&gt;
+        &lt;rtr-lazyroute method="post" path="/rtr/components/rtr/demo-lazyformsubmit"
+        importPath="/rtr/components/rtr/demo/demo-lazyformsubmit.html" tagname="demo-lazyformsubmit" handler="post"&gt;&lt;/rtr-lazyroute&gt;
+    &lt;/rtr-router&gt;
+    &lt;form data-rtr-route id="lazyformsubmit" action="/rtr/components/rtr/demo-lazyformsubmit" method="post"&gt;
+        &lt;label for="txtName2"&gt;Name:&lt;/label&gt;
+        &lt;input id="txtName2" name="txtName2" type="text" placeholder="enter you name here"&gt;&lt;br&gt;
+        &lt;select id="selOccupation2" name="selOccupation2" multiple="multiple"&gt;
+        &lt;option value="web_dev" selected="selected"&gt;Web Developer&lt;/option&gt;
+        &lt;option value="javascript_dev" selected="selected"&gt;JavaScript Developer&lt;/option&gt;
+        &lt;option value="ui_engineer"&gt;UI Engineer&lt;/option&gt;
+        &lt;option value="java_dev"&gt;Java developer&lt;/option&gt;
+        &lt;option value="db_admin"&gt;DB Administrator&lt;/option&gt;
+        &lt;option value="senior_php"&gt;Senior PHP programmer&lt;/option&gt;
+        &lt;option value="sap_engineer"&gt;SAP Engineer&lt;/option&gt;
+        &lt;/select&gt;
+        &lt;button type="submt"&gt;Try Lazy Routing A Form Submit Event&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;script&gt;
+    (function(){
+        "use strict";
+        window.addEventListener("polymer-ready", function(){
+            var rtrRouterEl = document.querySelector("rtr-router");
+            rtrRouterEl.rtrHistoryEl.start(false, false);
+        });
+    }());
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code></pre>
+        <content select="form"></content>
+        <content select="div"></content>
+    </template>
+</polymer-element>

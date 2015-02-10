@@ -1,0 +1,7 @@
+{
+  "name": "rtr#gh-pages",
+  "private": true,
+  "dependencies": {
+    "rtr": "jeffschwartz/rtr#master"
+  }
+}

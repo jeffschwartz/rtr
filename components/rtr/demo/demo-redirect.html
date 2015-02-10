@@ -1,0 +1,28 @@
+<!-- By Jeffrey Schwartz - Licensed under MIT -->
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../rtr-route.html">
+<polymer-element name="demo-redirect" extends="rtr-route">
+    <template>
+    </template>
+    <script>
+(function() {
+    Polymer("demo-redirect", {
+        //NOTE: You cannot use strict mode if calling this.super
+        domReady: function() {
+            this.super();
+            this.infoEl = document.getElementById("demo-redirect-info");
+        },
+        get: function(){
+            "use strict";
+            this.infoEl.textContent =  "demo-redirect \"get\" handler was called " +
+                "and is redirecting to demo-redirecttarget";
+            console.log("demo-redirect \"get\" called");
+            this.rtrHistoryEl.navigate({
+                path: "/rtr/components/rtr/demo-redirecttarget",
+                trigger: true
+            });
+        }
+    });
+}());
+    </script>
+</polymer-element>

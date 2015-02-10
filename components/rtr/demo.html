@@ -1,0 +1,158 @@
+<!--
+@license
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>rtr Demo</title>
+    <script src="../webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="rtr-router.html">
+    <link rel="import" href="demo/demo-routes.html">
+    <link rel="import" href="demo/demo-redirect.html">
+    <link rel="import" href="demo/demo-redirecttarget.html">
+    <link rel="import" href="demo/demo-view-staticpath.html">
+    <link rel="import" href="demo/demo-view-lazystaticpath.html">
+    <link rel="import" href="demo/demo-view-parameterizedpath.html">
+    <link rel="import" href="demo/demo-view-lazyparameterizedpath.html">
+    <link rel="import" href="demo/demo-view-formsubmit.html">
+    <link rel="import" href="demo/demo-view-lazyformsubmit.html">
+    <link rel="import" href="demo/demo-view-redirect.html">
+    <style>
+    article {
+        border-bottom: solid 1px #F0F0F0;
+        padding: 1em 0 1em 0;
+    }
+    article:first-child {
+        border-top: solid 1px #000;
+    }
+    .info {
+        background-color: #FAFAFA;
+        margin: 10px 10px 1em 10px;
+        padding: 1em;
+        color: #3366CC;
+    }
+    .info::before {
+        color: #000;
+        content: "Result: ";
+    }
+    a {
+        margin: 0 10px 1em 10px;
+    }
+</style>
+</head>
+<body unresolved>
+    <rtr-router>
+        <!-- demo-routes: includes routes for staticpath, parameterizedpath, formsubmit -->
+        <demo-routes routes='[{"method": "get", "path": "/rtr/components/rtr/demo-staticpath", "handler": "staticPath"},
+            {"method": "get", "path": "/rtr/components/rtr/demo-parameterizedpath/year/:y/month/:m/day/:d", "handler": "parameterizedPath" },
+            {"method": "post", "path": "/rtr/components/rtr/demo-formsubmit", "handler": "formSubmit"}]'></demo-routes>
+        <!-- demo-lazystaticpath -->
+        <rtr-lazyroute method="get" path="/rtr/components/rtr/demo-lazystaticpath"
+        importPath="/rtr/components/rtr/demo/demo-lazystaticpath.html" tagname="demo-lazystaticpath" handler="get"></rtr-lazyroute>
+        <!-- demo-lazyparameterizedpath -->
+        <rtr-lazyroute method="get" path="/rtr/components/rtr/demo-lazyparameterizedpath/year/:y/month/:m/day/:d"
+        importPath="/rtr/components/rtr/demo/demo-lazyparameterizedpath.html" tagname="demo-lazyparameterizedpath" handler="get"></rtr-lazyroute>
+        <!-- demo-lazyformsubmit -->
+        <rtr-lazyroute method="post" path="/rtr/components/rtr/demo-lazyformsubmit"
+        importPath="/rtr/components/rtr/demo/demo-lazyformsubmit.html" tagname="demo-lazyformsubmit" handler="post"></rtr-lazyroute>
+        <!-- demo-redirect -->
+        <demo-redirect methdo="get" path="/rtr/components/rtr/demo-redirect" handler="get"></demo-redirect>
+        <demo-redirecttarget methdo="get" path="/rtr/components/rtr/demo-redirecttarget" handler="get"></demo-redirecttarget>
+    </rtr-router>
+    <h1>rtr Demo</h1>
+    <section>
+        <article>
+            <!-- demo-staticpath -->
+            <demo-view-staticpath>
+                <a data-rtr-route href="/rtr/components/rtr/demo-staticpath">Try Routing A Click Event On An Anchor Tag</a>
+                <div class="info" id="demo-staticpath-info"></div>
+            </demo-view-staticpath>
+        </article>
+        <article>
+            <!-- demo-lazystaticpath -->
+            <demo-view-lazystaticpath>
+                <a data-rtr-route href="/rtr/components/rtr/demo-lazystaticpath">Try Lazy Routing A Click Event On An Anchor Tag</a>
+                <div class="info" id="demo-lazystaticpath-info"></div>
+            </demo-view-lazystaticpath>
+        </article>
+        <article>
+            <!-- demo-parameterizedpath -->
+            <demo-view-parameterizedpath>
+                <a data-rtr-route href="/rtr/components/rtr/demo-parameterizedpath/year/2015/month/1/day/5">Try Routing A Parameterized Path</a>
+                <div class="info" id="demo-parameterizedpath-info"></div>
+            </demo-view-parameterizedpath>
+        </article>
+        <article>
+            <!-- demo-lazyparameterizedpath -->
+            <demo-view-lazyparameterizedpath>
+                <a data-rtr-route href="/rtr/components/rtr/demo-lazyparameterizedpath/year/2015/month/1/day/5">Try Lazy Routing A Parameterized Path</a>
+                <div class="info" id="demo-lazyparameterizedpath-info"></div>
+            </demo-view-lazyparameterizedpath>
+        </article>
+        <article>
+            <!-- demo-formsubmit -->
+            <demo-view-formsubmit>
+                <form data-rtr-route id="formsubmit" action="/rtr/components/rtr/demo-formsubmit" method="post">
+                    <label for="txtName">Name:</label>
+                    <input id="txtName" name="txtName" type="text" placeholder="enter you name here"><br>
+                    <select id="selOccupation" name="selOccupation" multiple="multiple">
+                        <option value="web_dev" selected="selected">Web Developer</option>
+                        <option value="javascript_dev" selected="selected">JavaScript Developer</option>
+                        <option value="ui_engineer">UI Engineer</option>
+                        <option value="java_dev">Java developer</option>
+                        <option value="db_admin">DB Administrator</option>
+                        <option value="senior_php">Senior PHP programmer</option>
+                        <option value="sap_engineer">SAP Engineer</option>
+                    </select>
+                    <button type="submt">Try Routing A Form Submit Event</button>
+                </form>
+                <div class="info" id="demo-formsubmit-info"></div>
+            </demo-view-formsubmit>
+        </article>
+        <article>
+            <!-- demo-lazyformsubmit -->
+            <demo-view-lazyformsubmit>
+                <form data-rtr-route id="formsubmit2" action="/rtr/components/rtr/demo-lazyformsubmit" method="post">
+                    <label for="txtName2">Name:</label>
+                    <input id="txtName2" name="txtName2" type="text" placeholder="enter you name here"><br>
+                    <select id="selOccupation2" name="selOccupation2" multiple="multiple">
+                        <option value="web_dev" selected="selected">Web Developer</option>
+                        <option value="javascript_dev" selected="selected">JavaScript Developer</option>
+                        <option value="ui_engineer">UI Engineer</option>
+                        <option value="java_dev">Java developer</option>
+                        <option value="db_admin">DB Administrator</option>
+                        <option value="senior_php">Senior PHP programmer</option>
+                        <option value="sap_engineer">SAP Engineer</option>
+                    </select>
+                    <button type="submt">Try Lazy Routing A Form Submit Event</button>
+                </form>
+                <div class="info" id="demo-lazyformsubmit-info"></div>
+            </demo-view-lazyformsubmit>
+        </article>
+        <article>
+            <!-- demo-redirect -->
+            <demo-view-redirect>
+                <a data-rtr-route href="/rtr/components/rtr/demo-redirect">Try Redirecting A Routing Event</a>
+                <div class="info" id="demo-redirect-info"></div>
+            </demo-view-redirect>
+        </article>
+        <!-- TODO(JS): data-rtr-nopushstate attribute -->
+    </section>
+    <script>
+        (function(){
+            "use strict";
+            window.addEventListener("polymer-ready", function(){
+                var rtrRouterEl = document.querySelector("rtr-router");
+                rtrRouterEl.rtrHistoryEl.start(false, false);
+            });
+        }());
+    </script>
+</body>
+</html>

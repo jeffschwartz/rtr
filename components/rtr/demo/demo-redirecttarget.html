@@ -1,0 +1,22 @@
+<!-- By Jeffrey Schwartz - Licensed under MIT -->
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../rtr-route.html">
+<polymer-element name="demo-redirecttarget" extends="rtr-route">
+    <template>
+    </template>
+    <script>
+(function() {
+    "use strict";
+    Polymer("demo-redirecttarget", {
+        domReady: function() {
+            this.infoEl = document.getElementById("demo-redirect-info");
+        },
+        get: function(){
+            this.infoEl.innerHTML = this.infoEl.textContent +
+                " and demo-redirecttarget \"get\" called";
+            console.log("demo-redirecttarget \"get\" called");
+        }
+    });
+}());
+    </script>
+</polymer-element>
